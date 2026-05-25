@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "books": [
+    {
+      "id": "01",
+      "title": "01_認知科学とはなにか",
+      "description": "",
+      "file": "data/01.json"
+    }
+  ]
+}

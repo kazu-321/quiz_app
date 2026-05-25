@@ -1,0 +1,396 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-soft: #eef2f5;
+  --text: #18212b;
+  --muted: #687381;
+  --line: #d9e0e7;
+  --accent: #146c8e;
+  --accent-dark: #0f526c;
+  --danger: #b42318;
+  --success: #147a3d;
+  --warning: #9a5b00;
+  --shadow: 0 8px 24px rgba(22, 32, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.58rem 0.95rem;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.secondary-button {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+}
+
+.secondary-button:hover {
+  background: var(--surface-soft);
+}
+
+.danger-button {
+  background: var(--danger);
+}
+
+.danger-button:hover {
+  background: #8f1c14;
+}
+
+.app-header {
+  background: #17313b;
+  color: #fff;
+}
+
+.app-header > div,
+.page-shell {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.app-header > div {
+  padding: 34px 0;
+}
+
+.app-header.compact > div {
+  padding: 22px 0;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.app-header p {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.breadcrumb {
+  margin: 0 0 0.5rem !important;
+  font-size: 0.95rem;
+}
+
+.breadcrumb a {
+  color: #c9f0ff;
+}
+
+.page-shell {
+  padding: 26px 0 48px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.toolbar h2,
+.quiz-panel h2,
+.summary-panel h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.muted {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+}
+
+.message {
+  margin: 0 0 16px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--warning);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fff8ea;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.book-card,
+.quiz-panel,
+.summary-panel,
+.wrong-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.book-card {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+}
+
+.book-card h3 {
+  margin: 0;
+  font-size: 1.22rem;
+}
+
+.book-card p {
+  margin: 0;
+}
+
+.book-rate {
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #edf7fb;
+  color: #12485f;
+  font-weight: 700;
+}
+
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.status-pill {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 0.18rem 0.62rem;
+  background: #e5f6ed;
+  color: var(--success);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.quiz-panel,
+.summary-panel {
+  padding: 22px;
+}
+
+#book-detail {
+  margin-top: 16px;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+
+.question-text {
+  margin: 0 0 18px;
+  white-space: pre-wrap;
+  font-size: 1.22rem;
+  font-weight: 700;
+}
+
+.choice-list,
+.text-input-list {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.choice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+}
+
+.choice-item input {
+  margin-top: 0.35rem;
+  transform: scale(1.1);
+}
+
+.ordered-choice-button {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  text-align: left;
+}
+
+.ordered-choice-button:hover {
+  background: var(--surface-soft);
+}
+
+.ordered-choice-button.selected {
+  border-color: var(--accent);
+  background: #e7f4f8;
+}
+
+.order-number {
+  display: inline-flex;
+  width: 1.7rem;
+  height: 1.7rem;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.88rem;
+}
+
+.input-row {
+  display: grid;
+  gap: 6px;
+}
+
+.input-row label {
+  font-weight: 700;
+}
+
+.input-row input {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  background: #fff;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.result-box {
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface-soft);
+}
+
+.result-box.correct {
+  border-left: 4px solid var(--success);
+}
+
+.result-box.wrong {
+  border-left: 4px solid var(--danger);
+}
+
+.summary-score {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.score-tile {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fff;
+}
+
+.score-tile strong {
+  display: block;
+  font-size: 1.55rem;
+}
+
+.wrong-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.wrong-item {
+  padding: 16px;
+}
+
+.wrong-item h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.answer-block {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.answer-block p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .app-header > div,
+  .page-shell {
+    width: min(100% - 22px, 1080px);
+  }
+
+  .toolbar,
+  .progress-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toolbar button,
+  .actions button,
+  .book-actions button {
+    width: 100%;
+  }
+
+  .quiz-panel,
+  .summary-panel {
+    padding: 16px;
+  }
+}
