@@ -48,7 +48,7 @@ button {
   border-radius: 8px;
   padding: 0.58rem 0.95rem;
   background: var(--accent);
-  color: #fff;
+  color: inherit;
   cursor: pointer;
   font-weight: 700;
 }
@@ -82,6 +82,10 @@ button:disabled {
 
 .app-header {
   background: #17313b;
+  color: #fff;
+}
+
+.app-header button {
   color: #fff;
 }
 
@@ -156,6 +160,62 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
+}
+
+.book-tree {
+  display: grid;
+  gap: 16px;
+}
+
+.book-folder {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow);
+}
+
+.book-folder > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+}
+
+.book-folder > summary::-webkit-details-marker {
+  display: none;
+}
+
+.book-folder[open] > summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.folder-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.folder-count {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 0.18rem 0.68rem;
+  background: #eaf2f7;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.folder-body {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
 }
 
 .book-card,

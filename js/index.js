@@ -7,6 +7,44 @@
   let currentDetailBookId = null;
   const bookCache = new Map();
 
+  function buildBookTree(books) {
+    const root = { folders: new Map(), books: [] };
+
+    for (const book of books) {
+      const parts = String(book.id || "").split("/").filter(Boolean);
+      const title = parts.pop() || book.title || book.id;
+      let node = root;
+
+      for (const part of parts) {
+        if (!node.folders.has(part)) {
+          node.folders.set(part, { folders: new Map(), books: [] });
+        }
+        node = node.folders.get(part);
+      }
+
+      node.books.push({ ...book, _treeTitle: title });
+    }
+
+    return root;
+  }
+
+  function renderBookCard(book) {
+    const progress = QuizApp.getProgressMap();
+    const hasProgress = Boolean(progress[book.id]);
+    return `
+      <article class="book-card">
+        ${hasProgress ? '<span class="status-pill">中断中</span>' : ""}
+        <h3>${QuizApp.escapeHtml(book.title || book._treeTitle || book.id)}</h3>
+        <p class="muted">${QuizApp.escapeHtml(book.description || "")}</p>
+        <div class="book-actions">
+          <button type="button" data-start="${QuizApp.escapeHtml(book.id)}">解く</button>
+          <button class="secondary-button" type="button" data-stats="${QuizApp.escapeHtml(book.id)}" aria-expanded="false">正解率</button>
+          ${hasProgress ? `<button class="secondary-button" type="button" data-resume="${QuizApp.escapeHtml(book.id)}">続きから</button>` : ""}
+        </div>
+      </article>
+    `;
+  }
+
   function syncStatsButtons(activeBookId = null) {
     list.querySelectorAll("[data-stats]").forEach((button) => {
       const isActive = activeBookId !== null && button.dataset.stats === activeBookId && !detailPanel.hidden;
@@ -14,24 +52,56 @@
     });
   }
 
-  function renderBooks(manifest) {
-    const progress = QuizApp.getProgressMap();
-    count.textContent = `${manifest.books.length} 件`;
-    list.innerHTML = manifest.books.map((book) => {
-      const hasProgress = Boolean(progress[book.id]);
-      return `
-        <article class="book-card">
-          ${hasProgress ? '<span class="status-pill">中断中</span>' : ""}
-          <h3>${QuizApp.escapeHtml(book.title)}</h3>
-          <p class="muted">${QuizApp.escapeHtml(book.description || "")}</p>
-          <div class="book-actions">
-            <button type="button" data-start="${QuizApp.escapeHtml(book.id)}">解く</button>
-            <button class="secondary-button" type="button" data-stats="${QuizApp.escapeHtml(book.id)}" aria-expanded="false">正解率</button>
-            ${hasProgress ? `<button class="secondary-button" type="button" data-resume="${QuizApp.escapeHtml(book.id)}">続きから</button>` : ""}
-          </div>
-        </article>
-      `;
+  function renderFolderNode(name, node, pathParts = []) {
+    const folderPath = [...pathParts, name].join("/");
+    const totalBooks = node.books.length + [...node.folders.values()].reduce((sum, child) => sum + countBooks(child), 0);
+    const childFolders = [...node.folders.entries()].map(([childName, childNode]) => {
+      return renderFolderNode(childName, childNode, [...pathParts, name]);
     }).join("");
+    const childBooks = node.books.map((book) => renderBookCard(book)).join("");
+
+    return `
+      <details class="book-folder">
+        <summary>
+          <span class="folder-name">${QuizApp.escapeHtml(name)}</span>
+          <span class="folder-count">${totalBooks} 件</span>
+        </summary>
+        <div class="folder-body" data-folder="${QuizApp.escapeHtml(folderPath)}">
+          ${childFolders}
+          ${childBooks}
+        </div>
+      </details>
+    `;
+  }
+
+  function closeOtherFolders(exceptFolder = null) {
+    list.querySelectorAll("details.book-folder[open]").forEach((folder) => {
+      if (folder !== exceptFolder) {
+        folder.open = false;
+      }
+    });
+  }
+
+  function countBooks(node) {
+    return node.books.length + [...node.folders.values()].reduce((sum, child) => sum + countBooks(child), 0);
+  }
+
+  function countFolders(node) {
+    return node.folders.size + [...node.folders.values()].reduce((sum, child) => sum + countFolders(child), 0);
+  }
+
+  function renderBooks(manifest) {
+    const tree = buildBookTree(manifest.books);
+
+    const folderCount = countFolders(tree);
+    count.textContent = folderCount ? `${manifest.books.length} 件 / ${folderCount} フォルダ` : `${manifest.books.length} 件`;
+
+    const rootBooks = tree.books.map((book) => renderBookCard(book)).join("");
+    const folders = [...tree.folders.entries()].map(([name, node]) => renderFolderNode(name, node)).join("");
+    list.innerHTML = `
+      ${rootBooks}
+      ${folders}
+    `;
   }
 
   function questionStats(bookId, question) {
@@ -143,6 +213,15 @@
         location.href = `answer.html?book=${encodeURIComponent(resumeId)}`;
       }
     });
+
+    list.addEventListener("toggle", (event) => {
+      const folder = event.target;
+      if (!(folder instanceof HTMLDetailsElement)) return;
+      if (!folder.classList.contains("book-folder")) return;
+      if (folder.open) {
+        closeOtherFolders(folder);
+      }
+    }, true);
 
     detailPanel.addEventListener("click", (event) => {
       if (event.target.id !== "close-book-detail") return;

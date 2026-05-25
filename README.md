@@ -22,6 +22,14 @@ python3 tools/editor.py
 
 保存すると `data/*.json` と `manifest.json` が整形済み JSON として更新されます。
 
+ブラウザで編集する Web 版もあります。
+
+```bash
+python3 tools/web_editor.py
+```
+
+ローカルサーバを起動して、`問題集一覧 -> 問題一覧 -> 問題編集` の順に操作します。保存と `manifest.json` の更新は Python 側が担当します。
+
 ## データ仕様
 
 問題集一覧はルートの `manifest.json` で管理します。各問題集は `data/*.json` に置きます。

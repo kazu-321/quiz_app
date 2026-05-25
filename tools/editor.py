@@ -39,6 +39,24 @@ def format_index_list(value: object) -> str:
     return str(value)
 
 
+def attach_caret_tracking(widget: tk.Widget) -> None:
+    def update_caret(_event: tk.Event | None = None) -> None:
+        try:
+            bbox = widget.bbox("insert")
+            if bbox is None:
+                return
+            x, y, _width, height = bbox
+            widget.tk.call("tk", "caret", widget._w, "-x", x, "-y", y, "-height", height)
+        except Exception:
+            # IME placement is best-effort; failure should not block editing.
+            pass
+
+    widget.bind("<FocusIn>", update_caret, add="+")
+    widget.bind("<KeyRelease>", update_caret, add="+")
+    widget.bind("<ButtonRelease-1>", update_caret, add="+")
+    widget.bind("<Configure>", update_caret, add="+")
+
+
 def folder_from_book_path(path: Path | None) -> str:
     if path is None:
         return ""
@@ -158,7 +176,9 @@ class QuestionEditorScreen(ttk.Frame):
         }
 
         ttk.Label(self, text="ID").grid(row=row, column=0, sticky="w", padx=8, pady=5)
-        ttk.Entry(self, textvariable=self.id_var).grid(row=row, column=1, sticky="ew", padx=8, pady=5)
+        self.id_entry = tk.Entry(self, textvariable=self.id_var)
+        self.id_entry.grid(row=row, column=1, sticky="ew", padx=8, pady=5)
+        attach_caret_tracking(self.id_entry)
         row += 1
 
         ttk.Label(self, text="タイプ").grid(row=row, column=0, sticky="w", padx=8, pady=5)
@@ -170,6 +190,7 @@ class QuestionEditorScreen(ttk.Frame):
         ttk.Label(self, text="問題文").grid(row=row, column=0, sticky="nw", padx=8, pady=5)
         self.question_text = tk.Text(self, height=4, width=70)
         self.question_text.grid(row=row, column=1, sticky="nsew", padx=8, pady=5)
+        attach_caret_tracking(self.question_text)
         row += 1
 
         self.choice_section = ttk.Frame(self)
@@ -178,6 +199,7 @@ class QuestionEditorScreen(ttk.Frame):
         ttk.Label(self.choice_section, text="選択肢").grid(row=0, column=0, sticky="nw", padx=8, pady=5)
         self.choices_text = tk.Text(self.choice_section, height=5, width=70)
         self.choices_text.grid(row=0, column=1, sticky="nsew", padx=8, pady=5)
+        attach_caret_tracking(self.choices_text)
         self.choice_help_label = ttk.Label(
             self.choice_section,
             text="1行1件で入力します。回答は下の欄に index で入れます。",
@@ -190,8 +212,9 @@ class QuestionEditorScreen(ttk.Frame):
         self.answer_section.grid(row=row, column=0, columnspan=2, sticky="ew")
         self.answer_section.columnconfigure(1, weight=1)
         ttk.Label(self.answer_section, text="回答").grid(row=0, column=0, sticky="w", padx=8, pady=5)
-        self.answer_entry = ttk.Entry(self.answer_section)
+        self.answer_entry = tk.Entry(self.answer_section)
         self.answer_entry.grid(row=0, column=1, sticky="ew", padx=8, pady=5)
+        attach_caret_tracking(self.answer_entry)
         self.answer_help_label = ttk.Label(
             self.answer_section,
             text="single_choice は 0 始まりの番号。multiple_choice / ordered_choice は 0,2 のように入力します。",
@@ -222,15 +245,19 @@ class QuestionEditorScreen(ttk.Frame):
         ttk.Label(self, text="解説").grid(row=row, column=0, sticky="nw", padx=8, pady=5)
         self.explanation_text = tk.Text(self, height=4, width=70)
         self.explanation_text.grid(row=row, column=1, sticky="nsew", padx=8, pady=5)
+        attach_caret_tracking(self.explanation_text)
         row += 1
 
         ttk.Label(self, text="タグ").grid(row=row, column=0, sticky="w", padx=8, pady=5)
-        self.tags_entry = ttk.Entry(self)
+        self.tags_entry = tk.Entry(self)
         self.tags_entry.grid(row=row, column=1, sticky="ew", padx=8, pady=5)
+        attach_caret_tracking(self.tags_entry)
         row += 1
 
         ttk.Label(self, text="難易度").grid(row=row, column=0, sticky="w", padx=8, pady=5)
-        ttk.Entry(self, textvariable=self.difficulty_var).grid(row=row, column=1, sticky="ew", padx=8, pady=5)
+        self.difficulty_entry = tk.Entry(self, textvariable=self.difficulty_var)
+        self.difficulty_entry.grid(row=row, column=1, sticky="ew", padx=8, pady=5)
+        attach_caret_tracking(self.difficulty_entry)
         row += 1
 
         options = ttk.Frame(self)
@@ -264,8 +291,9 @@ class QuestionEditorScreen(ttk.Frame):
         frame.columnconfigure(1, weight=1)
         index_label = ttk.Label(frame, text=f"{row + 1}")
         index_label.grid(row=0, column=0, sticky="w", padx=(0, 8))
-        answers_entry = ttk.Entry(frame)
+        answers_entry = tk.Entry(frame)
         answers_entry.grid(row=0, column=1, sticky="ew", padx=(0, 8))
+        attach_caret_tracking(answers_entry)
         answers_entry.insert(0, answers)
         remove_button = ttk.Button(frame, text="削除", command=lambda: self._remove_input_row(frame))
         remove_button.grid(row=0, column=2, sticky="e")
@@ -478,13 +506,21 @@ class QuestionListScreen(ttk.Frame):
         self.folder_var.trace_add("write", lambda *_args: self._update_book_id())
 
         ttk.Label(self, text="内部ID").grid(row=1, column=0, sticky="w", pady=4)
-        ttk.Entry(self, textvariable=self.book_id_var, state="readonly").grid(row=1, column=1, sticky="ew", pady=4)
+        self.book_id_entry = tk.Entry(self, textvariable=self.book_id_var, state="readonly")
+        self.book_id_entry.grid(row=1, column=1, sticky="ew", pady=4)
+        attach_caret_tracking(self.book_id_entry)
         ttk.Label(self, text="タイトル").grid(row=2, column=0, sticky="w", pady=4)
-        ttk.Entry(self, textvariable=self.title_var).grid(row=2, column=1, sticky="ew", pady=4)
+        self.title_entry = tk.Entry(self, textvariable=self.title_var)
+        self.title_entry.grid(row=2, column=1, sticky="ew", pady=4)
+        attach_caret_tracking(self.title_entry)
         ttk.Label(self, text="説明").grid(row=3, column=0, sticky="w", pady=4)
-        ttk.Entry(self, textvariable=self.description_var).grid(row=3, column=1, sticky="ew", pady=4)
+        self.description_entry = tk.Entry(self, textvariable=self.description_var)
+        self.description_entry.grid(row=3, column=1, sticky="ew", pady=4)
+        attach_caret_tracking(self.description_entry)
         ttk.Label(self, text="フォルダ").grid(row=4, column=0, sticky="w", pady=4)
-        ttk.Entry(self, textvariable=self.folder_var).grid(row=4, column=1, sticky="ew", pady=4)
+        self.folder_entry = tk.Entry(self, textvariable=self.folder_var)
+        self.folder_entry.grid(row=4, column=1, sticky="ew", pady=4)
+        attach_caret_tracking(self.folder_entry)
 
         action_bar = ttk.Frame(self)
         action_bar.grid(row=5, column=0, columnspan=2, sticky="ew", pady=8)
@@ -519,6 +555,8 @@ class QuestionListScreen(ttk.Frame):
 class QuizEditor(tk.Tk):
     def __init__(self):
         super().__init__()
+        # X11 で IME の preedit を有効化する。
+        self.tk.call("tk", "useinputmethods", True)
         self.title("Quiz App Editor")
         self.geometry("1120x760")
         self.book_path: Path | None = None
