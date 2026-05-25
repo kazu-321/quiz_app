@@ -19,6 +19,174 @@
       "case_sensitive": false,
       "trim": true,
       "normalize_spaces": true
+    },
+    {
+      "id": "q002",
+      "type": "multiple_choice",
+      "question": "神経細胞の活動を計測",
+      "choices": [
+        "EEG",
+        "MEG",
+        "fMRI",
+        "fNIRS",
+        "PET"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "q003",
+      "type": "multiple_choice",
+      "question": "血流情報を計測",
+      "choices": [
+        "EEG",
+        "MEG",
+        "fMRI",
+        "fNIRS",
+        "PET"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "q004",
+      "type": "multiple_choice",
+      "question": "代謝情報の計測\n放射線の検出",
+      "choices": [
+        "EEG",
+        "MEG",
+        "fMRI",
+        "fNIRS",
+        "PET"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        4
+      ]
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "脳の10年では、何的に脳の活動を計測して可視化するようになったか",
+      "inputs": [
+        {
+          "answers": [
+            "非侵襲的",
+            "非侵襲"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "EEGは脳の何を検出するか",
+      "choices": [
+        "電気的信号",
+        "磁場変化",
+        "BOLD効果",
+        "近赤外分光",
+        "放射性同位元素"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "MEGは脳内の微小な何を検出するか",
+      "choices": [
+        "電気的信号",
+        "磁場変化",
+        "BOLD効果",
+        "近赤外分光",
+        "放射性同位元素"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "fMRIは何効果で計測するか",
+      "choices": [
+        "電気的信号",
+        "磁場変化",
+        "BOLD効果",
+        "近赤外分光",
+        "放射性同位元素"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "fNIRSは何により脳血流中のオキシヘモグロビンとデオキシヘモグロビンの変化量を計測するか",
+      "choices": [
+        "電気的信号",
+        "磁場変化",
+        "BOLD効果",
+        "近赤外分光",
+        "放射性同位元素"
+      ],
+      "shuffle_choices": true,
+      "answer": 3
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "PETは何でラベル化したブドウ糖を体内に注射するか",
+      "choices": [
+        "電気的信号",
+        "磁場変化",
+        "BOLD効果",
+        "近赤外分光",
+        "放射性同位元素"
+      ],
+      "shuffle_choices": true,
+      "answer": 4
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "心理学実験室を設置したのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "ヴント",
+            "ヴィルヘルム・ヴント"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q012",
+      "type": "text_input",
+      "question": "文字と異なる色の印刷物の色の名前をいうのにかかる時間を計測することで、2つの情報が干渉する影響を定量的に解明したのは誰か",
+      "inputs": [
+        {
+          "answers": [
+            "ストループ",
+            "ジョン・ストループ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
     }
   ]
 }
