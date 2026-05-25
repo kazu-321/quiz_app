@@ -137,10 +137,7 @@
       return (answer || []).map((index) => question.choices?.[index] ?? String(index)).join(" / ");
     }
     if (question.type === "text_input") {
-      return (answer || []).map((value, index) => {
-        const label = question.inputs?.[index]?.label || `入力${index + 1}`;
-        return `${label}: ${value}`;
-      }).join(" / ");
+      return (answer || []).map((value, index) => `入力${index + 1}: ${value}`).join(" / ");
     }
     return String(answer);
   }
@@ -148,8 +145,7 @@
   function correctAnswerText(question) {
     if (question.type === "text_input") {
       return (question.inputs || []).map((input, index) => {
-        const label = input.label || `入力${index + 1}`;
-        return `${label}: ${(input.answers || []).join(" / ")}`;
+        return `入力${index + 1}: ${(input.answers || []).join(" / ")}`;
       }).join(" / ");
     }
     return formatAnswer(question, question.answer);

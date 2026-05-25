@@ -123,8 +123,8 @@
       <div class="text-input-list">
         ${(question.inputs || []).map((input, index) => `
           <div class="input-row">
-            <label for="text-answer-${index}">${QuizApp.escapeHtml(input.label || `入力${index + 1}`)}</label>
-            <input id="text-answer-${index}" type="text" data-input-index="${index}" autocomplete="off">
+            <label for="text-answer-${index}">${QuizApp.escapeHtml(`入力${index + 1}`)}</label>
+            <input id="text-answer-${index}" type="text" data-input-index="${index}" autocomplete="off" ${index === 0 ? "autofocus" : ""}>
           </div>
         `).join("")}
       </div>
@@ -159,6 +159,18 @@
         </div>
       </form>
     `;
+
+    if (question.type === "text_input") {
+      requestAnimationFrame(() => {
+        const firstInput = quizView.querySelector('input[data-input-index="0"]');
+        if (!firstInput) return;
+        try {
+          firstInput.focus({ preventScroll: true });
+        } catch {
+          firstInput.focus();
+        }
+      });
+    }
   }
 
   function refreshOrderedButtons() {

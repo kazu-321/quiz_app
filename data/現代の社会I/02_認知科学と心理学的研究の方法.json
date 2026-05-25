@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "現代の社会I/02_認知科学と心理学的研究の方法",
+  "title": "02_認知科学と心理学的研究の方法",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "情報科学におけるコンピュータ技術の理論が心やモノは何かを考える認知モデルになった\nこれを何革命というか",
+      "inputs": [
+        {
+          "answers": [
+            "認知",
+            "認知革命"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "id": "現代の社会I/01_認知科学とはなにか",
+  "title": "01_認知科学とはなにか",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "認知科学とはなにか",
+      "choices": [
+        "知的な行動プロセスを情報処理の視点から科学的に明らかにする学問",
+        "認知症について科学的に明らかにする学問"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "脳の解剖図が記された医学教科書である「人体の解剖学」を出版したのは誰か",
+      "inputs": [
+        {
+          "answers": [
+            "グレイ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "大脳の白質神経路を切断し精神症状を改善する手術をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "ロボトミー",
+            "ロボトミー術"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "死後解剖のことをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "剖検"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "生物学的に問題のある治療法は何的と呼ばれているか",
+      "inputs": [
+        {
+          "answers": [
+            "侵襲的",
+            "侵襲"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "(1　人名)はワーキングメモリのキャパシティは 7±2 であるという論文を出した。\nその数字は (2) と呼ばれる",
+      "inputs": [
+        {
+          "answers": [
+            "ミラー"
+          ]
+        },
+        {
+          "answers": [
+            "マジカルナンバー"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    }
+  ]
+}

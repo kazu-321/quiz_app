@@ -25,13 +25,14 @@ python3 tools/editor.py
 ## データ仕様
 
 問題集一覧はルートの `manifest.json` で管理します。各問題集は `data/*.json` に置きます。
+問題集の内部 `id` はフォルダ名とタイトルから自動生成されます。
 
 対応する問題タイプは次の4種類です。
 
 - `single_choice`: 単一選択
 - `multiple_choice`: 複数選択、順序なし
 - `ordered_choice`: 複数選択、順序あり
-- `text_input`: 入力欄数可変の入力問題
+- `text_input`: 入力欄数可変の穴埋め問題。`inputs` は `{"answers": ["a", "AA"]}` の配列です
 
 学習状態はブラウザの `localStorage` に保存されます。
 

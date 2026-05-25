@@ -2,10 +2,16 @@
   "schema_version": 1,
   "books": [
     {
-      "id": "01",
+      "id": "現代の社会I/01_認知科学とはなにか",
       "title": "01_認知科学とはなにか",
       "description": "",
-      "file": "data/01.json"
+      "file": "data/現代の社会I/01_認知科学とはなにか.json"
+    },
+    {
+      "id": "現代の社会I/02_認知科学と心理学的研究の方法",
+      "title": "02_認知科学と心理学的研究の方法",
+      "description": "",
+      "file": "data/現代の社会I/02_認知科学と心理学的研究の方法.json"
     }
   ]
 }

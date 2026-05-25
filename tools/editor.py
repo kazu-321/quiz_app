@@ -25,11 +25,6 @@ def write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def slugify(value: str) -> str:
-    slug = re.sub(r"[^a-zA-Z0-9_-]+", "_", value.strip()).strip("_").lower()
-    return slug or "book"
-
-
 def parse_index_list(value: str) -> list[int]:
     if not value.strip():
         return []
@@ -72,9 +67,23 @@ def normalize_folder_path(value: str) -> Path:
     return Path(*parts)
 
 
-def book_relative_path(book_id: str, folder_text: str) -> Path:
+def book_id_from(folder_text: str, title: str) -> str:
     folder = normalize_folder_path(folder_text)
-    filename = f"{slugify(book_id)}.json"
+    title_text = title.strip()
+    parts = [part for part in folder.parts if part]
+    if title_text:
+        parts.append(title_text)
+    return "/".join(parts)
+
+
+def book_relative_path(folder_text: str, title: str) -> Path:
+    folder = normalize_folder_path(folder_text)
+    title_text = title.strip()
+    if not title_text:
+        raise ValueError("問題集タイトルが必要です。")
+    if any(sep in title_text for sep in ("/", "\\")):
+        raise ValueError("タイトルに / や \\ は使えません。")
+    filename = f"{title_text}.json"
     return folder / filename if folder.parts else Path(filename)
 
 
@@ -116,6 +125,7 @@ class QuestionEditorScreen(ttk.Frame):
         self.editor = editor
         self.question: dict = {"type": "single_choice", "shuffle_choices": True}
         self.vars: dict[str, tk.Variable] = {}
+        self.input_rows: list[dict[str, tk.Widget]] = []
         self._build()
         self.load_question(self.question)
 
@@ -162,19 +172,51 @@ class QuestionEditorScreen(ttk.Frame):
         self.question_text.grid(row=row, column=1, sticky="nsew", padx=8, pady=5)
         row += 1
 
-        ttk.Label(self, text="選択肢").grid(row=row, column=0, sticky="nw", padx=8, pady=5)
-        self.choices_text = tk.Text(self, height=5, width=70)
-        self.choices_text.grid(row=row, column=1, sticky="nsew", padx=8, pady=5)
+        self.choice_section = ttk.Frame(self)
+        self.choice_section.grid(row=row, column=0, columnspan=2, sticky="ew")
+        self.choice_section.columnconfigure(1, weight=1)
+        ttk.Label(self.choice_section, text="選択肢").grid(row=0, column=0, sticky="nw", padx=8, pady=5)
+        self.choices_text = tk.Text(self.choice_section, height=5, width=70)
+        self.choices_text.grid(row=0, column=1, sticky="nsew", padx=8, pady=5)
+        self.choice_help_label = ttk.Label(
+            self.choice_section,
+            text="1行1件で入力します。回答は下の欄に index で入れます。",
+            foreground="#555",
+        )
+        self.choice_help_label.grid(row=1, column=1, sticky="w", padx=8, pady=(0, 5))
         row += 1
 
-        ttk.Label(self, text="回答").grid(row=row, column=0, sticky="w", padx=8, pady=5)
-        self.answer_entry = ttk.Entry(self)
-        self.answer_entry.grid(row=row, column=1, sticky="ew", padx=8, pady=5)
+        self.answer_section = ttk.Frame(self)
+        self.answer_section.grid(row=row, column=0, columnspan=2, sticky="ew")
+        self.answer_section.columnconfigure(1, weight=1)
+        ttk.Label(self.answer_section, text="回答").grid(row=0, column=0, sticky="w", padx=8, pady=5)
+        self.answer_entry = ttk.Entry(self.answer_section)
+        self.answer_entry.grid(row=0, column=1, sticky="ew", padx=8, pady=5)
+        self.answer_help_label = ttk.Label(
+            self.answer_section,
+            text="single_choice は 0 始まりの番号。multiple_choice / ordered_choice は 0,2 のように入力します。",
+            foreground="#555",
+        )
+        self.answer_help_label.grid(row=1, column=1, sticky="w", padx=8, pady=(0, 5))
         row += 1
 
-        ttk.Label(self, text="入力欄").grid(row=row, column=0, sticky="nw", padx=8, pady=5)
-        self.inputs_text = tk.Text(self, height=5, width=70)
-        self.inputs_text.grid(row=row, column=1, sticky="nsew", padx=8, pady=5)
+        self.input_section = ttk.Frame(self)
+        self.input_section.grid(row=row, column=0, columnspan=2, sticky="nsew")
+        self.input_section.columnconfigure(0, weight=1)
+        input_header = ttk.Frame(self.input_section)
+        input_header.grid(row=0, column=0, sticky="ew", padx=8, pady=(5, 0))
+        input_header.columnconfigure(0, weight=1)
+        ttk.Label(input_header, text="穴埋め欄").grid(row=0, column=0, sticky="w")
+        ttk.Button(input_header, text="入力欄を追加", command=self._add_input_row).grid(row=0, column=1, sticky="e")
+        self.input_rows_frame = ttk.Frame(self.input_section)
+        self.input_rows_frame.grid(row=1, column=0, sticky="ew", padx=8, pady=5)
+        self.input_rows_frame.columnconfigure(1, weight=1)
+        self.input_help_label = ttk.Label(
+            self.input_section,
+            text="各行に1つの穴埋め欄を作り、許容解答だけをカンマ区切りで入れます。",
+            foreground="#555",
+        )
+        self.input_help_label.grid(row=2, column=0, sticky="w", padx=8, pady=(0, 5))
         row += 1
 
         ttk.Label(self, text="解説").grid(row=row, column=0, sticky="nw", padx=8, pady=5)
@@ -193,23 +235,59 @@ class QuestionEditorScreen(ttk.Frame):
 
         options = ttk.Frame(self)
         options.grid(row=row, column=1, sticky="w", padx=8, pady=5)
-        ttk.Checkbutton(options, text="選択肢をシャッフル", variable=self.shuffle_choices_var).pack(side="left")
-        ttk.Checkbutton(options, text="大文字小文字を区別", variable=self.case_sensitive_var).pack(side="left", padx=8)
-        ttk.Checkbutton(options, text="前後空白を無視", variable=self.trim_var).pack(side="left", padx=8)
-        ttk.Checkbutton(options, text="連続空白を1つに正規化", variable=self.normalize_spaces_var).pack(side="left", padx=8)
+        self.shuffle_check = ttk.Checkbutton(options, text="選択肢をシャッフル", variable=self.shuffle_choices_var)
+        self.case_sensitive_check = ttk.Checkbutton(options, text="大文字小文字を区別", variable=self.case_sensitive_var)
+        self.trim_check = ttk.Checkbutton(options, text="前後空白を無視", variable=self.trim_var)
+        self.normalize_spaces_check = ttk.Checkbutton(
+            options, text="連続空白を1つに正規化", variable=self.normalize_spaces_var
+        )
         row += 1
 
-        help_text = (
-            "選択肢: 1行1件。回答: single は index、multiple/ordered は 0,2 の形式。\n"
-            "入力欄: label|answer1,answer2 を1行1件。例: 一覧表示|ls"
-        )
-        ttk.Label(self, text=help_text, foreground="#555").grid(row=row, column=1, sticky="w", padx=8, pady=5)
+        self.type_hint_label = ttk.Label(self, text="", foreground="#555")
+        self.type_hint_label.grid(row=row, column=1, sticky="w", padx=8, pady=5)
         row += 1
 
         buttons = ttk.Frame(self)
         buttons.grid(row=row, column=1, sticky="e", padx=8, pady=10)
         ttk.Button(buttons, text="キャンセル", command=self.editor.cancel_question_edit).pack(side="right", padx=4)
         ttk.Button(buttons, text="保存", command=self._save).pack(side="right", padx=4)
+
+    def _clear_input_rows(self) -> None:
+        for row in self.input_rows:
+            row["frame"].destroy()
+        self.input_rows.clear()
+
+    def _add_input_row(self, answers: str = "") -> None:
+        row = len(self.input_rows)
+        frame = ttk.Frame(self.input_rows_frame)
+        frame.grid(row=row, column=0, sticky="ew", pady=3)
+        frame.columnconfigure(1, weight=1)
+        index_label = ttk.Label(frame, text=f"{row + 1}")
+        index_label.grid(row=0, column=0, sticky="w", padx=(0, 8))
+        answers_entry = ttk.Entry(frame)
+        answers_entry.grid(row=0, column=1, sticky="ew", padx=(0, 8))
+        answers_entry.insert(0, answers)
+        remove_button = ttk.Button(frame, text="削除", command=lambda: self._remove_input_row(frame))
+        remove_button.grid(row=0, column=2, sticky="e")
+        self.input_rows.append(
+            {
+                "frame": frame,
+                "index_label": index_label,
+                "answers": answers_entry,
+                "remove": remove_button,
+            }
+        )
+        self._reindex_input_rows()
+
+    def _remove_input_row(self, frame: ttk.Frame) -> None:
+        self.input_rows = [row for row in self.input_rows if row["frame"] != frame]
+        frame.destroy()
+        self._reindex_input_rows()
+
+    def _reindex_input_rows(self) -> None:
+        for index, row in enumerate(self.input_rows):
+            row["frame"].grid_configure(row=index)
+            row["index_label"].configure(text=str(index + 1))
 
     def load_question(self, question: dict) -> None:
         self.question = question
@@ -231,11 +309,11 @@ class QuestionEditorScreen(ttk.Frame):
         self.explanation_text.insert("1.0", question.get("explanation", ""))
         self.tags_entry.delete(0, "end")
         self.tags_entry.insert(0, ", ".join(question.get("tags", [])))
-        self.inputs_text.delete("1.0", "end")
-        inputs = []
+        self._clear_input_rows()
         for item in question.get("inputs", []):
-            inputs.append(f"{item.get('label', '')}|{','.join(item.get('answers', []))}")
-        self.inputs_text.insert("1.0", "\n".join(inputs))
+            self._add_input_row(", ".join(item.get("answers", [])))
+        if not self.input_rows:
+            self._add_input_row()
         self._sync_type_fields()
 
     def focus_first_field(self) -> None:
@@ -243,11 +321,46 @@ class QuestionEditorScreen(ttk.Frame):
 
     def _sync_type_fields(self) -> None:
         qtype = self.type_var.get()
-        choice_state = "normal" if qtype in {"single_choice", "multiple_choice", "ordered_choice"} else "disabled"
-        input_state = "normal" if qtype == "text_input" else "disabled"
-        self.choices_text.configure(state=choice_state)
-        self.answer_entry.configure(state=choice_state)
-        self.inputs_text.configure(state=input_state)
+        is_choice = qtype in {"single_choice", "multiple_choice", "ordered_choice"}
+        is_text_input = qtype == "text_input"
+
+        if is_choice:
+            self.choice_section.grid()
+            self.answer_section.grid()
+        else:
+            self.choice_section.grid_remove()
+            self.answer_section.grid_remove()
+
+        if is_text_input:
+            self.input_section.grid()
+        else:
+            self.input_section.grid_remove()
+
+        for widget in (
+            self.shuffle_check,
+            self.case_sensitive_check,
+            self.trim_check,
+            self.normalize_spaces_check,
+        ):
+            widget.pack_forget()
+
+        if is_choice:
+            self.shuffle_check.pack(side="left")
+        if is_text_input:
+            self.case_sensitive_check.pack(side="left")
+            self.trim_check.pack(side="left", padx=8)
+            self.normalize_spaces_check.pack(side="left", padx=8)
+
+        if qtype == "single_choice":
+            self.type_hint_label.configure(text="single_choice: 正解は 0 始まりの番号で入れます。")
+        elif qtype == "multiple_choice":
+            self.type_hint_label.configure(text="multiple_choice: 正解はカンマ区切りの番号で入れます。")
+        elif qtype == "ordered_choice":
+            self.type_hint_label.configure(text="ordered_choice: 正解は順番どおりに番号をカンマ区切りで入れます。")
+        elif qtype == "text_input":
+            self.type_hint_label.configure(text="text_input: 穴埋め欄を行ごとに編集します。")
+        else:
+            self.type_hint_label.configure(text="")
 
     def _save(self) -> None:
         try:
@@ -286,18 +399,14 @@ class QuestionEditorScreen(ttk.Frame):
                 question["answer"] = parse_index_list(self.answer_entry.get())
         else:
             inputs = []
-            for line in self.inputs_text.get("1.0", "end").splitlines():
-                if not line.strip():
+            for row in self.input_rows:
+                answers_text = row["answers"].get().strip()
+                if not answers_text:
                     continue
-                if "|" not in line:
-                    raise ValueError("入力欄は label|answer1,answer2 の形式で入力してください。")
-                label, answers = line.split("|", 1)
-                inputs.append(
-                    {
-                        "label": label.strip(),
-                        "answers": [answer.strip() for answer in answers.split(",") if answer.strip()],
-                    }
-                )
+                answers = [answer.strip() for answer in answers_text.split(",") if answer.strip()]
+                if not answers:
+                    raise ValueError("各入力欄には許容解答が必要です。")
+                inputs.append({"answers": answers})
             question["inputs"] = inputs
             question["case_sensitive"] = bool(self.case_sensitive_var.get())
             question["trim"] = bool(self.trim_var.get())
@@ -360,13 +469,16 @@ class QuestionListScreen(ttk.Frame):
         ttk.Label(header, text="2. 問題選択").grid(row=0, column=0, sticky="w")
         ttk.Button(header, text="問題集へ戻る", command=self.editor.show_book_select).grid(row=0, column=2, sticky="e")
 
-        self.id_var = tk.StringVar()
         self.title_var = tk.StringVar()
         self.description_var = tk.StringVar()
         self.folder_var = tk.StringVar()
+        self.book_id_var = tk.StringVar()
 
-        ttk.Label(self, text="問題集ID").grid(row=1, column=0, sticky="w", pady=4)
-        ttk.Entry(self, textvariable=self.id_var).grid(row=1, column=1, sticky="ew", pady=4)
+        self.title_var.trace_add("write", lambda *_args: self._update_book_id())
+        self.folder_var.trace_add("write", lambda *_args: self._update_book_id())
+
+        ttk.Label(self, text="内部ID").grid(row=1, column=0, sticky="w", pady=4)
+        ttk.Entry(self, textvariable=self.book_id_var, state="readonly").grid(row=1, column=1, sticky="ew", pady=4)
         ttk.Label(self, text="タイトル").grid(row=2, column=0, sticky="w", pady=4)
         ttk.Entry(self, textvariable=self.title_var).grid(row=2, column=1, sticky="ew", pady=4)
         ttk.Label(self, text="説明").grid(row=3, column=0, sticky="w", pady=4)
@@ -390,15 +502,18 @@ class QuestionListScreen(ttk.Frame):
         ttk.Label(self, textvariable=self.status_var).grid(row=7, column=0, columnspan=2, sticky="w", pady=6)
 
     def refresh(self) -> None:
-        self.id_var.set(self.editor.book.get("id", ""))
         self.title_var.set(self.editor.book.get("title", ""))
         self.description_var.set(self.editor.book.get("description", ""))
         self.folder_var.set(folder_from_book_path(self.editor.book_path))
+        self._update_book_id()
         self.question_list.delete(0, tk.END)
         for question in self.editor.book.get("questions", []):
             self.question_list.insert(tk.END, f"{question.get('id')} [{question.get('type')}] {question.get('question')}")
         path_text = str(self.editor.book_path.relative_to(ROOT)) if self.editor.book_path else "未保存"
         self.status_var.set(f"{path_text} / {len(self.editor.book.get('questions', []))}問")
+
+    def _update_book_id(self) -> None:
+        self.book_id_var.set(book_id_from(self.folder_var.get(), self.title_var.get()))
 
 
 class QuizEditor(tk.Tk):
@@ -415,7 +530,7 @@ class QuizEditor(tk.Tk):
         self.refresh_question_list()
 
     def _empty_book(self) -> dict:
-        return {"schema_version": 1, "id": "new_book", "title": "新しい問題集", "description": "", "questions": []}
+        return {"schema_version": 1, "id": "", "title": "新しい問題集", "description": "", "questions": []}
 
     def _build(self) -> None:
         self.container = ttk.Frame(self)
@@ -454,7 +569,7 @@ class QuizEditor(tk.Tk):
         self.question_list_screen.refresh()
 
     def sync_book_fields(self) -> None:
-        self.book["id"] = self.question_list_screen.id_var.get().strip()
+        self.book["id"] = self.question_list_screen.book_id_var.get().strip()
         self.book["title"] = self.question_list_screen.title_var.get().strip()
         self.book["description"] = self.question_list_screen.description_var.get().strip()
 
@@ -462,9 +577,15 @@ class QuizEditor(tk.Tk):
         title = simpledialog.askstring("新規問題集", "タイトルを入力してください。", parent=self)
         if title is None:
             return
-        book_id = slugify(simpledialog.askstring("新規問題集", "問題集IDを入力してください。", initialvalue=slugify(title), parent=self) or title)
-        self.book_path = DATA_DIR / f"{book_id}.json"
-        self.book = {"schema_version": 1, "id": book_id, "title": title, "description": "", "questions": []}
+        title_text = title.strip()
+        if not title_text:
+            messagebox.showerror("新規問題集", "タイトルを入力してください。", parent=self)
+            return
+        if any(sep in title_text for sep in ("/", "\\")):
+            messagebox.showerror("新規問題集", "タイトルに / や \\ は使えません。", parent=self)
+            return
+        self.book_path = DATA_DIR / f"{title_text}.json"
+        self.book = {"schema_version": 1, "id": "", "title": title_text, "description": "", "questions": []}
         self.show_question_list()
 
     def open_selected_book(self) -> None:
@@ -544,7 +665,7 @@ class QuizEditor(tk.Tk):
         self.sync_book_fields()
         try:
             validate_book(self.book)
-            desired_relative = book_relative_path(self.book["id"], self.question_list_screen.folder_var.get())
+            desired_relative = book_relative_path(self.question_list_screen.folder_var.get(), self.book["title"])
         except Exception as exc:
             messagebox.showerror("保存エラー", str(exc), parent=self)
             return
@@ -621,6 +742,8 @@ def validate_question(question: dict) -> None:
         if not inputs:
             raise ValueError("入力問題には入力欄が必要です。")
         for item in inputs:
+            if not isinstance(item, dict):
+                raise ValueError("入力欄の形式が正しくありません。")
             if not item.get("answers"):
                 raise ValueError("各入力欄には許容解答が必要です。")
 
@@ -630,8 +753,11 @@ def validate_book(book: dict) -> None:
         raise ValueError("schema_version は 1 にしてください。")
     if not book.get("id"):
         raise ValueError("問題集IDが必要です。")
-    if not book.get("title"):
+    title = (book.get("title") or "").strip()
+    if not title:
         raise ValueError("問題集タイトルが必要です。")
+    if any(sep in title for sep in ("/", "\\")):
+        raise ValueError("問題集タイトルに / や \\ は使えません。")
     if not isinstance(book.get("questions"), list):
         raise ValueError("questions は配列にしてください。")
     ids = set()
