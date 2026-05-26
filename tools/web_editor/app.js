@@ -40,6 +40,7 @@
     questionId: document.getElementById("question-id"),
     questionType: document.getElementById("question-type"),
     questionText: document.getElementById("question-text"),
+    questionPreview: document.getElementById("question-preview"),
     choiceSection: document.getElementById("choice-section"),
     choicesText: document.getElementById("choices-text"),
     answerEntry: document.getElementById("answer-entry"),
@@ -49,6 +50,7 @@
     textInputSection: document.getElementById("text-input-section"),
     addInputRow: document.getElementById("add-input-row"),
     inputRows: document.getElementById("input-rows"),
+    inputOrdered: document.getElementById("input-ordered"),
     caseSensitive: document.getElementById("case-sensitive"),
     trimInput: document.getElementById("trim-input"),
     normalizeSpaces: document.getElementById("normalize-spaces"),
@@ -117,6 +119,22 @@
     return String(value);
   }
 
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function renderMarkdown(text) {
+    if (window.QuizMarkdown?.render) {
+      return window.QuizMarkdown.render(text);
+    }
+    return escapeHtml(String(text ?? "")).replace(/\n/g, "<br>");
+  }
+
   async function api(path, options = {}) {
     const init = { cache: "no-store", ...options };
     if (init.body && typeof init.body === "object" && !(init.body instanceof FormData)) {
@@ -150,6 +168,27 @@
     };
   }
 
+  function buildBookTree(books) {
+    const root = { folders: new Map(), books: [] };
+
+    for (const book of books) {
+      const parts = String(book.id || "").split("/").filter(Boolean);
+      const title = parts.pop() || book.title || book.id;
+      let node = root;
+
+      for (const part of parts) {
+        if (!node.folders.has(part)) {
+          node.folders.set(part, { folders: new Map(), books: [] });
+        }
+        node = node.folders.get(part);
+      }
+
+      node.books.push({ ...book, _treeTitle: title });
+    }
+
+    return root;
+  }
+
   function nextQuestionId() {
     const used = new Set((state.currentBook?.questions || []).map((question) => question.id));
     let number = 1;
@@ -160,37 +199,71 @@
     }
   }
 
-  function renderBookList() {
-    const fragment = document.createDocumentFragment();
-    for (const book of state.books) {
-      const item = document.createElement("button");
-      item.type = "button";
-      item.className = "book-item";
-      if (state.currentBookFile === book.file) {
-        item.classList.add("active");
+  function countBooks(node) {
+    return node.books.length + [...node.folders.values()].reduce((sum, child) => sum + countBooks(child), 0);
+  }
+
+  function countFolders(node) {
+    return node.folders.size + [...node.folders.values()].reduce((sum, child) => sum + countFolders(child), 0);
+  }
+
+  function renderBookCard(book) {
+    const isActive = state.currentBookFile === book.file;
+    const folderPath = String(book.id || "").split("/").filter(Boolean).slice(0, -1).join("/");
+    return `
+      <article class="book-card ${isActive ? "active" : ""}">
+        ${isActive ? '<span class="status-pill">編集中</span>' : ""}
+        <h3>${escapeHtml(book.title || book._treeTitle || book.id)}</h3>
+        ${folderPath ? `<p class="muted book-path">${escapeHtml(folderPath)}</p>` : ""}
+        <p class="muted">${escapeHtml(book.description || "")}</p>
+        <div class="book-actions">
+          <button type="button" data-open-book="${escapeHtml(book.file)}">開く</button>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderFolderNode(name, node, pathParts = []) {
+    const folderPath = [...pathParts, name].join("/");
+    const childFolders = [...node.folders.entries()].map(([childName, childNode]) => {
+      return renderFolderNode(childName, childNode, [...pathParts, name]);
+    }).join("");
+    const childBooks = node.books.map((book) => renderBookCard(book)).join("");
+    const totalBooks = countBooks(node);
+
+    return `
+      <details class="book-folder" open>
+        <summary>
+          <span class="folder-name">${escapeHtml(name)}</span>
+          <span class="folder-count">${totalBooks} 件</span>
+        </summary>
+        <div class="folder-body" data-folder="${escapeHtml(folderPath)}">
+          ${childFolders}
+          ${childBooks}
+        </div>
+      </details>
+    `;
+  }
+
+  function closeOtherFolders(exceptFolder = null) {
+    els.bookList.querySelectorAll("details.book-folder[open]").forEach((folder) => {
+      if (folder !== exceptFolder) {
+        folder.open = false;
       }
+    });
+  }
 
-      const title = document.createElement("strong");
-      title.textContent = book.title || book.id;
-      item.appendChild(title);
+  function renderBookList() {
+    const tree = buildBookTree(state.books);
+    const rootBooks = tree.books.map((book) => renderBookCard(book)).join("");
+    const folders = [...tree.folders.entries()].map(([name, node]) => renderFolderNode(name, node)).join("");
+    const folderCount = countFolders(tree);
 
-      const idLine = document.createElement("small");
-      idLine.textContent = book.id;
-      item.appendChild(idLine);
-
-      const meta = document.createElement("small");
-      const pieces = [`${book.question_count} 問`];
-      if (book.description) pieces.unshift(book.description);
-      if (book.folder) pieces.push(book.folder);
-      meta.textContent = pieces.join(" / ");
-      item.appendChild(meta);
-
-      item.addEventListener("click", () => openBook(book.file));
-      fragment.appendChild(item);
-    }
-
-    els.bookList.replaceChildren(fragment);
-    els.bookCount.textContent = `${state.books.length} 件`;
+    els.bookList.innerHTML = `
+      ${rootBooks}
+      ${folders}
+    `;
+    els.bookCount.textContent = folderCount ? `${state.books.length} 件 / ${folderCount} フォルダ` : `${state.books.length} 件`;
   }
 
   function renderQuestionList() {
@@ -276,11 +349,20 @@
       els.typeHint.textContent = "ordered_choice: 正解は順番どおりに番号をカンマ区切りで入れます。";
     } else if (type === "text_input") {
       els.choiceHelp.textContent = "";
-      els.typeHint.textContent = "text_input: 穴埋め欄を行ごとに編集します。";
+      els.typeHint.textContent = "text_input: 穴埋め欄を行ごとに編集します。入力順はチェックボックスで切り替えます。";
     } else {
       els.choiceHelp.textContent = "";
       els.typeHint.textContent = "";
     }
+  }
+
+  function updateQuestionPreview() {
+    const text = els.questionText.value;
+    if (!text.trim()) {
+      els.questionPreview.innerHTML = '<p class="muted">Markdown のプレビューがここに表示されます。</p>';
+      return;
+    }
+    els.questionPreview.innerHTML = renderMarkdown(text);
   }
 
   function setQuestionDirty(value = true) {
@@ -338,6 +420,7 @@
     els.choicesText.value = Array.isArray(question.choices) ? question.choices.join("\n") : "";
     els.answerEntry.value = formatIndexList(question.answer);
     els.shuffleChoices.checked = Boolean(question.shuffle_choices);
+    els.inputOrdered.checked = question.input_ordered !== false;
     els.caseSensitive.checked = Boolean(question.case_sensitive);
     els.trimInput.checked = question.trim !== false;
     els.normalizeSpaces.checked = question.normalize_spaces !== false;
@@ -346,6 +429,7 @@
     els.difficultyEntry.value = question.difficulty === undefined || question.difficulty === null ? "" : String(question.difficulty);
     renderInputRows(question.inputs || []);
     updateQuestionSections();
+    updateQuestionPreview();
     state.suppressQuestionDirty = false;
     showScreen("question");
   }
@@ -362,6 +446,7 @@
     els.choicesText.value = question.choices.join("\n");
     els.answerEntry.value = formatIndexList(question.answer);
     els.shuffleChoices.checked = Boolean(question.shuffle_choices);
+    els.inputOrdered.checked = true;
     els.caseSensitive.checked = false;
     els.trimInput.checked = true;
     els.normalizeSpaces.checked = true;
@@ -370,6 +455,7 @@
     els.difficultyEntry.value = "";
     renderInputRows(question.inputs || []);
     updateQuestionSections();
+    updateQuestionPreview();
     state.suppressQuestionDirty = false;
     showScreen("question");
   }
@@ -402,6 +488,7 @@
         inputs.push({ answers });
       });
       question.inputs = inputs;
+      question.input_ordered = Boolean(els.inputOrdered.checked);
       question.case_sensitive = Boolean(els.caseSensitive.checked);
       question.trim = Boolean(els.trimInput.checked);
       question.normalize_spaces = Boolean(els.normalizeSpaces.checked);
@@ -722,6 +809,10 @@
     updateQuestionSections();
     setQuestionDirty(true);
   });
+  els.questionText.addEventListener("input", () => {
+    updateQuestionPreview();
+    setQuestionDirty(true);
+  });
 
   [
     els.questionId,
@@ -729,6 +820,7 @@
     els.choicesText,
     els.answerEntry,
     els.shuffleChoices,
+    els.inputOrdered,
     els.caseSensitive,
     els.trimInput,
     els.normalizeSpaces,
@@ -743,6 +835,21 @@
       renderBookList();
     });
   });
+
+  els.bookList.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-open-book]");
+    if (!button) return;
+    await openBook(button.dataset.openBook);
+  });
+
+  els.bookList.addEventListener("toggle", (event) => {
+    const folder = event.target;
+    if (!(folder instanceof HTMLDetailsElement)) return;
+    if (!folder.classList.contains("book-folder")) return;
+    if (folder.open) {
+      closeOtherFolders(folder);
+    }
+  }, true);
 
   // Initial load
   showScreen("books");

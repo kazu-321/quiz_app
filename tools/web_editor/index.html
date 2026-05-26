@@ -110,10 +110,21 @@
               <option value="text_input">text_input</option>
             </select>
           </label>
-          <label class="span-2">
-            <span>問題文</span>
-            <textarea id="question-text" rows="4"></textarea>
-          </label>
+          <div class="span-2 question-markdown-layout">
+            <label class="question-markdown-input">
+              <span>問題文</span>
+              <textarea id="question-text" rows="10"></textarea>
+            </label>
+            <div class="question-markdown-preview">
+              <div class="section-head compact-head">
+                <div>
+                  <h3>プレビュー</h3>
+                  <p class="muted">Markdown を右側で確認できます。</p>
+                </div>
+              </div>
+              <div id="question-preview" class="markdown-body preview-body"></div>
+            </div>
+          </div>
 
           <section id="choice-section" class="span-2 section-box">
             <div class="section-head compact-head">
@@ -143,6 +154,7 @@
             </div>
             <div id="input-rows" class="input-rows"></div>
             <div id="text-input-options" class="inline-options">
+              <label><input id="input-ordered" type="checkbox" checked> 入力順を区別</label>
               <label><input id="case-sensitive" type="checkbox"> 大文字小文字を区別</label>
               <label><input id="trim-input" type="checkbox" checked> 前後空白を無視</label>
               <label><input id="normalize-spaces" type="checkbox" checked> 連続空白を 1 つに正規化</label>
@@ -167,6 +179,7 @@
     </section>
   </main>
 
+  <script src="/js/markdown.js"></script>
   <script src="/tools/web_editor/app.js"></script>
 </body>
 </html>

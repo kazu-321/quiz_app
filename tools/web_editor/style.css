@@ -104,6 +104,36 @@
   grid-column: span 2;
 }
 
+.question-markdown-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 14px;
+}
+
+.question-markdown-input,
+.question-markdown-preview {
+  display: grid;
+  gap: 6px;
+}
+
+.question-markdown-input textarea {
+  min-height: 280px;
+}
+
+.question-markdown-preview {
+  min-width: 0;
+}
+
+.preview-body {
+  min-height: 280px;
+  max-height: 560px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+}
+
 .book-list,
 .question-list {
   display: grid;
@@ -116,7 +146,7 @@
   border-radius: 12px;
   padding: 12px 14px;
   background: rgba(255, 255, 255, 0.06);
-  color: inherit;
+  color: var(--text);
   cursor: pointer;
 }
 
@@ -140,7 +170,7 @@
 .book-item small,
 .question-item small {
   display: block;
-  color: var(--editor-sidebar-muted);
+  color: var(--muted);
 }
 
 .section-box {
@@ -205,5 +235,9 @@
   .section-head {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .question-markdown-layout {
+    grid-template-columns: 1fr;
   }
 }

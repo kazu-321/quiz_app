@@ -162,6 +162,7 @@ class QuestionEditorScreen(ttk.Frame):
         self.type_var = tk.StringVar(value="single_choice")
         self.difficulty_var = tk.StringVar()
         self.shuffle_choices_var = tk.BooleanVar()
+        self.input_ordered_var = tk.BooleanVar(value=True)
         self.case_sensitive_var = tk.BooleanVar()
         self.trim_var = tk.BooleanVar(value=True)
         self.normalize_spaces_var = tk.BooleanVar(value=True)
@@ -170,6 +171,7 @@ class QuestionEditorScreen(ttk.Frame):
             "type": self.type_var,
             "difficulty": self.difficulty_var,
             "shuffle_choices": self.shuffle_choices_var,
+            "input_ordered": self.input_ordered_var,
             "case_sensitive": self.case_sensitive_var,
             "trim": self.trim_var,
             "normalize_spaces": self.normalize_spaces_var,
@@ -263,6 +265,7 @@ class QuestionEditorScreen(ttk.Frame):
         options = ttk.Frame(self)
         options.grid(row=row, column=1, sticky="w", padx=8, pady=5)
         self.shuffle_check = ttk.Checkbutton(options, text="選択肢をシャッフル", variable=self.shuffle_choices_var)
+        self.input_ordered_check = ttk.Checkbutton(options, text="入力順を区別", variable=self.input_ordered_var)
         self.case_sensitive_check = ttk.Checkbutton(options, text="大文字小文字を区別", variable=self.case_sensitive_var)
         self.trim_check = ttk.Checkbutton(options, text="前後空白を無視", variable=self.trim_var)
         self.normalize_spaces_check = ttk.Checkbutton(
@@ -323,6 +326,7 @@ class QuestionEditorScreen(ttk.Frame):
         self.type_var.set(question.get("type", "single_choice"))
         self.difficulty_var.set(str(question.get("difficulty", "")))
         self.shuffle_choices_var.set(bool(question.get("shuffle_choices", False)))
+        self.input_ordered_var.set(question.get("input_ordered", True))
         self.case_sensitive_var.set(bool(question.get("case_sensitive", False)))
         self.trim_var.set(bool(question.get("trim", True)))
         self.normalize_spaces_var.set(bool(question.get("normalize_spaces", True)))
@@ -366,6 +370,7 @@ class QuestionEditorScreen(ttk.Frame):
 
         for widget in (
             self.shuffle_check,
+            self.input_ordered_check,
             self.case_sensitive_check,
             self.trim_check,
             self.normalize_spaces_check,
@@ -375,6 +380,7 @@ class QuestionEditorScreen(ttk.Frame):
         if is_choice:
             self.shuffle_check.pack(side="left")
         if is_text_input:
+            self.input_ordered_check.pack(side="left")
             self.case_sensitive_check.pack(side="left")
             self.trim_check.pack(side="left", padx=8)
             self.normalize_spaces_check.pack(side="left", padx=8)
@@ -386,7 +392,7 @@ class QuestionEditorScreen(ttk.Frame):
         elif qtype == "ordered_choice":
             self.type_hint_label.configure(text="ordered_choice: 正解は順番どおりに番号をカンマ区切りで入れます。")
         elif qtype == "text_input":
-            self.type_hint_label.configure(text="text_input: 穴埋め欄を行ごとに編集します。")
+            self.type_hint_label.configure(text="text_input: 穴埋め欄を行ごとに編集します。入力順はチェックで切り替えます。")
         else:
             self.type_hint_label.configure(text="")
 
@@ -436,6 +442,7 @@ class QuestionEditorScreen(ttk.Frame):
                     raise ValueError("各入力欄には許容解答が必要です。")
                 inputs.append({"answers": answers})
             question["inputs"] = inputs
+            question["input_ordered"] = bool(self.input_ordered_var.get())
             question["case_sensitive"] = bool(self.case_sensitive_var.get())
             question["trim"] = bool(self.trim_var.get())
             question["normalize_spaces"] = bool(self.normalize_spaces_var.get())

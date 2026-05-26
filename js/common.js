@@ -88,6 +88,58 @@
     return text;
   }
 
+  function textInputMatchesOrdered(question, answer) {
+    const inputs = question.inputs || [];
+    if (!Array.isArray(answer) || answer.length !== inputs.length) {
+      return false;
+    }
+    return inputs.every((input, index) => {
+      const userValue = normalizeText(answer?.[index] ?? "", question);
+      return (input.answers || []).some((candidate) => normalizeText(candidate, question) === userValue);
+    });
+  }
+
+  function textInputMatchesUnordered(question, answer) {
+    const inputs = question.inputs || [];
+    if (!Array.isArray(answer) || answer.length !== inputs.length) {
+      return false;
+    }
+
+    const normalizedAnswer = answer.map((value) => normalizeText(value, question));
+    const candidateIndices = inputs.map((input) => {
+      const allowed = input.answers || [];
+      return normalizedAnswer.flatMap((userValue, userIndex) => {
+        return allowed.some((candidate) => normalizeText(candidate, question) === userValue)
+          ? [userIndex]
+          : [];
+      });
+    });
+
+    if (candidateIndices.some((indices) => indices.length === 0)) {
+      return false;
+    }
+
+    candidateIndices.sort((left, right) => left.length - right.length);
+    const used = new Set();
+
+    function search(position) {
+      if (position >= candidateIndices.length) {
+        return true;
+      }
+      for (const userIndex of candidateIndices[position]) {
+        if (used.has(userIndex)) continue;
+        used.add(userIndex);
+        if (search(position + 1)) {
+          return true;
+        }
+        used.delete(userIndex);
+      }
+      return false;
+    }
+
+    return search(0);
+  }
+
   function sameSet(left, right) {
     if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) {
       return false;
@@ -111,10 +163,9 @@
         answer.every((value, index) => Number(value) === Number(question.answer[index]));
     }
     if (question.type === "text_input") {
-      return (question.inputs || []).every((input, index) => {
-        const userValue = normalizeText(answer?.[index] ?? "", question);
-        return (input.answers || []).some((candidate) => normalizeText(candidate, question) === userValue);
-      });
+      return question.input_ordered === false
+        ? textInputMatchesUnordered(question, answer)
+        : textInputMatchesOrdered(question, answer);
     }
     return false;
   }
@@ -144,9 +195,10 @@
 
   function correctAnswerText(question) {
     if (question.type === "text_input") {
-      return (question.inputs || []).map((input, index) => {
+      const answerText = (question.inputs || []).map((input, index) => {
         return `入力${index + 1}: ${(input.answers || []).join(" / ")}`;
       }).join(" / ");
+      return question.input_ordered === false ? `順不同: ${answerText}` : answerText;
     }
     return formatAnswer(question, question.answer);
   }

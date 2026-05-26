@@ -7,6 +7,13 @@
   let currentDetailBookId = null;
   const bookCache = new Map();
 
+  function renderMarkdown(text) {
+    if (window.QuizMarkdown?.render) {
+      return window.QuizMarkdown.render(text);
+    }
+    return QuizApp.escapeHtml(String(text ?? "")).replace(/\n/g, "<br>");
+  }
+
   function buildBookTree(books) {
     const root = { folders: new Map(), books: [] };
 
@@ -31,10 +38,12 @@
   function renderBookCard(book) {
     const progress = QuizApp.getProgressMap();
     const hasProgress = Boolean(progress[book.id]);
+    const folderPath = String(book.id || "").split("/").filter(Boolean).slice(0, -1).join("/");
     return `
       <article class="book-card">
         ${hasProgress ? '<span class="status-pill">中断中</span>' : ""}
         <h3>${QuizApp.escapeHtml(book.title || book._treeTitle || book.id)}</h3>
+        ${folderPath ? `<p class="muted book-path">${QuizApp.escapeHtml(folderPath)}</p>` : ""}
         <p class="muted">${QuizApp.escapeHtml(book.description || "")}</p>
         <div class="book-actions">
           <button type="button" data-start="${QuizApp.escapeHtml(book.id)}">解く</button>
@@ -61,7 +70,7 @@
     const childBooks = node.books.map((book) => renderBookCard(book)).join("");
 
     return `
-      <details class="book-folder">
+      <details class="book-folder" open>
         <summary>
           <span class="folder-name">${QuizApp.escapeHtml(name)}</span>
           <span class="folder-count">${totalBooks} 件</span>
@@ -159,7 +168,8 @@
           const stat = questionStats(book.id, question);
           return `
             <article class="wrong-item">
-              <h3>${index + 1}. ${QuizApp.escapeHtml(question.question)}</h3>
+              <div class="question-number">${index + 1}.</div>
+              <div class="question-text markdown-body">${renderMarkdown(question.question)}</div>
               <div class="answer-block">
                 <p><strong>通算正解率:</strong> ${QuizApp.escapeHtml(stat.rateText)}</p>
                 <p><strong>最後の回答:</strong> ${QuizApp.escapeHtml(stat.lastAnswer)}</p>

@@ -40,7 +40,7 @@ python3 tools/web_editor.py
 - `single_choice`: 単一選択
 - `multiple_choice`: 複数選択、順序なし
 - `ordered_choice`: 複数選択、順序あり
-- `text_input`: 入力欄数可変の穴埋め問題。`inputs` は `{"answers": ["a", "AA"]}` の配列です
+- `text_input`: 入力欄数可変の穴埋め問題。`inputs` は `{"answers": ["a", "AA"]}` の配列です。`input_ordered` を `false` にすると、複数の入力欄の順序を区別せずに採点します。省略時は `true` です
 
 学習状態はブラウザの `localStorage` に保存されます。
 

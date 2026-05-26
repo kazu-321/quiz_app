@@ -11,6 +11,13 @@
   let currentRenderedChoices = [];
   let orderedSelection = [];
 
+  function renderMarkdown(text) {
+    if (window.QuizMarkdown?.render) {
+      return window.QuizMarkdown.render(text);
+    }
+    return QuizApp.escapeHtml(String(text ?? "")).replace(/\n/g, "<br>");
+  }
+
   function questionById(id) {
     return book.questions.find((question) => question.id === id);
   }
@@ -150,7 +157,7 @@
     quizView.hidden = false;
     quizView.innerHTML = `
       ${renderProgress(question)}
-      <h2 class="question-text">${QuizApp.escapeHtml(question.question)}</h2>
+      <div class="question-text markdown-body">${renderMarkdown(question.question)}</div>
       <form id="answer-form">
         ${renderAnswerControls(question)}
         <div class="actions">
@@ -280,8 +287,9 @@
           const correct = Boolean(answerData?.is_correct);
           return `
             <article class="wrong-item">
-              <h3>${correct ? "正解" : "不正解"}: ${QuizApp.escapeHtml(question?.question || id)}</h3>
+              <div class="question-text markdown-body">${renderMarkdown(question?.question || id)}</div>
               <div class="answer-block">
+                <p><strong>判定:</strong> ${correct ? "正解" : "不正解"}</p>
                 <p><strong>自分の回答:</strong> ${QuizApp.escapeHtml(QuizApp.formatAnswer(question, answerData?.answer))}</p>
                 <p><strong>正解:</strong> ${QuizApp.escapeHtml(QuizApp.correctAnswerText(question))}</p>
                 <p><strong>通算正解率:</strong> ${QuizApp.escapeHtml(QuizApp.correctRate(book.id, id))}</p>
