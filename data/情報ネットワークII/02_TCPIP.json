@@ -285,6 +285,162 @@
       ],
       "shuffle_choices": true,
       "answer": 2
+    },
+    {
+      "id": "q020",
+      "type": "single_choice",
+      "question": "TCP と UDP の説明として正しいものを選べ。",
+      "choices": [
+        "TCPはコネクション型、UDPはコネクションレス型である",
+        "TCPはコネクションレス型、UDPはコネクション型である",
+        "TCPもUDPも必ずコネクションを張る",
+        "TCPもUDPも状態遷移を持たない"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q021",
+      "type": "single_choice",
+      "question": "TCP用のソケットとUDP用のソケットに対応するソケット種別として正しい組み合わせを選べ。",
+      "choices": [
+        "TCP: SOCK_STREAM, UDP: SOCK_DGRAM",
+        "TCP: SOCK_DGRAM, UDP: SOCK_STREAM",
+        "TCP: SOCK_RAW, UDP: SOCK_STREAM",
+        "TCP: SOCK_SEQPACKET, UDP: SOCK_RAW"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q022",
+      "type": "single_choice",
+      "question": "socket() の役割として正しいものを選べ。",
+      "choices": [
+        "通信のエンドポイントを作成する",
+        "ローカルアドレスをソケットに取り付ける",
+        "接続待ち状態にする",
+        "クライアントとの接続を受ける"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q023",
+      "type": "single_choice",
+      "question": "bind() の役割として正しいものを選べ。",
+      "choices": [
+        "ローカルアドレスをソケットに取り付ける",
+        "接続待ち状態にする",
+        "相手からの接続を受ける",
+        "接続を開始する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q024",
+      "type": "single_choice",
+      "question": "listen() の役割として正しいものを選べ。",
+      "choices": [
+        "コネクションの受け入れ態勢を作る",
+        "相手からの接続を受ける",
+        "通信データを送信する",
+        "名前をIPアドレスに変換する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q025",
+      "type": "single_choice",
+      "question": "accept() の役割として正しいものを選べ。",
+      "choices": [
+        "ピアからのコネクションを受けるまでブロックする",
+        "ローカルアドレスを設定する",
+        "DNS問い合わせを行う",
+        "UDPで送信する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q026",
+      "type": "single_choice",
+      "question": "connect() の役割として正しいものを選べ。",
+      "choices": [
+        "待っているピアにコネクションを張る",
+        "接続待ち状態にする",
+        "ローカルアドレスを取り付ける",
+        "受信データの監視を始める"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q027",
+      "type": "single_choice",
+      "question": "UDPで典型的に使う送受信関数として正しいものを選べ。",
+      "choices": [
+        "sendto() と recvfrom()",
+        "send() と receive()",
+        "write() と read() だけ",
+        "accept() と connect()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q028",
+      "type": "single_choice",
+      "question": "AF_INET の説明として正しいものを選べ。",
+      "choices": [
+        "IPv4 のアドレスファミリ",
+        "IPv6 のアドレスファミリ",
+        "TCP のポート番号",
+        "UDP のデータ形式"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q029",
+      "type": "single_choice",
+      "question": "Well-known port numbers の範囲として正しいものを選べ。",
+      "choices": [
+        "0〜1023",
+        "1024〜2047",
+        "2048〜4095",
+        "5000〜65535"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q030",
+      "type": "single_choice",
+      "question": "DNS のポート番号として正しいものを選べ。",
+      "choices": [
+        "53",
+        "80",
+        "22",
+        "25"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q031",
+      "type": "single_choice",
+      "question": "TCPで送受信するプログラムに使われるライブラリとして正しいものを選べ。",
+      "choices": [
+        "バークレイ・ソケットライブラリ",
+        "スレッドライブラリ",
+        "ファイルシステムライブラリ",
+        "暗号ライブラリ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
     }
   ]
 }

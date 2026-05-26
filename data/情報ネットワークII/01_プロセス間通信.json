@@ -299,6 +299,165 @@
       ],
       "shuffle_choices": true,
       "answer": 1
+    },
+    {
+      "id": "q020",
+      "type": "single_choice",
+      "question": "プロセスとスレッドの関係として正しいものを選べ。",
+      "choices": [
+        "プロセスは独立したメモリ空間を持ち、スレッドはその中で動く実行単位である",
+        "スレッドは独立したメモリ空間を持ち、プロセスはそれを共有する",
+        "プロセスとスレッドは同じ意味であり区別しない",
+        "スレッドはOSではなくシェルが管理する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q021",
+      "type": "single_choice",
+      "question": "現在実行中のプロセスIDを取得する関数として正しいものを選べ。",
+      "choices": [
+        "getpid()",
+        "ps()",
+        "kill()",
+        "fork()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q022",
+      "type": "single_choice",
+      "question": "シェルでコマンドをバックグラウンド実行するための記号として正しいものを選べ。",
+      "choices": [
+        "&",
+        "|",
+        ";",
+        "$"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q023",
+      "type": "single_choice",
+      "question": "シェルで複数のコマンドを順番に実行するときに使う記号として正しいものを選べ。",
+      "choices": [
+        ";",
+        "&",
+        "|",
+        "<"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q024",
+      "type": "single_choice",
+      "question": "パイプ \"|\" の説明として正しいものを選べ。",
+      "choices": [
+        "前のコマンドの標準出力を次のコマンドの標準入力に接続する",
+        "前のコマンドの標準入力を次のコマンドの標準出力に接続する",
+        "コマンドを必ず並列実行にする",
+        "ファイルを暗号化して渡す"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q025",
+      "type": "single_choice",
+      "question": "パイプを使ったプロセス間通信は基本的にどの方向の通信か。",
+      "choices": [
+        "一方向",
+        "双方向",
+        "放送型",
+        "常に順方向と逆方向を同時に持つ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q026",
+      "type": "single_choice",
+      "question": "2つのプロセスで双方向通信を行いたいときに必要なパイプの本数として正しいものを選べ。",
+      "choices": [
+        "1本",
+        "2本",
+        "3本",
+        "4本"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q027",
+      "type": "single_choice",
+      "question": "シェルコマンドとプロセスをパイプで接続して実行する関数として正しいものを選べ。",
+      "choices": [
+        "popen()",
+        "pipein()",
+        "forkexec()",
+        "shellpipe()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q028",
+      "type": "single_choice",
+      "question": "実行中のプロセスを終了させる操作として正しいものを選べ。",
+      "choices": [
+        "Ctrl-C や kill",
+        "getpid()",
+        "ps",
+        "fork()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q029",
+      "type": "single_choice",
+      "question": "exec() の説明として正しいものを選べ。",
+      "choices": [
+        "現在のプロセスを別プログラムに置き換える",
+        "新しい子プロセスを作成する",
+        "親子プロセスを同時に終了する",
+        "標準入力を読み取る"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q030",
+      "type": "text_input",
+      "question": "あるプロセスのPIDが1000のとき、そのプロセスに割り当てられた標準エラー出力にアクセスできる絶対パスを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "/proc/1000/fd/2"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q031",
+      "type": "single_choice",
+      "question": "pthread_join() の役割として正しいものを選べ。",
+      "choices": [
+        "指定したスレッドの終了を待つ",
+        "新しいスレッドを作る",
+        "mutexを初期化する",
+        "現在のスレッドIDを返す"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
     }
   ]
 }
