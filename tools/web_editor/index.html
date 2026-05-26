@@ -3,14 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem("quiz_app_theme");
+        const theme = stored === "dark" || stored === "light"
+          ? stored
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      } catch (error) {
+        /* ignore */
+      }
+    })();
+  </script>
   <title>Quiz App Web Editor</title>
   <link rel="stylesheet" href="/tools/web_editor/style.css">
 </head>
 <body>
   <header class="app-header compact">
     <div>
-      <h1>Quiz App Web Editor</h1>
-      <p>ブラウザで問題集を編集して、保存は Python 側で行います。</p>
+      <div class="header-copy">
+        <h1>Quiz App Web Editor</h1>
+        <p>ブラウザで問題集を編集して、保存は Python 側で行います。</p>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="secondary-button" type="button">ダークモード</button>
+      </div>
     </div>
   </header>
 
@@ -179,6 +198,7 @@
     </section>
   </main>
 
+  <script src="/js/common.js"></script>
   <script src="/js/markdown.js"></script>
   <script src="/tools/web_editor/app.js"></script>
 </body>

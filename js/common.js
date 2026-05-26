@@ -2,7 +2,8 @@
   const STORAGE_KEYS = {
     progress: "quiz_app_progress",
     stats: "quiz_app_stats",
-    lastResult: "quiz_app_last_result"
+    lastResult: "quiz_app_last_result",
+    theme: "quiz_app_theme"
   };
 
   function readJson(key, fallback) {
@@ -78,6 +79,50 @@
 
   function saveLastResultMap(results) {
     writeJson(STORAGE_KEYS.lastResult, results);
+  }
+
+  function getPreferredTheme() {
+    const stored = localStorage.getItem(STORAGE_KEYS.theme);
+    if (stored === "dark" || stored === "light") {
+      return stored;
+    }
+    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function applyTheme(theme) {
+    const normalized = theme === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = normalized;
+    document.documentElement.style.colorScheme = normalized;
+    return normalized;
+  }
+
+  function setTheme(theme) {
+    const normalized = theme === "dark" ? "dark" : "light";
+    localStorage.setItem(STORAGE_KEYS.theme, normalized);
+    return applyTheme(normalized);
+  }
+
+  function toggleTheme() {
+    return setTheme(getPreferredTheme() === "dark" ? "light" : "dark");
+  }
+
+  function refreshThemeToggle(button) {
+    if (!button) return;
+    const theme = document.documentElement.dataset.theme || getPreferredTheme();
+    button.textContent = theme === "dark" ? "ライトモード" : "ダークモード";
+    button.setAttribute("aria-label", theme === "dark" ? "ライトモードに切り替え" : "ダークモードに切り替え");
+    button.dataset.themeState = theme;
+  }
+
+  function initTheme(themeButton = null) {
+    applyTheme(getPreferredTheme());
+    refreshThemeToggle(themeButton);
+    if (!themeButton) return;
+    themeButton.addEventListener("click", () => {
+      const next = toggleTheme();
+      refreshThemeToggle(themeButton);
+      return next;
+    });
   }
 
   function normalizeText(value, question) {
@@ -260,6 +305,12 @@
     getStatsMap,
     getLastResultMap,
     saveLastResultMap,
+    getPreferredTheme,
+    applyTheme,
+    setTheme,
+    toggleTheme,
+    refreshThemeToggle,
+    initTheme,
     isCorrect,
     shuffle,
     formatAnswer,

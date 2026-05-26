@@ -61,6 +61,98 @@
     typeHint: document.getElementById("type-hint"),
   };
 
+  QuizApp.initTheme(document.getElementById("theme-toggle"));
+
+  function parseRouteFromLocation() {
+    const params = new URLSearchParams(location.search);
+    const question = params.get("question");
+    const index = question === null || question === "" ? null : Number(question);
+    return {
+      view: params.get("view") || (params.get("book") ? (Number.isInteger(index) ? "question" : "book") : "books"),
+      bookFile: params.get("book") || null,
+      questionIndex: Number.isInteger(index) ? index : null,
+    };
+  }
+
+  function routeToUrl(route) {
+    const params = new URLSearchParams();
+    if (route.view !== "books" && route.bookFile) {
+      params.set("book", route.bookFile);
+    }
+    if (route.view === "question" && Number.isInteger(route.questionIndex)) {
+      params.set("question", String(route.questionIndex));
+    }
+    const query = params.toString();
+    return query ? `${location.pathname}?${query}` : location.pathname;
+  }
+
+  function getCurrentRoute() {
+    if (!state.currentBookFile) {
+      return { view: "books", bookFile: null, questionIndex: null };
+    }
+    if (els.questionScreen.hidden === false) {
+      return {
+        view: "question",
+        bookFile: state.currentBookFile,
+        questionIndex: state.editingQuestionIndex ?? state.selectedQuestionIndex ?? 0,
+      };
+    }
+    return { view: "book", bookFile: state.currentBookFile, questionIndex: null };
+  }
+
+  function syncHistory(route, replace = false) {
+    const url = routeToUrl(route);
+    if (replace) {
+      history.replaceState(route, "", url);
+      return;
+    }
+    history.pushState(route, "", url);
+  }
+
+  function scrollToScreen(name) {
+    const target = name === "books"
+      ? els.bookScreen
+      : name === "book"
+        ? els.bookEditorScreen
+        : els.questionScreen;
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: "start" });
+    });
+  }
+
+  async function restoreRoute(route, { replace = false } = {}) {
+    if (route.view === "books") {
+      state.currentBook = null;
+      state.currentBookFile = null;
+      state.currentBookFolder = "";
+      state.selectedQuestionIndex = null;
+      state.editingQuestionIndex = null;
+      state.questionDirty = false;
+      syncBookForm();
+      renderQuestionList();
+      showScreen("books");
+      if (replace) {
+        syncHistory(route, true);
+      }
+      scrollToScreen("books");
+      return;
+    }
+
+    if (!route.bookFile) {
+      showScreen("books");
+      if (replace) syncHistory({ view: "books", bookFile: null, questionIndex: null }, true);
+      scrollToScreen("books");
+      return;
+    }
+
+    await openBook(route.bookFile, {
+      pushHistory: false,
+      replaceHistory: replace,
+      openQuestionIndex: route.view === "question" ? route.questionIndex : null,
+      fromRoute: true,
+    });
+  }
+
   function showScreen(name) {
     els.bookScreen.hidden = name !== "books";
     els.bookEditorScreen.hidden = name !== "book";
@@ -285,11 +377,7 @@
       typeLine.textContent = `${question.type} / ${question.question || ""}`;
       item.appendChild(typeLine);
 
-      item.addEventListener("click", () => selectQuestion(index));
-      item.addEventListener("dblclick", () => {
-        state.selectedQuestionIndex = index;
-        openQuestionEditor(index);
-      });
+      item.addEventListener("click", () => openQuestionEditor(index));
       fragment.appendChild(item);
     });
 
@@ -542,12 +630,12 @@
     if (selectFile) {
       const target = state.books.find((book) => book.file === selectFile);
       if (target) {
-        await openBook(target.file);
+        await openBook(target.file, { pushHistory: false, replaceHistory: true });
       }
     }
   }
 
-  async function openBook(file) {
+  async function openBook(file, { pushHistory = true, replaceHistory = false, openQuestionIndex = null, fromRoute = false } = {}) {
     if (!confirmDiscardQuestionChanges()) return;
     const payload = await api(`/api/book?file=${encodeURIComponent(file)}`);
     state.currentBook = clone(payload.book);
@@ -559,13 +647,21 @@
     syncBookForm();
     renderBookList();
     renderQuestionList();
+    if (Number.isInteger(openQuestionIndex) && state.currentBook.questions?.[openQuestionIndex]) {
+      openQuestionEditor(openQuestionIndex, { pushHistory: false, replaceHistory, fromRoute: true });
+      return;
+    }
+
     if (state.selectedQuestionIndex !== null) {
       loadQuestionIntoEditor(state.selectedQuestionIndex);
-      showScreen("book");
-    } else {
-      els.editingQuestionLabel.textContent = "問題がありません";
-      showScreen("book");
     }
+    showScreen("book");
+    if (!fromRoute && pushHistory) {
+      syncHistory({ view: "book", bookFile: file, questionIndex: null }, replaceHistory);
+    } else if (fromRoute && replaceHistory) {
+      syncHistory({ view: "book", bookFile: file, questionIndex: null }, true);
+    }
+    scrollToScreen("book");
     setMessage("");
   }
 
@@ -586,6 +682,8 @@
     syncBookForm();
     renderQuestionList();
     showScreen("book");
+    syncHistory({ view: "book", bookFile: state.currentBookFile, questionIndex: null }, true);
+    scrollToScreen("book");
     setMessage("問題集を新規作成しました。");
   }
 
@@ -597,27 +695,43 @@
     renderQuestionList();
   }
 
-  function openQuestionEditor(index = null) {
+  function openQuestionEditor(index = null, { pushHistory = true, replaceHistory = false, fromRoute = false } = {}) {
     if (!state.currentBook) return;
     if (index !== null) {
       state.selectedQuestionIndex = index;
       state.editingQuestionIndex = index;
       loadQuestionIntoEditor(index);
       renderQuestionList();
+      if (!fromRoute && pushHistory) {
+        syncHistory({ view: "question", bookFile: state.currentBookFile, questionIndex: index }, replaceHistory);
+      } else if (fromRoute && replaceHistory) {
+        syncHistory({ view: "question", bookFile: state.currentBookFile, questionIndex: index }, true);
+      }
+      scrollToScreen("question");
       return;
     }
     loadNewQuestionEditor();
     renderQuestionList();
+    if (!fromRoute && pushHistory) {
+      syncHistory({ view: "question", bookFile: state.currentBookFile, questionIndex: null }, replaceHistory);
+    } else if (fromRoute && replaceHistory) {
+      syncHistory({ view: "question", bookFile: state.currentBookFile, questionIndex: null }, true);
+    }
+    scrollToScreen("question");
   }
 
   function goToBookScreen() {
     if (!confirmDiscardQuestionChanges()) return;
     showScreen("book");
+    syncHistory({ view: "book", bookFile: state.currentBookFile, questionIndex: null });
+    scrollToScreen("book");
   }
 
   function goToBooksScreen() {
     if (!confirmDiscardQuestionChanges()) return;
     showScreen("books");
+    syncHistory({ view: "books", bookFile: null, questionIndex: null });
+    scrollToScreen("books");
   }
 
   async function saveBook() {
@@ -683,6 +797,8 @@
       renderQuestionList();
       await loadBooks();
       showScreen("books");
+      syncHistory({ view: "books", bookFile: null, questionIndex: null }, true);
+      scrollToScreen("books");
       setMessage("問題集を削除しました。");
     } catch (error) {
       setMessage(error.message, "error");
@@ -708,8 +824,10 @@
     } else {
       loadNewQuestionEditor();
       els.editingQuestionLabel.textContent = "問題がありません";
-      showScreen("book");
     }
+    showScreen("book");
+    syncHistory({ view: "book", bookFile: state.currentBookFile, questionIndex: null });
+    scrollToScreen("book");
   }
 
   function saveQuestion() {
@@ -729,6 +847,8 @@
       renderQuestionList();
       loadQuestionIntoEditor(state.selectedQuestionIndex);
       showScreen("book");
+      syncHistory({ view: "book", bookFile: state.currentBookFile, questionIndex: null });
+      scrollToScreen("book");
       setMessage("問題を更新しました。");
     } catch (error) {
       setMessage(error.message, "error");
@@ -740,9 +860,13 @@
     if (state.selectedQuestionIndex !== null) {
       loadQuestionIntoEditor(state.selectedQuestionIndex);
       showScreen("book");
+      syncHistory({ view: "book", bookFile: state.currentBookFile, questionIndex: null });
+      scrollToScreen("book");
       return;
     }
     showScreen("book");
+    syncHistory({ view: "book", bookFile: state.currentBookFile, questionIndex: null });
+    scrollToScreen("book");
   }
 
   async function regenerateManifest() {
@@ -851,12 +975,27 @@
     }
   }, true);
 
+  window.addEventListener("popstate", async (event) => {
+    const route = event.state || parseRouteFromLocation();
+    if (!confirmDiscardQuestionChanges()) {
+      syncHistory(getCurrentRoute(), true);
+      return;
+    }
+    await restoreRoute(route, { replace: true });
+  });
+
   // Initial load
+  const initialRoute = parseRouteFromLocation();
+  history.replaceState(initialRoute, "", routeToUrl(initialRoute));
   showScreen("books");
   try {
     await loadBooks();
-    if (state.books.length === 1) {
-      await openBook(state.books[0].file);
+    if (initialRoute.view !== "books" && initialRoute.bookFile) {
+      await restoreRoute(initialRoute, { replace: true });
+    } else if (state.books.length === 1) {
+      await openBook(state.books[0].file, { pushHistory: false, replaceHistory: true });
+    } else {
+      scrollToScreen("books");
     }
   } catch (error) {
     setMessage(error.message, "error");

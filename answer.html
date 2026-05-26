@@ -3,20 +3,61 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem("quiz_app_theme");
+        const theme = stored === "dark" || stored === "light"
+          ? stored
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      } catch (error) {
+        /* ignore */
+      }
+    })();
+  </script>
   <title>Quiz App - 解答</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="app-header compact">
     <div>
-      <p class="breadcrumb"><a href="index.html">問題集一覧</a></p>
-      <h1 id="book-title">読み込み中...</h1>
-      <p id="book-description"></p>
+      <div class="header-copy">
+        <p class="breadcrumb"><a href="index.html">問題集一覧</a></p>
+        <h1 id="book-title">読み込み中...</h1>
+        <p id="book-description"></p>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" class="secondary-button" type="button">ダークモード</button>
+      </div>
     </div>
   </header>
 
   <main id="app" class="page-shell">
     <div id="message" class="message" hidden></div>
+    <section id="setup-view" class="quiz-panel" hidden>
+      <h2>解く設定</h2>
+      <div class="setup-grid">
+        <label class="setup-option">
+          <input id="setup-shuffle-questions" type="checkbox">
+          <span>問題順をシャッフルする</span>
+        </label>
+        <label class="setup-option">
+          <input id="setup-review-at-end" type="checkbox" checked>
+          <span>答え合わせを最後に一気にする</span>
+        </label>
+        <label class="setup-option">
+          <input id="setup-skip-answer-input" type="checkbox">
+          <span>答え入力をスキップする</span>
+        </label>
+      </div>
+      <div class="actions">
+        <button id="start-quiz" type="button">解き始める</button>
+        <button id="resume-quiz" class="secondary-button" type="button" hidden>続きから</button>
+      </div>
+      <p id="resume-info" class="muted"></p>
+    </section>
     <section id="quiz-view" class="quiz-panel" hidden></section>
     <section id="summary-view" class="summary-panel" hidden></section>
   </main>

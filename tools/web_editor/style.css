@@ -1,11 +1,16 @@
 @import url("/css/style.css");
 
 :root {
-  --editor-sidebar: #11212a;
-  --editor-sidebar-text: #eef6fb;
-  --editor-sidebar-muted: rgba(238, 246, 251, 0.7);
-  --editor-panel: rgba(255, 255, 255, 0.92);
-  --editor-panel-border: rgba(23, 49, 59, 0.12);
+  --editor-sidebar: var(--header-bg-1);
+  --editor-sidebar-text: var(--header-text);
+  --editor-sidebar-muted: var(--header-muted);
+  --editor-panel: var(--surface-raised);
+  --editor-panel-border: var(--line);
+  --editor-book-item: var(--surface);
+  --editor-book-item-hover: var(--surface-soft);
+  --editor-book-item-active: var(--surface-soft);
+  --editor-book-item-outline: rgba(20, 108, 142, 0.5);
+  --editor-section-bg: var(--surface-strong);
 }
 
 [hidden] {
@@ -14,8 +19,8 @@
 
 .app-header.compact {
   background:
-    radial-gradient(circle at top left, rgba(20, 108, 142, 0.45), transparent 48%),
-    linear-gradient(135deg, #132530 0%, #1d3b47 55%, #102129 100%);
+    radial-gradient(circle at top left, rgba(88, 166, 255, 0.42), transparent 48%),
+    linear-gradient(135deg, var(--header-bg-1) 0%, var(--header-bg-2) 55%, var(--header-bg-3) 100%);
 }
 
 .editor-layout {
@@ -93,7 +98,8 @@
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 0.72rem 0.85rem;
-  background: #fff;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .form-grid textarea {
@@ -131,7 +137,7 @@
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 14px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .book-list,
@@ -142,23 +148,23 @@
 
 .book-item,
 .question-item {
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--line);
   border-radius: 12px;
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--editor-book-item);
   color: var(--text);
   cursor: pointer;
 }
 
 .book-item:hover,
 .question-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--editor-book-item-hover);
 }
 
 .book-item.active,
 .question-item.active {
-  outline: 2px solid rgba(200, 240, 255, 0.52);
-  background: rgba(255, 255, 255, 0.14);
+  outline: 2px solid var(--editor-book-item-outline);
+  background: var(--editor-book-item-active);
 }
 
 .book-item strong,
@@ -179,7 +185,7 @@
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: linear-gradient(180deg, #fff 0%, #f9fbfc 100%);
+  background: var(--editor-section-bg);
 }
 
 .inline-options {

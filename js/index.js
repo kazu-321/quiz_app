@@ -3,9 +3,12 @@
   const count = document.getElementById("book-count");
   const clearButton = document.getElementById("clear-storage");
   const detailPanel = document.getElementById("book-detail");
+  const themeToggle = document.getElementById("theme-toggle");
   let currentManifest = null;
   let currentDetailBookId = null;
   const bookCache = new Map();
+
+  QuizApp.initTheme(themeToggle);
 
   function renderMarkdown(text) {
     if (window.QuizMarkdown?.render) {
@@ -220,7 +223,7 @@
         location.href = `answer.html?book=${encodeURIComponent(startId)}`;
       }
       if (resumeId) {
-        location.href = `answer.html?book=${encodeURIComponent(resumeId)}`;
+        location.href = `answer.html?book=${encodeURIComponent(resumeId)}&resume=1`;
       }
     });
 
