@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "データ構造とアルゴリズムII/04_赤黒木の平衡性とAVL木",
+  "title": "04_赤黒木の平衡性とAVL木",
+  "description": "第4週の内容: 赤黒木の平衡性、AVL木、平衡係数、挿入と削除、赤黒木との比較。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "赤黒木について正しい説明を選べ。",
+      "choices": [
+        "完全平衡ではないが、高さが大きく崩れない",
+        "必ず完全二分木になる",
+        "挿入も削除も修正不要である",
+        "葉は常に赤である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "赤黒木は厳密ではないが、平衡を保ちやすい。"
+    },
+    {
+      "id": "q002",
+      "type": "single_choice",
+      "question": "AVL木の説明として適切なものを選べ。",
+      "choices": [
+        "平衡係数を用いて厳密に高さを制御する二分探索木",
+        "キーを3つずつ持つ木である",
+        "探索しかできない木である",
+        "赤黒木と同じ色の規則だけで管理する木である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "AVL木は平衡係数で厳密に管理する。"
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "AVL木で各ノードの左右の高さ差を表す値を何というか。",
+      "inputs": [
+        {
+          "answers": [
+            "平衡係数",
+            "balance factor",
+            "balance_factor"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "平衡係数は AVL 木の基本概念。"
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "AVL木の挿入で必要になることとして適切なものを選べ。",
+      "choices": [
+        "平衡係数の更新と必要に応じた回転",
+        "必ず色変更だけで処理する",
+        "常に全ノードを再構築する",
+        "挿入後の修正は一切不要である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "AVL木では挿入後に平衡係数を更新し、回転で修正する。"
+    },
+    {
+      "id": "q005",
+      "type": "single_choice",
+      "question": "AVL木の削除について正しい説明を選べ。",
+      "choices": [
+        "削除後にも平衡係数の修正と回転が必要になる",
+        "削除では必ず何もしなくてよい",
+        "削除は赤黒木だけで起こる処理である",
+        "削除すると木の高さが常に増える"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "AVL木は削除後も再平衡が必要。"
+    },
+    {
+      "id": "q006",
+      "type": "multiple_choice",
+      "question": "赤黒木とAVL木の比較として正しいものをすべて選べ。",
+      "choices": [
+        "AVL木は赤黒木より厳密に平衡を保つ",
+        "赤黒木は挿入・削除のコストが比較的軽い",
+        "どちらも探索の基本アルゴリズムは二分探索木と同じである",
+        "AVL木は常に赤黒木より遅い",
+        "赤黒木は削除時に修正が一切不要である"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "両者とも探索はBSTベースで、平衡の厳しさと更新コストが異なる。"
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "二分探索木に対する一般的な探索がそのまま使える対象として適切なものを選べ。",
+      "choices": [
+        "赤黒木とAVL木",
+        "配列のソートだけ",
+        "最短経路問題だけ",
+        "文字列の圧縮だけ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "赤黒木もAVL木も探索は二分探索木の考え方に従う。"
+    }
+  ]
+}
