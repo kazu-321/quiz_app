@@ -4,11 +4,13 @@
   const clearButton = document.getElementById("clear-storage");
   const detailPanel = document.getElementById("book-detail");
   const themeToggle = document.getElementById("theme-toggle");
+  const hardReloadButton = document.getElementById("hard-reload");
   let currentManifest = null;
   let currentDetailBookId = null;
   const bookCache = new Map();
 
   QuizApp.initTheme(themeToggle);
+  QuizApp.initHardReloadButton(hardReloadButton);
   QuizApp.hydrateStatsFromLastResult();
 
   function renderMarkdown(text) {
@@ -74,7 +76,7 @@
     const childBooks = node.books.map((book) => renderBookCard(book)).join("");
 
     return `
-      <details class="book-folder" open>
+      <details class="book-folder">
         <summary>
           <span class="folder-name">${QuizApp.escapeHtml(name)}</span>
           <span class="folder-count">${totalBooks} 件</span>

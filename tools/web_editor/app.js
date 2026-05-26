@@ -324,7 +324,7 @@
     const totalBooks = countBooks(node);
 
     return `
-      <details class="book-folder" open>
+      <details class="book-folder">
         <summary>
           <span class="folder-name">${escapeHtml(name)}</span>
           <span class="folder-count">${totalBooks} 件</span>
