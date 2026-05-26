@@ -9,6 +9,7 @@
   const bookCache = new Map();
 
   QuizApp.initTheme(themeToggle);
+  QuizApp.hydrateStatsFromLastResult();
 
   function renderMarkdown(text) {
     if (window.QuizMarkdown?.render) {
@@ -124,6 +125,16 @@
     const rateText = attempts ? `${Math.round((corrects / attempts) * 100)}% (${corrects}/${attempts})` : "未解答";
     const lastAnswer = item ? QuizApp.formatAnswer(question, item.last_answer) : "未回答";
     const lastCorrect = item ? (item.last_correct ? "正解" : "不正解") : "未解答";
+    console.log("[quiz_app] questionStats", {
+      bookId,
+      questionId: question.id,
+      item,
+      attempts,
+      corrects,
+      rateText,
+      lastAnswer,
+      lastCorrect,
+    });
     return { attempts, corrects, rateText, lastAnswer, lastCorrect };
   }
 
@@ -151,6 +162,13 @@
     const overallRate = summary.attempts
       ? `${Math.round((summary.corrects / summary.attempts) * 100)}% (${summary.corrects}/${summary.attempts})`
       : "未解答";
+
+    console.log("[quiz_app] renderDetail", {
+      bookId: book.id,
+      bookStats,
+      summary,
+      overallRate,
+    });
 
     detailPanel.innerHTML = `
       <div class="toolbar detail-toolbar">
