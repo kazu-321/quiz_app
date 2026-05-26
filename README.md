@@ -35,6 +35,8 @@ python3 tools/web_editor.py
 問題集一覧はルートの `manifest.json` で管理します。各問題集は `data/*.json` に置きます。
 問題集の内部 `id` はフォルダ名とタイトルから自動生成されます。
 
+AI に問題集 JSON を作らせるときの詳細仕様は [`docs/ai_json_spec.md`](docs/ai_json_spec.md) を参照してください。
+
 対応する問題タイプは次の4種類です。
 
 - `single_choice`: 単一選択
