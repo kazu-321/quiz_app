@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/04_Reminderモデルとクラス図_Python",
+  "title": "04_Reminderモデルとクラス図_Python",
+  "description": "Reminderクラス、ReminderListクラス、クラス図、集約、多重度、Python実装の基本に関する試験対策問題。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+      "question": "Reminderクラスのフィールドとして授業資料に指定されているものをすべて選べ。",
+      "choices": [
+        "name",
+        "priority",
+        "reminder",
+        "view",
+        "controller"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Reminderクラスは、リマインダの内容を表すnameと優先順位を表すpriorityを持つ。",
+      "tags": [
+        "Reminder",
+        "クラス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "Reminderクラスの priority は、授業資料では高い優先順位から低い優先順位までどの数値範囲で表すか。",
+      "inputs": [
+        {
+          "answers": [
+            "3〜0",
+            "3～0",
+            "3から0",
+            "3(高)～0(低)",
+            "3(高)〜0(低)"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料ではpriorityを3(高)〜0(低)の範囲で表す。",
+      "tags": [
+        "Reminder",
+        "priority"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "multiple_choice",
+      "question": "Reminderクラスのメソッドとして授業資料に指定されているものをすべて選べ。",
+      "choices": [
+        "引数なしコンストラクタ",
+        "show",
+        "add",
+        "remove",
+        "clear"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Reminderクラスには引数なしコンストラクタとshowが指定されている。add/remove/clearはReminderList側のメソッドである。",
+      "tags": [
+        "Reminder",
+        "クラス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "ReminderListクラスの役割として正しいものを選べ。",
+      "choices": [
+        "ひとつのリマインダを表す",
+        "複数のリマインダを集約する",
+        "ユーザの画面だけを表す",
+        "TCPのサーバだけを表す"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "ReminderListは複数のReminderを集約するクラスである。",
+      "tags": [
+        "ReminderList",
+        "クラス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "multiple_choice",
+      "question": "ReminderListクラスのメソッドとして授業資料に指定されているものをすべて選べ。",
+      "choices": [
+        "show",
+        "add",
+        "remove",
+        "clear",
+        "sendSyn"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "ReminderListにはshow、add、remove、clearが指定されている。",
+      "tags": [
+        "ReminderList",
+        "クラス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "ReminderListがReminderを集約する関係で、多重度はReminderList側がいくつ、Reminder側がどの範囲か。",
+      "inputs": [
+        {
+          "answers": [
+            "1"
+          ]
+        },
+        {
+          "answers": [
+            "0から10",
+            "0..10",
+            "0〜10",
+            "0～10"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "授業資料では、ReminderList側の多重度は1、Reminder側は0から10の範囲である。",
+      "tags": [
+        "クラス図",
+        "集約",
+        "多重度"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "astahで、クラスAがクラスBを集約している例を作る際の説明として正しいものを選べ。",
+      "choices": [
+        "集約から誘導可能な集約を用いる",
+        "継承から誘導不能な集約を必ず用いる",
+        "シーケンス図だけを用いる",
+        "UMLを使わず文章だけにする"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "授業資料では、集約を作る際には『集約から誘導可能』な集約を用いると説明されている。",
+      "tags": [
+        "クラス図",
+        "集約"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "PythonでReminderを実装する際、コンストラクタで name と priority に代入する初期値を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "no name",
+            "'no name'",
+            "\"no name\""
+          ]
+        },
+        {
+          "answers": [
+            "0"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "Reminderのコンストラクタではnameに'no name'、priorityに0を代入する。",
+      "tags": [
+        "Reminder",
+        "Python"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "授業資料では、PythonでReminderの show メソッド相当を何に置き換えて実装するか。",
+      "choices": [
+        "__init__",
+        "__str__",
+        "__len__",
+        "bind"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "show相当は__str__に置き換えて実装する。過去問でも__str__がView相当の記述として問われている。",
+      "tags": [
+        "Reminder",
+        "Python",
+        "過去問傾向"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "Reminderの name と priority の getter / setter は、Pythonでは何を用いて実装するよう指示されているか。",
+      "choices": [
+        "propertyデコレータ",
+        "threadingモジュール",
+        "UMLのライフライン",
+        "ウォーターフォールモデル"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "資料ではpropertyデコレータでgetter/setterを実装するように指示されている。",
+      "tags": [
+        "Reminder",
+        "Python"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "PythonでReminderListを実装する際、コンストラクタで作成する reminder リストの要素数はいくつか。",
+      "inputs": [
+        {
+          "answers": [
+            "10",
+            "10個",
+            "要素数10"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "ReminderListのコンストラクタでは、Reminderのリスト型を要素数10で作成する。",
+      "tags": [
+        "ReminderList",
+        "Python"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q012",
+      "type": "multiple_choice",
+      "question": "PythonのReminderListにおける add / remove / clear の説明として正しいものをすべて選べ。",
+      "choices": [
+        "addはreminderのi番目にrを代入する",
+        "removeはreminderのi番目をNoneにする",
+        "clearはreminderを[None] * 10にする",
+        "addは常に全リストを削除する",
+        "clearはpriorityだけを1増やす"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "addは追加、removeは該当要素の削除、clearは全削除の処理である。",
+      "tags": [
+        "ReminderList",
+        "Python"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

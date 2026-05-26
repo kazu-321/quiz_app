@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/06_シーケンス図と3ウェイハンドシェイク",
+  "title": "06_シーケンス図と3ウェイハンドシェイク",
+  "description": "UMLツール、静的・動的側面、シーケンス図、ライフライン、メッセージ、TCPの3ウェイ・ハンドシェイクに関する試験対策問題。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "astah* professional は授業資料でどのような用途のツールとして紹介されているか。",
+      "choices": [
+        "UMLを描くためのツール",
+        "Pythonコードを自動採点するためだけのツール",
+        "OSをインストールするためのツール",
+        "ネットワーク通信を暗号化するためのツール"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "astah* professional は、ソフトウェア設計の際にUMLを描くためのツールとして紹介されている。",
+      "tags": [
+        "UML",
+        "astah"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "single_choice",
+      "question": "シーケンス図の説明として正しいものを選べ。",
+      "choices": [
+        "UMLの図のひとつで、オブジェクト同士のメッセージ（操作の呼び出し）のやり取りを表現する",
+        "ソフトウェア危機のコスト比だけを示す図である",
+        "クラスのフィールドだけを一覧表示する表である",
+        "ウォーターフォールモデルの工程を必ず逆順に並べる図である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "シーケンス図はUMLの図のひとつで、オブジェクト同士のメッセージのやり取りを表す。",
+      "tags": [
+        "UML",
+        "シーケンス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "multiple_choice",
+      "question": "UMLのシーケンス図に関係のある用語をすべて選べ。",
+      "choices": [
+        "オブジェクト",
+        "操作の呼び出し",
+        "振る舞い",
+        "継承",
+        "ソフトウェアの構造"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "過去問では、シーケンス図に関係するものとしてオブジェクト、操作の呼び出し、振る舞いが正解だった。",
+      "tags": [
+        "UML",
+        "シーケンス図",
+        "過去問傾向"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "ソフトウェアのふたつの側面について、ソフトウェアの構造を表す側面と、ソフトウェアの動きを表す側面を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "静的",
+            "静的な情報"
+          ]
+        },
+        {
+          "answers": [
+            "動的",
+            "動的な情報"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料では、ソフトウェアの構造を静的な情報、ソフトウェアの動きを動的な情報として説明している。",
+      "tags": [
+        "UML",
+        "設計"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "multiple_choice",
+      "question": "ソフトウェアの静的・動的な側面の説明として正しいものをすべて選べ。",
+      "choices": [
+        "静的な情報はソフトウェアの構造であり、クラス図などで表す",
+        "動的な情報はソフトウェアの動きであり、シーケンス図などで表す",
+        "静的な情報はTCPのACK値だけを表す",
+        "動的な情報は必ずExcelのセルの形状だけを表す",
+        "ソフトウェアは主に静的と動的のふたつの側面で設計していく"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "explanation": "ソフトウェアは、静的な構造と動的な動きの両面で設計する。",
+      "tags": [
+        "UML",
+        "クラス図",
+        "シーケンス図"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "シーケンス図のライフラインについて正しいものを選べ。",
+      "choices": [
+        "メッセージをやり取りする際に登場する参加者を表す",
+        "ソフトウェア危機の年表だけを表す",
+        "ウォーターフォールの上流工程だけを表す",
+        "MVCのModelだけを表す"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "ライフラインは、メッセージをやり取りする参加者を表す。",
+      "tags": [
+        "UML",
+        "シーケンス図",
+        "ライフライン"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "シーケンス図で、メッセージをやり取りする参加者は長方形で描かれ、どの形式で名前が書かれるか。",
+      "inputs": [
+        {
+          "answers": [
+            "オブジェクト名：クラス名",
+            "オブジェクト名:クラス名",
+            "object:Class",
+            "オブジェクト名: クラス名"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "参加者は長方形で描き、オブジェクト名：クラス名の形式で表す。どちらかが省略される場合もある。",
+      "tags": [
+        "UML",
+        "シーケンス図",
+        "ライフライン"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "シーケンス図における時間の流れとして正しいものを選べ。",
+      "choices": [
+        "下方向に流れる",
+        "上方向に流れる",
+        "右から左だけに流れる",
+        "時間の流れは存在しない"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "シーケンス図では時間の流れは下方向で、生存期間は点線で描かれる。",
+      "tags": [
+        "UML",
+        "シーケンス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "シーケンス図で :ClassA から :ClassB に getValue というメッセージが送られている場合、getValue は通常どのクラスのメソッドとして実装されることが想定されるか。",
+      "choices": [
+        "ClassA",
+        "ClassB",
+        "ClassC",
+        "どのクラスにも実装されない"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "メッセージは受け取る側のオブジェクトの操作呼び出しなので、:ClassBが受け取るgetValueはClassBのメソッドとして実装される。",
+      "tags": [
+        "UML",
+        "シーケンス図",
+        "過去問傾向"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q010",
+      "type": "ordered_choice",
+      "question": "TCPの3ウェイ・ハンドシェイク（接続開始時）の流れを正しい順に並べよ。",
+      "choices": [
+        "クライアントがSYNパケット（SYN=1，ACK=0）を送って接続を要求する",
+        "サーバがSYN+ACKパケット（SYN=1，ACK=1）を返して接続を準備する",
+        "クライアントがACKパケット（SYN=1，ACK=1）を返して通信を開始する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "授業資料の課題6では、SYN→SYN+ACK→ACKの順で3ウェイ・ハンドシェイクをシーケンス図にする。",
+      "tags": [
+        "UML",
+        "シーケンス図",
+        "3ウェイハンドシェイク"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "TCPの3ウェイ・ハンドシェイクで、接続要求時にクライアントが最初に送るパケットのSYNとACKの値を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "1"
+          ]
+        },
+        {
+          "answers": [
+            "0"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "接続要求時、クライアントはSYN=1、ACK=0のSYNパケットを送る。",
+      "tags": [
+        "UML",
+        "シーケンス図",
+        "3ウェイハンドシェイク"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

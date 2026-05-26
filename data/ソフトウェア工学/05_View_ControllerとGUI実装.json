@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/05_View_ControllerとGUI実装",
+  "title": "05_View_ControllerとGUI実装",
+  "description": "過去問のReminderListプログラム、View/Controller追加、関連、変更通知、tkinter GUI、リマインダーアプリ拡張に関する試験対策問題。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "過去問のReminderListプログラムで、MVCに処理を分けるときViewクラスに相当する記述として問われたメソッド名はどれか。",
+      "choices": [
+        "add",
+        "remove",
+        "clear",
+        "__str__"
+      ],
+      "shuffle_choices": true,
+      "answer": 3,
+      "explanation": "過去問では、表示に関わる__str__がViewクラスに相当する記述として扱われた。",
+      "tags": [
+        "ReminderList",
+        "Python",
+        "過去問傾向"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "過去問のReminderListプログラムで、Controllerクラスに相当する処理を考えるとき、リマインダ生成の該当記述に含まれる2つの変数名を答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "r1"
+          ]
+        },
+        {
+          "answers": [
+            "r2"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "過去問の解答例では、r1とr2のReminderインスタンス生成・name/priority代入の記述が該当する。",
+      "tags": [
+        "ReminderList",
+        "Python",
+        "過去問傾向"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "課題3-1で追加するViewクラスのフィールドについて、授業資料の指定として正しいものを選べ。",
+      "choices": [
+        "フィールドはなし",
+        "nameとpriorityをprivateで持つ",
+        "reminder配列を0から10個だけ持つ",
+        "SYNとACKを持つ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "課題3-1では、Viewクラスのフィールドはなしと指定されている。",
+      "tags": [
+        "MVC",
+        "View",
+        "クラス図"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "課題3-1で追加するViewクラスの update メソッドの役割として正しいものを選べ。",
+      "choices": [
+        "Viewの表示を更新する",
+        "新しいリマインダを生成する",
+        "ReminderListの要素数を必ず20にする",
+        "TCP接続を確立する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "Viewのupdateは、表示を更新するメソッドとして指定されている。",
+      "tags": [
+        "MVC",
+        "View",
+        "update"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "multiple_choice",
+      "question": "課題3-1で追加するControllerクラスのメソッドとして指定されているものをすべて選べ。",
+      "choices": [
+        "add(int i, String n, int p)",
+        "remove(int i)",
+        "clear()",
+        "update()",
+        "show()"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Controllerにはadd、remove、clearが指定されている。updateはView側である。",
+      "tags": [
+        "MVC",
+        "Controller",
+        "クラス図"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "multiple_choice",
+      "question": "課題3-1で追加するクラス間の関係として正しいものをすべて選べ。",
+      "choices": [
+        "ViewとReminderListの間は相互に誘導可能な関連",
+        "ViewとControllerの間は相互に誘導可能な関連",
+        "ControllerとReminderListの間はControllerからReminderListへのみ誘導可能な関連",
+        "ControllerとReminderListの間はReminderListからControllerへのみ誘導可能な関連",
+        "すべての関係の多重度は両側とも1"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "explanation": "課題3-1では、View-ReminderListとView-Controllerは双方向、Controller→ReminderListは一方向で、多重度はいずれも1である。",
+      "tags": [
+        "MVC",
+        "クラス図",
+        "関連"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q007",
+      "type": "multiple_choice",
+      "question": "課題3-2のPython実装で、関連によって追加されるフィールドとして正しいものをすべて選べ。",
+      "choices": [
+        "ViewにreminderList",
+        "Viewにcontroller",
+        "ControllerにreminderList",
+        "Controllerにview",
+        "ReminderListにview"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "課題3-2では、関連に応じてView・Controller・ReminderListに各フィールドを追加する。",
+      "tags": [
+        "MVC",
+        "Python",
+        "関連"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q008",
+      "type": "multiple_choice",
+      "question": "MVCの『③変更の通知』に対応する処理をReminderListで実装するため、view.update() を追加するメソッドとして指定されているものをすべて選べ。",
+      "choices": [
+        "add",
+        "remove",
+        "clear",
+        "__init__",
+        "__str__"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "変更通知として、ReminderListのadd、remove、clearにview.update()を追加する。",
+      "tags": [
+        "MVC",
+        "通知",
+        "Python"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "次のコードで、addボタンを押した時に呼び出されるメソッド関数名を答えよ。self.__addB.bind('<ButtonPress>', self.addReminder)",
+      "inputs": [
+        {
+          "answers": [
+            "addReminder",
+            "self.addReminder"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "bindの第2引数にself.addReminderが指定されているので、ボタン押下時にaddReminderが呼び出される。",
+      "tags": [
+        "tkinter",
+        "MVC",
+        "過去問傾向"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "self.__addB.bind('<ButtonPress>', self.addReminder) により呼び出されるメソッドは、MVCの一般的な流れの①〜④のどれに相当するか。",
+      "choices": [
+        "①ユーザのアクション",
+        "②値の変更",
+        "③変更の通知",
+        "④値の取得"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "ボタンを押すイベントから呼び出されるため、MVCの①ユーザのアクションに相当する。",
+      "tags": [
+        "tkinter",
+        "MVC",
+        "過去問傾向"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q011",
+      "type": "multiple_choice",
+      "question": "課題4のGUIサンプルプログラムで、追加が必要な記述として授業資料に挙げられているものをすべて選べ。",
+      "choices": [
+        "(2)値の変更に相当する記述",
+        "(3)変更の通知に相当する記述",
+        "(4)値の取得に相当する記述",
+        "ソフトウェア工学の提唱年を表示する記述",
+        "3ウェイ・ハンドシェイクを必ず送信する記述"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "課題4では、MVCの(2)値の変更、(3)変更の通知、(4)値の取得に相当する記述を完成させる。",
+      "tags": [
+        "MVC",
+        "GUI",
+        "tkinter"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q012",
+      "type": "text_input",
+      "question": "課題5のModelの変更では、リマインダリストの要素数をいくつに増加するか。",
+      "inputs": [
+        {
+          "answers": [
+            "20",
+            "20個",
+            "要素数20"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "課題5では、Modelの変更としてリマインダリストの要素数を20に増加する。",
+      "tags": [
+        "MVC",
+        "Model",
+        "リマインダーアプリ"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q013",
+      "type": "single_choice",
+      "question": "課題5のControllerの変更として正しいものを選べ。",
+      "choices": [
+        "追加先に既にリマインダが存在した場合は上書きせず、空いている場所まで追加先をあとに移動する",
+        "追加先に既にリマインダが存在した場合は必ずすべて削除する",
+        "追加先に既にリマインダが存在した場合はViewを削除する",
+        "追加先に既にリマインダが存在した場合はSYNパケットを送る"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "Controllerの変更では、既存リマインダを上書きせず、空いている場所まで追加先を移動する。",
+      "tags": [
+        "MVC",
+        "Controller",
+        "リマインダーアプリ"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

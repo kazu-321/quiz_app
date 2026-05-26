@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/03_MVCの概念と動作",
+  "title": "03_MVCの概念と動作",
+  "description": "MVCの構成要素、役割、Excel例、MVCの動作の流れ、利点に関する試験対策問題。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "MVC を構成する3つの要素を英単語で順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "Model"
+          ]
+        },
+        {
+          "answers": [
+            "View"
+          ]
+        },
+        {
+          "answers": [
+            "Controller"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "MVCはModel、View、Controllerの3要素で構成される。",
+      "tags": [
+        "MVC"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "single_choice",
+      "question": "MVCの説明として最も適切なものを選べ。",
+      "choices": [
+        "GUIやWebブラウザのようなUIを伴うアプリケーション開発で、クラスを3つのタイプに分けて設計する考え方",
+        "ソフトウェア危機の発生年だけを覚えるための暗記法",
+        "ウォーターフォールモデルの工程名を逆順にする方法",
+        "シーケンス図においてライフラインを消す手法"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "MVCは、UIを伴うアプリケーションでクラスをModel・View・Controllerに分けて設計する考え方である。",
+      "tags": [
+        "MVC"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "MVCにおける Model の役割として正しいものを選べ。",
+      "choices": [
+        "利用者のユーザインタフェースとなる",
+        "利用者からの要求に応じて処理を制御する",
+        "ソフトウェアで管理されるデータを持つ",
+        "UMLの図を印刷する"
+      ],
+      "shuffle_choices": true,
+      "answer": 2,
+      "explanation": "Modelはソフトウェアで管理されるデータを持つクラスである。",
+      "tags": [
+        "MVC",
+        "Model"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "MVCにおける View の役割として正しいものを選べ。",
+      "choices": [
+        "ソフトウェアで管理されるデータを持つ",
+        "利用者のユーザインタフェースとなる",
+        "利用者からの要求に応じて処理を制御する",
+        "保守工数を計算する"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "Viewは利用者のユーザインタフェースとなるクラスである。",
+      "tags": [
+        "MVC",
+        "View"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "single_choice",
+      "question": "MVCにおける Controller の役割として正しいものを選べ。",
+      "choices": [
+        "利用者からの要求に応じてソフトウェアの処理を制御する",
+        "ソフトウェアで管理されるデータだけを持つ",
+        "画面の形状だけを表す",
+        "TCPパケットだけを送信する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "Controllerは、利用者からの要求に応じてソフトウェアの処理を制御する。",
+      "tags": [
+        "MVC",
+        "Controller"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "Excelの例で、『セル内の値』『セルの形状・配置』『セル内の数式言語記述』は、それぞれMVCのどれに対応するか。",
+      "inputs": [
+        {
+          "answers": [
+            "Model"
+          ]
+        },
+        {
+          "answers": [
+            "View"
+          ]
+        },
+        {
+          "answers": [
+            "Controller"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "Excelの直感的な例では、セル内の値がModel、形状・配置がView、数式言語記述がControllerに対応する。",
+      "tags": [
+        "MVC",
+        "Excel例"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "multiple_choice",
+      "question": "MVCを前提とした開発が使われる例として授業資料に挙げられているものをすべて選べ。",
+      "choices": [
+        "Webアプリ用フレームワーク",
+        "iOS向けアプリ用の開発環境",
+        "Android向けアプリ用の開発環境",
+        "ビデオゲーム用開発環境",
+        "紙の答案用紙だけを印刷する工程"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "MVCはWebアプリ、スマートフォンアプリ、ゲームなど、UIを伴う多くのアプリケーション開発に関係する。",
+      "tags": [
+        "MVC",
+        "応用"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "授業資料では、MVCはウォーターフォールモデルのどのあたりに位置づけられているか。",
+      "choices": [
+        "利用者視点の分析だけに相当する",
+        "開発者視点の設計部分に相当する",
+        "運用・保守の終了後だけに相当する",
+        "テストだけに相当する"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "資料では、MVCは開発者視点の設計部分に位置づけられている。",
+      "tags": [
+        "MVC",
+        "設計"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "ordered_choice",
+      "question": "MVCの一般的な動きの流れを、授業資料の①〜④の順に並べよ。",
+      "choices": [
+        "ユーザがUIでアクションを起こす",
+        "アクションに伴ってModelが保持している値を変更する",
+        "Modelが値の変更をViewに通知する",
+        "ViewがModelの値を取得して表示内容を更新する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "MVCの流れは、ユーザのアクション→値の変更→変更の通知→値の取得・表示更新である。",
+      "tags": [
+        "MVC",
+        "動作"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "MVCの流れにおける①『ユーザのアクション』の例として適切なものを選べ。",
+      "choices": [
+        "ボタンを押すなど、UI上で操作する",
+        "Modelが保持している値を自動的に削除する",
+        "クラス図の多重度を変更する",
+        "ソフトウェア危機の発生年を記録する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "①はユーザがボタンを押すなど、UIでアクションを起こす場面である。",
+      "tags": [
+        "MVC",
+        "動作"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q011",
+      "type": "single_choice",
+      "question": "MVCの流れにおける②『値の変更』は、主にどの要素の保持する値が変更されることを指すか。",
+      "choices": [
+        "Model",
+        "View",
+        "UML",
+        "ライフライン"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "②では、アクションに伴ってModelが保持している値が変更される。",
+      "tags": [
+        "MVC",
+        "Model"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q012",
+      "type": "single_choice",
+      "question": "MVCの流れにおける③『変更の通知』の説明として正しいものを選べ。",
+      "choices": [
+        "Modelが値の変更をViewに知らせる",
+        "Viewが必ずソースコードを削除する",
+        "Controllerがソフトウェア危機を提唱する",
+        "ライフラインが上方向に時間を戻す"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "③はModelが保持している値が変更されたことをViewに通知する処理である。",
+      "tags": [
+        "MVC",
+        "通知"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q013",
+      "type": "single_choice",
+      "question": "MVCの流れにおける④『値の取得』の説明として正しいものを選べ。",
+      "choices": [
+        "ViewがModelの値を取得して表示内容を更新する",
+        "ModelがViewのボタンを押す",
+        "Controllerがソフトウェアライフサイクルを定義する",
+        "シーケンス図の参加者を消去する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "④はViewがModelの値を取得し、表示内容を更新する処理である。",
+      "tags": [
+        "MVC",
+        "View"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q014",
+      "type": "multiple_choice",
+      "question": "MVCに基づいて開発する利点として授業資料に挙げられているものをすべて選べ。",
+      "choices": [
+        "役割に分けてクラス設計するので、複数人で開発した際に開発箇所を分割しやすい",
+        "機能を拡張する際に、役割ごとに拡張でき、手を加えるクラスを限定できる",
+        "ソフトウェア開発の生産性が向上する",
+        "必ずすべてのクラスを毎回作り直す必要がある",
+        "UIを伴うアプリケーションでは一切使えない"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "MVCでは役割分担により分割開発・拡張時の変更範囲限定がしやすくなり、生産性向上につながる。",
+      "tags": [
+        "MVC",
+        "利点"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q015",
+      "type": "text_input",
+      "question": "MVCに基づく開発では、複数人で開発した際に開発箇所を何しやすいか。また、拡張時に手を加えるクラスをどうしやすいか。",
+      "inputs": [
+        {
+          "answers": [
+            "分割",
+            "分担"
+          ]
+        },
+        {
+          "answers": [
+            "限定",
+            "一部に限定",
+            "限定できる"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "過去問でも出題された表現で、開発箇所を分割しやすく、手を加えるクラスを限定できることが利点である。",
+      "tags": [
+        "MVC",
+        "利点",
+        "過去問傾向"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q016",
+      "type": "multiple_choice",
+      "question": "授業のリマインダーアプリケーション拡張で、Viewの変更として挙げられているものをすべて選べ。",
+      "choices": [
+        "追加場所をメニュー形式にする",
+        "優先度をメニュー形式にする",
+        "リマインダリストの要素数を20に増やす",
+        "追加先に既にリマインダがある場合に空き場所までずらす",
+        "配列範囲外や想定外の優先度を入力しにくくする"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "explanation": "Viewでは追加場所と優先度をメニュー形式にし、範囲外や想定外の入力を防ぐ変更が挙げられている。",
+      "tags": [
+        "MVC",
+        "リマインダーアプリ"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

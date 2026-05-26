@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/02_開発方法論とプロセスモデル",
+  "title": "02_開発方法論とプロセスモデル",
+  "description": "ソフトウェアライフサイクル、ウォーターフォールモデル、スパイラルモデル、アジャイル、分析・設計に関する試験対策問題。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "ソフトウェアを開発・運営する過程は何と呼ばれるか。",
+      "inputs": [
+        {
+          "answers": [
+            "ソフトウェアライフサイクル",
+            "ソフトウェア・ライフサイクル"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "ソフトウェアを開発・運営する過程はソフトウェアライフサイクルと呼ばれ、プロセスモデルで表現される。",
+      "tags": [
+        "ソフトウェアライフサイクル"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "multiple_choice",
+      "question": "代表的なプロセスモデルまたは開発プロセスの特徴を示す概念として授業で扱われたものをすべて選べ。",
+      "choices": [
+        "ウォーターフォールモデル",
+        "スパイラルモデル",
+        "アジャイルソフトウェア開発",
+        "getter/setter",
+        "astah* professional"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "代表例としてウォーターフォールモデル、スパイラルモデル、アジャイルソフトウェア開発が挙げられている。",
+      "tags": [
+        "プロセスモデル"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "ordered_choice",
+      "question": "ウォーターフォールモデルの工程を、授業資料の順に並べよ。",
+      "choices": [
+        "分析",
+        "設計",
+        "実装（プログラミング）",
+        "テスト",
+        "運用・保守"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "授業資料では、分析→設計→実装→テスト→運用・保守の流れで示されている。",
+      "tags": [
+        "ウォーターフォールモデル"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "ウォーターフォールモデルにおいて、上流工程は誰の視点、下流工程は誰の視点か。",
+      "inputs": [
+        {
+          "answers": [
+            "利用者",
+            "ユーザ",
+            "ユーザー"
+          ]
+        },
+        {
+          "answers": [
+            "開発者"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料では、上流工程は利用者の視点、下流工程は開発者の視点とされている。",
+      "tags": [
+        "ウォーターフォールモデル"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "single_choice",
+      "question": "ウォーターフォールモデルで『次の開発工程に進む』ことを表す用語として正しいものを選べ。",
+      "choices": [
+        "リバースエンジニアリング",
+        "フォワードエンジニアリング",
+        "プロトタイピング",
+        "イテレーション"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "資料では、次の開発工程に進むことをフォワードエンジニアリング、前の工程に戻ることをリバースエンジニアリングとしている。",
+      "tags": [
+        "ウォーターフォールモデル"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "ウォーターフォールモデルで『前の開発工程に戻る』ことを表す用語として正しいものを選べ。",
+      "choices": [
+        "フォワードエンジニアリング",
+        "リバースエンジニアリング",
+        "リリース",
+        "スケルトンコード生成"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "前の開発工程に戻ることはリバースエンジニアリングである。",
+      "tags": [
+        "ウォーターフォールモデル"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "スパイラルモデルの説明として正しいものを選べ。",
+      "choices": [
+        "工程を一切繰り返さず、必ず一方向にだけ進むモデルである",
+        "4つのフェーズを1サイクルとし、プロトタイピングを繰り返すモデルである",
+        "2〜3週間ごとにリリースだけを行うモデルである",
+        "MVCの3つのクラスだけで構成されるモデルである"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "スパイラルモデルは、4つのフェーズを1サイクルとしてプロトタイピングを繰り返す。",
+      "tags": [
+        "スパイラルモデル"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "multiple_choice",
+      "question": "アジャイルソフトウェア開発について、授業資料の説明として正しいものをすべて選べ。",
+      "choices": [
+        "Extreme Programming が有名である",
+        "軽量で短期間の開発に適している",
+        "リリースはある程度の形になって動作するソフトウェアを指す",
+        "イテレーションは部分的な設計・実装・テストを指す",
+        "必ず10年間に1回だけリリースする"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "アジャイルではリリースとイテレーションを繰り返して完成度を上げる。",
+      "tags": [
+        "アジャイル"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "授業資料におけるアジャイルの目安として、リリースは何ヶ月間隔、イテレーションは何週間間隔か。",
+      "inputs": [
+        {
+          "answers": [
+            "2〜3ヶ月",
+            "2-3ヶ月",
+            "2から3ヶ月",
+            "2～3ヶ月"
+          ]
+        },
+        {
+          "answers": [
+            "2〜3週間",
+            "2-3週間",
+            "2から3週間",
+            "2～3週間"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料では、リリースは2〜3ヶ月間隔、イテレーションは2〜3週間間隔と説明されている。",
+      "tags": [
+        "アジャイル"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "ソフトウェア開発で重要な『どんなソフトウェアを作るのか』と『どのようにソフトウェアを作るのか』は、それぞれどの工程に対応するか。",
+      "inputs": [
+        {
+          "answers": [
+            "分析"
+          ]
+        },
+        {
+          "answers": [
+            "設計"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "『どんなソフトウェアを作るのか』は分析、『どのように作るのか』は設計に対応する。",
+      "tags": [
+        "分析",
+        "設計"
+      ],
+      "difficulty": 1
+    }
+  ]
+}
