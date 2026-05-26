@@ -18,7 +18,8 @@
       ],
       "case_sensitive": false,
       "trim": true,
-      "normalize_spaces": true
+      "normalize_spaces": true,
+      "input_ordered": true
     },
     {
       "id": "q002",
@@ -84,7 +85,8 @@
       ],
       "case_sensitive": false,
       "trim": true,
-      "normalize_spaces": true
+      "normalize_spaces": true,
+      "input_ordered": true
     },
     {
       "id": "q006",
@@ -170,7 +172,8 @@
       ],
       "case_sensitive": false,
       "trim": true,
-      "normalize_spaces": true
+      "normalize_spaces": true,
+      "input_ordered": true
     },
     {
       "id": "q012",
@@ -186,7 +189,8 @@
       ],
       "case_sensitive": false,
       "trim": true,
-      "normalize_spaces": true
+      "normalize_spaces": true,
+      "input_ordered": true
     }
   ]
 }

@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "id": "情報ネットワークII/01_プロセス間通信",
+  "title": "01_プロセス間通信",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "2つのプロセス(P1, P2)が並行して、共有データ\n(X)を読み、更新して、書く処理を行う。このとき\n次の問いに答えよ。\n(1)更新処理でXの値をP1は2増加、P2は1減少させ\nる。実行前のXの値が5のとき、P1, P2の処理が終了\n後Xの値として取りえない値は以下の内どれか。",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "2つのプロセス(P1, P2)が並行して、共有データ\n(X)を読み、更新して、書く処理を行う。このとき\n次の問いに答えよ。\n(2)本来P1, P2が独立に動作するときと同じ値が入\nるようにするためには、P1, P2の処理の前後に処理\nを加える必要がある。この処理の名前を述べよ。",
+      "inputs": [
+        {
+          "answers": [
+            "排他制御"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "排他制御で、対象をファイル内の値とするとき、どのような方式があるか",
+      "inputs": [
+        {
+          "answers": [
+            "ファイルロック"
+          ]
+        },
+        {
+          "answers": [
+            "レコードロック"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": false
+    },
+    {
+      "id": "q004",
+      "type": "multiple_choice",
+      "question": "Unix系OSにおいて、ファイルとして扱えるものをすべて選んで答えよ。",
+      "choices": [
+        "ハードディスク上に保存されるファイル",
+        "端末での入出力",
+        "ハードウェアデバイス",
+        "ネットワークインタフェース",
+        "GUI",
+        "ウェブサイト",
+        "メール"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "Unixのプロセスは、生成されるとデフォルトの入出力が割り当てられる。\nそのうち、標準入力、標準出力、標準エラー出力の3つが利用できる。\nこの3つの入出力にアクセスするためのファイルディスクリプタを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "0"
+          ]
+        },
+        {
+          "answers": [
+            "1"
+          ]
+        },
+        {
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "あるプロセスのPIDが1000のとき、OSによりこのプロセスに割り当てられた標準出力にアクセスできる絶対パスを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "/proc/1000/fd/1"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "今まで入力したコマンドの内、lsを使ったコマンドを検索し表\n示する場合、パイプ “|” を使ったコマンドを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "history | grep ls"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "現在ディレクトリにおけるテキストファイル(.txt で終わるファイル名)を語句数順に並べる場合、パイプ “|” を使ったコマンドを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "wc *.txt | sort"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "fork()関数によるプロセス複製直後、親プロセスと子プロセスを見分けるための戻り値の仕様として正しいものはどれか。",
+      "choices": [
+        "親には-1、子には0が返る",
+        "親には「子のPID」、子には0が返る",
+        "親には0、子には「親のPID」が返る",
+        "両方に同じPIDが返り、getpid()で区別する"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "端末で新たにプログラムを実行する際の、プロセス生成の仕組み\nとして適切なものはどれか。",
+      "choices": [
+        "OSが空のプロセスを新規作成し、プログラムを読み込む",
+        "シェルがexec()で自身を置き換えた後、fork()で元に戻る",
+        "シェルがfork()で自身を複製し、複製側がexec()で目的のプログラムに上書きされる",
+        "端末が直接exec()を呼び出してプロセスを生成する"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    },
+    {
+      "id": "q011",
+      "type": "single_choice",
+      "question": "コマンド入力から結果表示までの、端末とシェルの役割分担として正しいものはどれか。",
+      "choices": [
+        "端末がコマンドを実行し、シェルが画面を描画する",
+        "端末とシェルは同一プログラムの別名である",
+        "端末はファイル操作、シェルはネットワーク通信を担う",
+        "端末は「キー入力と画面描画」を担い、シェルは「コマンド解釈と実行依頼」を担う"
+      ],
+      "shuffle_choices": true,
+      "answer": 3
+    },
+    {
+      "id": "q012",
+      "type": "text_input",
+      "question": "次のページのprogram A, Bを動作させるとき、結果が確定するのはどちらか。またその時の値はなにになるか\nA\n```\n#include <pthread.h>\n#include <stdio.h>\nint counter;\nstatic void *thread_func(void *_tn) {\n  int i;\n  for (i = 0; i < 100000; i++) counter++;\n  return NULL;\n}\nint main() {\n  int i, N = 5;\n  pthread_t t[N];\n  for (i = 0; i < N; i++) pthread_create(&t[i], NULL, thread_func, NULL);\n  for (i = 0; i < N; i++) pthread_join(t[i], NULL);\n  printf(\"%d¥n\", counter);\n  return 0;\n}\n```\n\nB\n```\n#include <pthread.h>\n#include <stdio.h>\nint counter;\nstatic void *thread_func(void *_tn) {\n  int i;\n  for (i = 0; i < 100000; i++)  counter++;\n  return NULL;\n}\nint main() {\n  int i, N = 5;\n  pthread_t t[N];\n  for (i = 0; i < N; i++) {\n    pthread_create(&t[i], NULL, thread_func, NULL);\n    pthread_join(t[i], NULL);\n  }\n  printf(\"%d¥n\", counter);\n  return 0;\n}\n```",
+      "inputs": [
+        {
+          "answers": [
+            "B"
+          ]
+        },
+        {
+          "answers": [
+            "500000"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q013",
+      "type": "single_choice",
+      "question": "複数のスレッドから共有データ(例:グローバル変数cnt)へ安全にアクセスするために、排他制御を行う。初期化済みのmutex変数を用いて、クリティカルセクションに入る前にロックを取得するための正しい記述は、次のうちどれか。",
+      "choices": [
+        "pthread_mutex_wait(&mutex);",
+        "pthread_lock_mutex(&mutex);",
+        "pthread_mutex_lock(&mutex);",
+        "pthread_mutex_lock(mutex);"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    },
+    {
+      "id": "q014",
+      "type": "single_choice",
+      "question": "C言語において、新しいスレッドを作成して指定した関数(thread_func)を実行させるための正しい関数名と引数の組み合わせはどれか。",
+      "choices": [
+        "pthread_start(&thread_id, NULL, thread_func, NULL);",
+        "pthread_create(&thread_id, NULL, thread_func, NULL);",
+        "pthread_make(thread_id, thread_func);",
+        "pthread_run(&thread_id, thread_func);"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q015",
+      "type": "single_choice",
+      "question": "通信スレッドとGUIスレッドが分かれているプログラムにおいて、通信スレッドが受信したデータを安全に画面へ表示するための最も適切な設計はどれか。",
+      "choices": [
+        "通信スレッドから直接GUI関数を呼び出して描画する",
+        "排他制御(lock/unlock)を行って、通信スレッドからGUI関数を呼ぶ",
+        "排他制御した共有変数を介してデータを渡し、GUIスレッドに描画させる",
+        "データを受信するたびに、描画用の新しいスレッドを生成する"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    },
+    {
+      "id": "q016",
+      "type": "single_choice",
+      "question": "スレッドの説明として正しいものを選べ。",
+      "choices": [
+        "OS上で独立にスケジュールされ、プロセス内でメモリ空間を共有できる実行単位",
+        "コンピュータ同士を接続するための物理ケーブル",
+        "ハードディスク上のファイル管理単位",
+        "CPUクロック周波数を制御する仕組み"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q017",
+      "type": "single_choice",
+      "question": "スレッドを生成する関数として正しいものを選べ。",
+      "choices": [
+        "pthreadCreate()",
+        "create_pthread()",
+        "pthread_create()",
+        "thread_create_p()"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    },
+    {
+      "id": "q018",
+      "type": "single_choice",
+      "question": "スレッドを終了する関数として正しいものを選べ。",
+      "choices": [
+        "pthread_exit()",
+        "exit_pthread()",
+        "pthreadEnd()",
+        "destroy_pthread()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q019",
+      "type": "single_choice",
+      "question": "現在のスレッドIDを取得する関数として正しいものを選べ。",
+      "choices": [
+        "pthread_getid()",
+        "pthread_self()",
+        "self_pthread()",
+        "get_pthread_id()"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    }
+  ]
+}

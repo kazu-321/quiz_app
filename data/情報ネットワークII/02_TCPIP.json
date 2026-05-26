@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "id": "情報ネットワークII/02_TCPIP",
+  "title": "02_TCPIP",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "ordered_choice",
+      "question": "典型的なサーバークライアントのプログラム構成ではサーバー側ではどの順番で処理が行われるか",
+      "choices": [
+        "fd = socket()",
+        "bind(fd, sockaddr)",
+        "listen(fd)",
+        "fd2 = accept(fd)",
+        "read(fd2), write(fd2)",
+        "close(fd2)"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "q002",
+      "type": "ordered_choice",
+      "question": "典型的なサーバークライアントのプログラム構成ではクライアント側ではどの順番で処理が行われるか",
+      "choices": [
+        "fd = socket()",
+        "connect(fd, sockaddr)",
+        "write(fd), read(fd)",
+        "close(fd)"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "Big EndianとLittle Endianのうち、MSBが先(低い)のAddressに配置されるのはどちらか",
+      "choices": [
+        "Big Endian",
+        "Little Endian"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "Big EndianとLittle Endianのうち、インターネットに流す伝文はどちらの方式か",
+      "choices": [
+        "Big Endian",
+        "Little Endian"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "インタ―ネットに流す伝文が(2)の方式になることを確実にするために用意された関数を一つ答えよ",
+      "inputs": [
+        {
+          "answers": [
+            "htons",
+            "htons()",
+            "htons ()",
+            "htonl",
+            "htonl()",
+            "htonl ()"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "指定された名称をIPアドレスに変換する関数を選べ",
+      "choices": [
+        "gethostbyname()",
+        "get_host_by_name()",
+        "getHostByName()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "ドット付き10進表記のIPアドレスをIN_ADDR構造体に適したアドレス形式に変換する関数名を選べ",
+      "choices": [
+        "inet_addr()",
+        "internet_address()",
+        "inetaddr()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "マルチプレクシングI/Oを実現するための関数の関数名を答えよ",
+      "inputs": [
+        {
+          "answers": [
+            "select"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "select関数の引数について説明せよ。\n```\nint select(\n  int maxfdp1,\n  fd_set *readset,\n  fd_set *writeset,\n  fd_set *exceptset,\n  const struct timeval *timeout);\n```\n第1引数の意味として適切なものを選べ",
+      "choices": [
+        "監視対象FDの最大値+1",
+        "監視対象FDの最大値-1",
+        "監視対象FDの最大値",
+        "読み込み用fd_set",
+        "複数の監視対象FDをまとめて管理する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "select関数の引数について説明せよ。\n```\nint select(\n  int maxfdp1,\n  fd_set *readset,\n  fd_set *writeset,\n  fd_set *exceptset,\n  const struct timeval *timeout);\n```\n第2引数の意味として適切なものを選べ",
+      "choices": [
+        "監視対象FDの最大値+1",
+        "監視対象FDの最大値-1",
+        "監視対象FDの最大値",
+        "読み込み用fd_set",
+        "複数の監視対象FDをまとめて管理する"
+      ],
+      "shuffle_choices": true,
+      "answer": 3
+    },
+    {
+      "id": "q011",
+      "type": "single_choice",
+      "question": "select関数の引数について説明せよ。\n```\nint select(\n  int maxfdp1,\n  fd_set *readset,\n  fd_set *writeset,\n  fd_set *exceptset,\n  const struct timeval *timeout);\n```\n最終引数の意味として適切なものを選べ",
+      "choices": [
+        "監視対象FDの最大値+1",
+        "監視対象FDの最大値-1",
+        "監視対象FDの最大値",
+        "読み込み用fd_set",
+        "複数の監視対象FDをまとめて管理する"
+      ],
+      "shuffle_choices": true,
+      "answer": 4
+    },
+    {
+      "id": "q012",
+      "type": "single_choice",
+      "question": "fd_setの利用目的は",
+      "choices": [
+        "複数の監視対象FDをまとめて管理する",
+        "OSが管理するFDを明記する",
+        "監視対象のFDを排他制御により専有する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q013",
+      "type": "ordered_choice",
+      "question": "下記のselect関数の利用手順を、正しい順番に並べ替えよ。",
+      "choices": [
+        "ブロック時間の設定",
+        "fd_setの宣言",
+        "fd_setの初期化",
+        "fd_setに監視対象のFDを(逐一に)追加",
+        "select()呼出し",
+        "fd_setに含まれるFDの変化を(逐一に)確認",
+        "変化があったFDのみに対して、read()を呼び出す"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "q014",
+      "type": "text_input",
+      "question": "select関数によるノンブロッキングI/Oプログラムにおいて、サーバ側でマルチコネクションを実現するには、read()に加えてあるソケット関数の呼び出し結果を事前に予測した上で呼び出す必要がある。関数名を答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "accept",
+            "accept()",
+            "accept ()"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true
+    },
+    {
+      "id": "q015",
+      "type": "single_choice",
+      "question": "accept関数はブロッキングIOかノンブロッキングIOか",
+      "choices": [
+        "ブロッキングI/O",
+        "ノンブロッキングI/O"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q016",
+      "type": "single_choice",
+      "question": "inetdの説明として正しいものを選べ。",
+      "choices": [
+        "Webページを作成するソフトウェア",
+        "複数のネットワークサービスを管理するスーパーサーバ",
+        "データベース管理システム",
+        "ファイル圧縮ツール"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q017",
+      "type": "single_choice",
+      "question": "inetdでselect関数を利用する理由として正しいものを選べ。",
+      "choices": [
+        "ファイルを暗号化するため",
+        "メモリ使用量を増やすため",
+        "複数のソケットを同時に監視するため",
+        "CPUクロックを変更するため"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    },
+    {
+      "id": "q018",
+      "type": "single_choice",
+      "question": "SCPの説明として正しいものを選べ。",
+      "choices": [
+        "Webページを閲覧するためのプロトコル",
+        "暗号化を利用して安全にファイル転送を行うプロトコル",
+        "音声通話を行うための通信方式",
+        "データベースを管理するシステム"
+      ],
+      "shuffle_choices": true,
+      "answer": 1
+    },
+    {
+      "id": "q019",
+      "type": "single_choice",
+      "question": "FTPと比較したときのSCPの利点として正しいものを選べ。",
+      "choices": [
+        "通信速度が必ず高速になる",
+        "ファイルサイズを自動で圧縮できる",
+        "パスワードや通信内容を暗号化できる",
+        "インターネット接続が不要になる"
+      ],
+      "shuffle_choices": true,
+      "answer": 2
+    }
+  ]
+}

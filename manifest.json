@@ -2,6 +2,18 @@
   "schema_version": 1,
   "books": [
     {
+      "id": "情報ネットワークII/01_プロセス間通信",
+      "title": "01_プロセス間通信",
+      "description": "",
+      "file": "data/情報ネットワークII/01_プロセス間通信.json"
+    },
+    {
+      "id": "情報ネットワークII/02_TCPIP",
+      "title": "02_TCPIP",
+      "description": "",
+      "file": "data/情報ネットワークII/02_TCPIP.json"
+    },
+    {
       "id": "現代の社会I/01_認知科学とはなにか",
       "title": "01_認知科学とはなにか",
       "description": "",
