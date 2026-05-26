@@ -170,6 +170,19 @@
     });
   }
 
+  function hardReload() {
+    const url = new URL(window.location.href);
+    url.searchParams.set("__reload", Date.now().toString(36));
+    window.location.replace(url.toString());
+  }
+
+  function initHardReloadButton(button = null) {
+    if (!button) return;
+    button.setAttribute("aria-label", "強制更新する");
+    button.setAttribute("title", "Shift+F5 相当で再読み込み");
+    button.addEventListener("click", hardReload);
+  }
+
   function normalizeText(value, question) {
     let text = String(value ?? "");
     if (question.trim !== false) text = text.trim();
@@ -364,6 +377,8 @@
     toggleTheme,
     refreshThemeToggle,
     initTheme,
+    hardReload,
+    initHardReloadButton,
     isCorrect,
     shuffle,
     formatAnswer,

@@ -11,12 +11,14 @@
   const resumeQuizButton = document.getElementById("resume-quiz");
   const resumeInfo = document.getElementById("resume-info");
   const themeToggle = document.getElementById("theme-toggle");
+  const hardReloadButton = document.getElementById("hard-reload");
 
   const params = new URLSearchParams(location.search);
   const bookId = params.get("book");
   const resumeRequested = params.get("resume") === "1";
 
   QuizApp.initTheme(themeToggle);
+  QuizApp.initHardReloadButton(hardReloadButton);
   QuizApp.hydrateStatsFromLastResult();
   console.log("[quiz_app] answer boot", {
     bookId,
