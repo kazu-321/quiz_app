@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/02_MVC基礎",
+  "title": "02_MVC基礎",
+  "description": "MVCの3要素、役割、一般的な動きの流れに関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "MVCは、Model、View、(1) の3つのタイプにクラスを分けて設計する考え方である。(1)に入る英単語を答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "Controller"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "1年前の過去問では、Controller 以外の2つを答える形で出題されている。",
+      "tags": [
+        "MVC",
+        "基礎"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "MVCの3要素のうち、ソフトウェアで管理されるデータをもつクラスは何か。英単語で答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "Model"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "Model はデータをもつクラスとして説明される。過去問でも直接問われている。",
+      "tags": [
+        "MVC",
+        "Model"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "MVCの3要素のうち、利用者のユーザインタフェースとなるクラスは(1)、利用者からの要求に応じてソフトウェアの処理を制御するクラスは(2)である。英単語で答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "View"
+          ]
+        },
+        {
+          "answers": [
+            "Controller"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "2年前の過去問で、View と Controller の役割を空欄補充する問題が出ている。",
+      "tags": [
+        "MVC",
+        "役割"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q004",
+      "type": "multiple_choice",
+      "question": "MVCを前提とした開発が使われるものとして講義資料で例示されているものをすべて選べ。",
+      "choices": [
+        "Webアプリ",
+        "PCやスマートフォンのアプリ",
+        "TVゲーム全般",
+        "キーボードの物理配列だけを決める作業",
+        "OSのファイル名を暗記する作業"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "ユーザインタフェースが伴うアプリケーションの多くが MVC の理解と関係すると説明されている。",
+      "tags": [
+        "MVC",
+        "適用例"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "ExcelをMVCの直感的な例として考えた場合、(1)セル内の値、(2)セルの形状・配置、(3)セル内の数式言語記述は、それぞれ Model、View、Controller のどれに近いか。",
+      "inputs": [
+        {
+          "answers": [
+            "Model"
+          ]
+        },
+        {
+          "answers": [
+            "View"
+          ]
+        },
+        {
+          "answers": [
+            "Controller"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "2年前の過去問で出題された対応関係。値が Model、見た目が View、処理の記述が Controller。",
+      "tags": [
+        "MVC",
+        "Excel例"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "ordered_choice",
+      "question": "MVCの一般的な動きの流れを、講義資料の番号順に並べよ。",
+      "choices": [
+        "ユーザのアクション",
+        "値の変更",
+        "変更の通知",
+        "値の取得"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "講義資料では ①ユーザのアクション、②値の変更、③変更の通知、④値の取得 の順で示される。",
+      "tags": [
+        "MVC",
+        "流れ"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "MVCの一般的な流れにおける「ユーザのアクション」の説明として最も適切なものはどれか。",
+      "choices": [
+        "ユーザがボタンを押すなど、UIで操作を起こすこと",
+        "Modelが保持している値をViewが取得すること",
+        "ModelがViewに変更を通知すること",
+        "アプリケーションのソースコード行数を数えること"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "①ユーザのアクションは、ボタンを押すなど利用者が UI で起こす操作に対応する。",
+      "tags": [
+        "MVC",
+        "流れ"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "MVCの一般的な流れにおいて、Modelが保持している値が変わったことをViewに知らせる段階はどれか。",
+      "choices": [
+        "①ユーザのアクション",
+        "②値の変更",
+        "③変更の通知",
+        "④値の取得"
+      ],
+      "shuffle_choices": true,
+      "answer": 2,
+      "explanation": "③変更の通知は、Model側の変更をView側へ伝える処理として説明される。",
+      "tags": [
+        "MVC",
+        "変更の通知"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "MVCの一般的な流れにおいて、Viewの表示内容を更新するためにModelが保持する値を読み出す段階はどれか。",
+      "choices": [
+        "①ユーザのアクション",
+        "②値の変更",
+        "③変更の通知",
+        "④値の取得"
+      ],
+      "shuffle_choices": true,
+      "answer": 3,
+      "explanation": "④値の取得は、View が表示更新のために Model の値を取得する流れに対応する。",
+      "tags": [
+        "MVC",
+        "値の取得"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "multiple_choice",
+      "question": "MVCに基づいて開発する利点として講義資料の内容に合うものをすべて選べ。",
+      "choices": [
+        "役割に分けてクラス設計するので、複数人で開発した際に開発箇所を分割しやすい",
+        "機能を拡張する際に、手を加えるクラスを役割ごとに限定しやすい",
+        "ユーザインタフェースが伴うアプリケーション開発において生産性が向上する",
+        "必ずすべてのクラスを1つにまとめられる",
+        "実装後は設計を一切考えなくてよい"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "2年前の過去問では、MVCの利点として「ユーザインタフェース」「分割」「限定」に関する空欄が問われた。",
+      "tags": [
+        "MVC",
+        "利点"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

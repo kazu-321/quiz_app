@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/04_MVC実装と拡張",
+  "title": "04_MVC実装と拡張",
+  "description": "tkinterを用いたMVC実装、イベント処理、拡張時の役割分担に関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "次のtkinterコードで、addボタンを押した時に呼び出されるメソッド関数名を答えよ。\n\n```python\nself.__addB = Button(self.__f1, text='add')\nself.__addB.bind('<ButtonPress>', self.addReminder)\nself.__addB.pack(side=TOP, padx=5)\n```",
+      "inputs": [
+        {
+          "answers": [
+            "addReminder"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "bind の第2引数に指定された self.addReminder が、ボタン押下時に呼び出されるメソッド関数である。",
+      "tags": [
+        "tkinter",
+        "イベント"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "single_choice",
+      "question": "上の addReminder の呼び出しは、MVCの一般的な流れではどれに相当するか。",
+      "choices": [
+        "①ユーザのアクション",
+        "②値の変更",
+        "③変更の通知",
+        "④値の取得"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "1年前の過去問では、addボタンを押した時に呼び出されるメソッドが図の①に相当すると問われた。",
+      "tags": [
+        "MVC",
+        "イベント"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "講義のGUIサンプルで『(2)値の変更』に相当する記述として最も近いものはどれか。",
+      "choices": [
+        "ControllerがModelのaddなどを呼び出して、ReminderListの中身を変更する処理",
+        "Viewがpackでボタンを配置する処理",
+        "ModelがViewのupdateを呼び出して変更を通知する処理",
+        "ViewがModelから値を読み出して表示する処理"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "値の変更は、利用者操作を受けたControllerがModelに対して追加・削除などを行う流れに対応する。",
+      "tags": [
+        "MVC",
+        "値の変更"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "講義のGUIサンプルで『(4)値の取得』に相当する記述として最も近いものはどれか。",
+      "choices": [
+        "ViewのupdateがReminderListに格納されたリマインダのnameやpriorityを参照して表示する処理",
+        "Controllerが新しいReminderを生成する処理",
+        "ReminderListのaddの最後でview.update()を呼び出す処理",
+        "Buttonを作成して画面に配置する処理"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "値の取得は、表示更新のためにViewがModelの保持する値を読み出す段階である。",
+      "tags": [
+        "MVC",
+        "値の取得"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q005",
+      "type": "multiple_choice",
+      "question": "講義の課題5でViewの変更として示されたものをすべて選べ。",
+      "choices": [
+        "追加場所をメニュー形式にする",
+        "優先度をメニュー形式にする",
+        "リマインダリストの要素数を20に増加する",
+        "追加先に既にリマインダが存在した場合に空いている場所まで追加先を移動する",
+        "remove、clearのGUI機能を追加する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "explanation": "Viewは入力や操作のUIに関わる。要素数の変更はModel、追加先の調整はControllerに関わる変更である。",
+      "tags": [
+        "MVC",
+        "拡張",
+        "View"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "課題5で、リマインダリストの要素数を10から20へ増加する変更は、MVCのどの役割に最も関係するか。",
+      "choices": [
+        "Model",
+        "View",
+        "Controller",
+        "ユーザ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "集約している配列の要素数は、データを保持するModel側の変更である。",
+      "tags": [
+        "MVC",
+        "Model",
+        "拡張"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "課題5で、追加先に既にリマインダが存在した場合に上書きせず空いている場所まで追加先をあとに移動する変更は、MVCのどの役割に最も関係するか。",
+      "choices": [
+        "Model",
+        "View",
+        "Controller",
+        "シーケンス図"
+      ],
+      "shuffle_choices": true,
+      "answer": 2,
+      "explanation": "追加要求に対してどの位置へ追加するかを制御する処理なので、Controller側の変更として扱われる。",
+      "tags": [
+        "MVC",
+        "Controller",
+        "拡張"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "multiple_choice",
+      "question": "MVC実装で、Model側のReminderListに入る処理として適切なものをすべて選べ。",
+      "choices": [
+        "リマインダのリストを保持する",
+        "指定位置にリマインダを追加する",
+        "指定位置のリマインダを削除する",
+        "ボタンのクリックイベントをbindする",
+        "画面上のメニュー部品を作成する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Modelはデータとその基本操作を扱う。UI部品やイベント受付はView/Controller寄りの処理である。",
+      "tags": [
+        "MVC",
+        "Model",
+        "実装"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/05_シーケンス図",
+  "title": "05_シーケンス図",
+  "description": "UMLのシーケンス図、静的・動的側面、メッセージ呼び出しに関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "シーケンス図の説明として最も適切なものはどれか。",
+      "choices": [
+        "オブジェクト同士のメッセージ（操作の呼び出し）のやり取りを表現するUMLの図",
+        "クラスの継承関係だけを表現するUMLの図",
+        "ソフトウェアの開発費用だけを表にする図",
+        "ウォーターフォールモデルの工程だけを表す図"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "講義資料では、シーケンス図はオブジェクト同士のメッセージのやり取りを表現し、振る舞いを表す図として説明されている。",
+      "tags": [
+        "シーケンス図",
+        "基礎"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "multiple_choice",
+      "question": "UMLのシーケンス図に関係のある用語をすべて選べ。",
+      "choices": [
+        "オブジェクト",
+        "操作の呼び出し",
+        "振る舞い",
+        "継承",
+        "集約",
+        "ソフトウェアの構造"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "1年前の過去問と同じ形式。シーケンス図は動的な振る舞い、つまりオブジェクト間の操作呼び出しに関係する。",
+      "tags": [
+        "シーケンス図",
+        "過不足選択"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "ソフトウェアのふたつの側面として、クラスの構成などを表す(1)な情報と、インスタンス間のメソッド呼び出しの様子を表す(2)な情報がある。",
+      "inputs": [
+        {
+          "answers": [
+            "静的"
+          ]
+        },
+        {
+          "answers": [
+            "動的"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "静的な情報はクラス図など、動的な情報はシーケンス図などで表す。",
+      "tags": [
+        "静的",
+        "動的"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "ソフトウェアの動的な情報、つまりインスタンス間のメソッド呼び出しの様子は、主に何図を用いて表すか。",
+      "inputs": [
+        {
+          "answers": [
+            "シーケンス図",
+            "シーケンス"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "2年前の過去問では、動的な情報とシーケンス図の対応が空欄補充で問われている。",
+      "tags": [
+        "シーケンス図",
+        "動的情報"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "single_choice",
+      "question": "シーケンス図のライフラインの説明として最も適切なものはどれか。",
+      "choices": [
+        "メッセージをやり取りする際に登場する参加者を表し、生存期間を点線で描く",
+        "クラスの親子関係を三角矢印だけで表す",
+        "ソフトウェア危機の原因を円グラフで表す",
+        "ウォーターフォールモデルの上流工程だけを表す"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "ライフラインは参加者を横に並べ、時間の流れを下方向に表す。",
+      "tags": [
+        "ライフライン",
+        "シーケンス図"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "シーケンス図における時間の流れの向きとして講義資料の説明に合うものはどれか。",
+      "choices": [
+        "下方向",
+        "上方向",
+        "左方向",
+        "右方向"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "講義資料では、ライフライン上の時間の流れは下方向と説明されている。",
+      "tags": [
+        "シーケンス図",
+        "時間"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "シーケンス図で ClassA から ClassB に getValue というメッセージが送られている場合、getValue は通常どちらのメソッド関数として実装されると考えるか。",
+      "choices": [
+        "ClassA",
+        "ClassB",
+        "両方に同じ実装を必ず置く",
+        "どちらにも実装しない"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "1年前の過去問では、メッセージ getValue の受け手である ClassB のメソッドとして実装されることが問われた。",
+      "tags": [
+        "シーケンス図",
+        "メッセージ"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "ordered_choice",
+      "question": "3ウェイ・ハンドシェイク（接続開始時）の流れを正しい順に並べよ。",
+      "choices": [
+        "クライアントがSYNパケット（SYN=1, ACK=0）を送る",
+        "サーバがSYN+ACKパケット（SYN=1, ACK=1）を返す",
+        "クライアントがACKパケットを返して通信を開始する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "課題6では、TCP接続開始時の3ウェイ・ハンドシェイクをシーケンス図で表現することが求められている。",
+      "tags": [
+        "シーケンス図",
+        "3ウェイハンドシェイク"
+      ],
+      "difficulty": 2
+    }
+  ]
+}
