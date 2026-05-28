@@ -316,3 +316,196 @@
 
 - 仕様にないキーは勝手に増やさない
 - 既存データと整合する命名にする
+
+## 10. 教科別資料から問題集を作る手順
+
+`教科別資料/<教科名>/` に授業資料や過去問がある場合は、次の手順で `quiz_app` 用の問題集を作成します。
+
+### 10.1 既存形式の確認
+
+作成前に必ず次を確認します。
+
+- この仕様書
+- `data/` 配下にある既存教科の JSON
+- `manifest.json` の構造
+- 必要に応じて `README.md` と `tools/editor.py`
+
+既存の問題集と同じように、1ファイルを1単元または1ジャンルとして扱います。
+
+### 10.2 資料の確認
+
+対象教科の資料を次の順に確認します。
+
+1. 過去問
+2. 過去問の解答
+3. 試験範囲の授業資料
+
+過去問がある場合は、単に答えを写すのではなく、次を分析します。
+
+- よく問われる用語
+- 出題形式
+- 空欄補充、正誤、選択、順序、コード読解などの比率
+- 「過不足なく選べ」「どこがどう間違っているか」などの採点されやすい形式
+- 図やコードから、どの対応関係を答えさせているか
+
+授業資料からは、過去問で直接出た箇所だけでなく、同じ形式で出題されそうな周辺項目も拾います。
+
+### 10.3 単元分け
+
+問題は、他の教科と同じようにジャンルや単元ごとに分けます。
+
+推奨ファイル名は次の形式です。
+
+```text
+data/<教科名>/01_<単元名>.json
+data/<教科名>/02_<単元名>.json
+```
+
+単元名は、授業資料の章立て、過去問の大問、または内容のまとまりに合わせます。
+
+例:
+
+- `01_概要と開発プロセス`
+- `02_MVC基礎`
+- `03_MVC設計とリマインダー`
+- `04_MVC実装と拡張`
+- `05_シーケンス図`
+
+### 10.4 問題作成方針
+
+過去問の傾向を反映し、次のように問題タイプを使い分けます。
+
+- 用語や短い答えを問う場合: `text_input`
+- 正誤や1つの正解を選ぶ場合: `single_choice`
+- 「すべて選べ」「過不足なく選べ」の場合: `multiple_choice`
+- 工程、手順、流れを問う場合: `ordered_choice`
+
+問題文は、授業資料の文章を丸写ししすぎず、試験で問われる形に直します。ただし、専門用語、メソッド名、コード片、選択肢の表現は、授業資料や過去問に合わせます。
+
+### 10.5 問題の粒度
+
+1つの問題では、原則として1つの知識または1つの判断を問います。
+
+ただし、過去問で複数空欄や対応関係が問われている場合は、`text_input` の `inputs` を複数にしてまとめて構いません。
+
+例:
+
+```json
+{
+  "id": "q001",
+  "type": "text_input",
+  "question": "MVCでは、(1)はデータ、(2)はユーザインタフェース、(3)は処理の制御を担当する。",
+  "inputs": [
+    { "answers": ["Model"] },
+    { "answers": ["View"] },
+    { "answers": ["Controller"] }
+  ],
+  "input_ordered": true,
+  "case_sensitive": false,
+  "trim": true,
+  "normalize_spaces": true
+}
+```
+
+### 10.6 解答と許容表記
+
+`text_input` では、授業資料や解答例で許容されている別表記を `answers` に入れます。
+
+例:
+
+```json
+{
+  "answers": ["保守", "供給"]
+}
+```
+
+ただし、意味が変わる別表記は入れません。英単語は、授業資料で英語表記が使われている場合は英語を基本にし、必要に応じて大文字小文字を区別しない設定にします。
+
+### 10.7 解説・タグ・難易度
+
+各問題には、可能な限り次を付けます。
+
+- `explanation`: なぜその答えになるか、どの考え方で解くか
+- `tags`: 単元名、重要語句、出題形式
+- `difficulty`: 1から3程度を目安にした難易度
+
+難易度の目安:
+
+- `1`: 用語の単純暗記
+- `2`: 対応関係や流れの理解
+- `3`: コード読解、複数条件、過不足なし選択
+
+### 10.8 manifest の更新
+
+問題集 JSON を追加したら、`manifest.json` を更新します。
+
+手作業で編集してもよいですが、通常は `tools/editor.py` の `generate_manifest()` と同じ形式にします。
+
+`manifest.json` の各項目は次の形式です。
+
+```json
+{
+  "id": "ソフトウェア工学/01_概要と開発プロセス",
+  "title": "01_概要と開発プロセス",
+  "description": "問題集の説明",
+  "file": "data/ソフトウェア工学/01_概要と開発プロセス.json"
+}
+```
+
+## 11. 作成後の検証
+
+問題集を作成したら、少なくとも次を確認します。
+
+- JSON として読み込める
+- `schema_version` が `1`
+- `id` が `フォルダ/タイトル` 形式
+- `title` とファイル名のベースが一致している
+- `questions` が空でない
+- 同一ファイル内で `question.id` が重複していない
+- `type` が対応タイプのいずれか
+- 選択問題の `answer` が `choices` の範囲内
+- `text_input` の `inputs[].answers` が空でない
+- `manifest.json` に追加した問題集が入っている
+
+検証用の簡易スクリプト例:
+
+```bash
+python3 - <<'PY'
+import json
+from pathlib import Path
+
+root = Path('quiz_app')
+for path in sorted((root / 'data').rglob('*.json')):
+    data = json.loads(path.read_text(encoding='utf-8'))
+    assert data['schema_version'] == 1, path
+    assert data['id'], path
+    assert data['title'], path
+    assert data['questions'], path
+    ids = [q['id'] for q in data['questions']]
+    assert len(ids) == len(set(ids)), path
+    for q in data['questions']:
+        assert q['type'] in {'single_choice', 'multiple_choice', 'ordered_choice', 'text_input'}, (path, q['id'])
+        assert q.get('question'), (path, q['id'])
+        if q['type'] in {'single_choice', 'multiple_choice', 'ordered_choice'}:
+            assert len(q['choices']) >= 2, (path, q['id'])
+            if q['type'] == 'single_choice':
+                assert isinstance(q['answer'], int), (path, q['id'])
+                assert 0 <= q['answer'] < len(q['choices']), (path, q['id'])
+            else:
+                assert isinstance(q['answer'], list) and q['answer'], (path, q['id'])
+                assert all(isinstance(i, int) and 0 <= i < len(q['choices']) for i in q['answer']), (path, q['id'])
+        else:
+            assert q['inputs'], (path, q['id'])
+            assert all(inp.get('answers') for inp in q['inputs']), (path, q['id'])
+print('ok')
+PY
+```
+
+ローカルで表示確認する場合は、`quiz_app` のルートをサーバで配信します。
+
+```bash
+cd quiz_app
+python3 -m http.server 8000
+```
+
+ブラウザで `http://localhost:8000/` を開き、追加した教科と単元が一覧に出ることを確認します。
