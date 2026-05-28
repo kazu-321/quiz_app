@@ -101,6 +101,96 @@
       "trim": true,
       "normalize_spaces": true,
       "input_ordered": true
+    },
+    {
+      "id": "q007",
+      "type": "multiple_choice",
+      "question": "認知科学の背景として適切なものをすべて選べ",
+      "choices": [
+        "医学",
+        "心理学",
+        "工学",
+        "地理学",
+        "天文学"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "動物と機械における制御と通信を扱う理論を提唱したのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "ウイナー",
+            "ノーバート・ウイナー",
+            "ノーバートウイナー"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "情報理論を提唱し、デジタル回路の基礎を築いたのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "シャノン",
+            "クロード・シャノン",
+            "クロードシャノン"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "計算機械と知性を著したのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "チューリング",
+            "アラン・チューリング",
+            "アランチューリング"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "ダートマス会議で人工知能を定義したのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "マッカシー",
+            "ジョン・マッカシー",
+            "ジョンマッカシー"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
     }
   ]
 }

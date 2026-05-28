@@ -55,7 +55,70 @@
       "inputs": [
         {
           "answers": [
-            "プレマック"
+            "プレマック",
+            "プレマックとウッドラフ",
+            "Premack and Woodruff"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "他者の心的状態を理解して、他者がどのように考えて行動するかを的確に予測する能力をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "心の理論"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "他者が現実とは異なる信念を持っていることを理解できるかどうかを確かめる課題をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "誤信念課題"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "誤信念課題の有名な具体例を選べ",
+      "choices": [
+        "サリーとアン課題",
+        "ワトソンとホームズ課題",
+        "ボールと箱課題"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "心の理論の概念を提案した論文の著者はだれか",
+      "inputs": [
+        {
+          "answers": [
+            "プレマックとウッドラフ",
+            "Premack and Woodruff"
           ]
         }
       ],

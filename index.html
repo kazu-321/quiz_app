@@ -17,8 +17,19 @@
       }
     })();
   </script>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Quiz App</title>
-  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      const version = Date.now().toString(36);
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = `css/style.css?v=${version}`;
+      document.head.appendChild(link);
+    })();
+  </script>
 </head>
 <body>
   <header class="app-header">
@@ -29,6 +40,7 @@
       </div>
       <div class="header-actions">
         <button id="theme-toggle" class="secondary-button" type="button">ダークモード</button>
+        <button id="hard-reload" class="secondary-button" type="button">強制更新</button>
       </div>
     </div>
   </header>
@@ -47,8 +59,16 @@
     <section id="book-detail" class="summary-panel" hidden></section>
   </main>
 
-  <script src="js/common.js"></script>
-  <script src="js/markdown.js"></script>
-  <script src="js/index.js"></script>
+  <script>
+    (function () {
+      const version = Date.now().toString(36);
+      for (const src of ["js/common.js", "js/markdown.js", "js/index.js"]) {
+        const script = document.createElement("script");
+        script.src = `${src}?v=${version}`;
+        script.async = false;
+        document.body.appendChild(script);
+      }
+    })();
+  </script>
 </body>
 </html>

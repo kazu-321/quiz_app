@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "id": "データ構造とアルゴリズムII/02_最適化問題と貪欲法",
+  "title": "02_最適化問題と貪欲法",
+  "description": "第2週の内容: 最適化問題、総当たり法、貪欲法、アクティビティ選択問題、貪欲法の条件、ダイクストラ法。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "最適化問題の説明として適切なものを選べ。",
+      "choices": [
+        "もっともよい解を見つける問題",
+        "必ず答えが一つに決まる問題",
+        "グラフだけを対象にする問題",
+        "文字列だけを対象にする問題"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "最適化問題は最良の解を探す問題。"
+    },
+    {
+      "id": "q002",
+      "type": "single_choice",
+      "question": "総当たり法について適切な説明を選べ。",
+      "choices": [
+        "候補をすべて調べるので確実だが、計算量が大きくなりやすい",
+        "局所的に良さそうな選択だけを行うので常に高速",
+        "木構造の平衡を保つ手法である",
+        "通信路の誤り訂正を行う手法である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "総当たり法は brute force として説明されていた。"
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "貪欲法の説明として最も適切なものを選べ。",
+      "choices": [
+        "その場で局所的に最良な選択を積み重ねる方法",
+        "すべての候補を完全に列挙する方法",
+        "必ず最小コストを保証する方法",
+        "グラフだけに使える方法"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "貪欲法は局所的な最良選択を積み上げる。"
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "貪欲法がうまくいく条件として講義で挙げられたものの組として正しいものを選べ。",
+      "choices": [
+        "部分構造最適性と貪欲選択性",
+        "完全順序性と閉包性",
+        "再帰性と単調性",
+        "対称性と可換性"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "貪欲法では部分構造最適性と貪欲選択性が重要。"
+    },
+    {
+      "id": "q005",
+      "type": "single_choice",
+      "question": "アクティビティ選択問題でよく使う考え方として適切なものを選べ。",
+      "choices": [
+        "終了時刻が早い活動から選ぶ",
+        "開始時刻が遅い活動から選ぶ",
+        "活動の長さが長いものから選ぶ",
+        "活動数が少ないものから選ぶ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "代表的な貪欲戦略は終了時刻順の選択。"
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "ダイクストラ法で求めるものとして適切なものを選べ。",
+      "choices": [
+        "重み付き有向グラフの最短経路",
+        "木の平衡係数",
+        "文字列の共通接頭辞",
+        "最大部分配列"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "ダイクストラ法は最短経路問題の代表例。"
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "ダイクストラ法などで、次に取り出す頂点を効率よく管理するために使う構造を何というか。",
+      "inputs": [
+        {
+          "answers": [
+            "ヒープ",
+            "heap",
+            "優先度付きキュー",
+            "priority queue",
+            "priority_queue"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "講義ではヒープが使われていた。"
+    }
+  ]
+}

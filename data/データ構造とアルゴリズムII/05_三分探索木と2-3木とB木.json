@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "id": "データ構造とアルゴリズムII/05_三分探索木と2-3木とB木",
+  "title": "05_三分探索木と2-3木とB木",
+  "description": "第5週の内容: 三分探索木、2-3木、挿入と削除、B木、木の比較。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single_choice",
+      "question": "三分探索木の説明として適切なものを選べ。",
+      "choices": [
+        "二分探索木より高さを低くしやすい木",
+        "必ず2個の子を持つ木",
+        "赤黒木の別名である",
+        "探索には使えない木である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "三分探索木はノードに複数キーを持たせて高さを抑える。"
+    },
+    {
+      "id": "q002",
+      "type": "single_choice",
+      "question": "2-3木の説明として適切なものを選べ。",
+      "choices": [
+        "葉以外のノードが2個または3個の子ノードを持つ",
+        "必ず3個のキーを持つ",
+        "削除操作を持たない",
+        "すべてのノードが葉である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "2-3木は 2-node / 3-node を持つ平衡木。"
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "2-3木の挿入で、ノードが分割されるときに親へ移動する代表的なキーを何というか。",
+      "inputs": [
+        {
+          "answers": [
+            "中央値",
+            "median",
+            "middle key"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "講義では中央値を親へ移動する流れが示されていた。"
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "2-3木の挿入の基本手順として適切なものを選べ。",
+      "choices": [
+        "挿入すべき葉を探し、その葉にキーを追加する",
+        "必ず根にキーを追加する",
+        "子のないノードには挿入できない",
+        "挿入時は探索を行わない"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "まず挿入先の葉を探し、必要なら分割する。"
+    },
+    {
+      "id": "q005",
+      "type": "single_choice",
+      "question": "2-3木の削除で起こりうる修正として適切なものを選べ。",
+      "choices": [
+        "兄弟との再配分や結合を使って不足を補う",
+        "削除後は常に無修正で済む",
+        "必ず根を消して終了する",
+        "色変更だけで必ず処理する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "削除ではキー不足を再配分や結合で補う。"
+    },
+    {
+      "id": "q006",
+      "type": "single_choice",
+      "question": "B木の説明として適切なものを選べ。",
+      "choices": [
+        "2-3木を一般化した木",
+        "赤黒木の別名",
+        "探索専用の配列",
+        "必ず二分木になる木"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "B木は 2-3木を一般化した構造として扱われていた。"
+    },
+    {
+      "id": "q007",
+      "type": "multiple_choice",
+      "question": "この講義で比較対象として扱われた木をすべて選べ。",
+      "choices": [
+        "赤黒木",
+        "AVL木",
+        "2-3木",
+        "ヒープ",
+        "ハッシュ表"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "講義では赤黒木、AVL木、2-3木の比較が行われた。"
+    }
+  ]
+}

@@ -12,6 +12,7 @@
 
   const els = {
     message: document.getElementById("message"),
+    hardReloadButton: document.getElementById("hard-reload"),
     bookScreen: document.getElementById("screen-books"),
     bookEditorScreen: document.getElementById("screen-book"),
     questionScreen: document.getElementById("screen-question"),
@@ -62,6 +63,7 @@
   };
 
   QuizApp.initTheme(document.getElementById("theme-toggle"));
+  QuizApp.initHardReloadButton(els.hardReloadButton);
 
   function parseRouteFromLocation() {
     const params = new URLSearchParams(location.search);
@@ -324,7 +326,7 @@
     const totalBooks = countBooks(node);
 
     return `
-      <details class="book-folder" open>
+      <details class="book-folder">
         <summary>
           <span class="folder-name">${escapeHtml(name)}</span>
           <span class="folder-count">${totalBooks} 件</span>
