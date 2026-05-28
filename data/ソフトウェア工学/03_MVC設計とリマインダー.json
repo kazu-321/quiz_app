@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "id": "ソフトウェア工学/03_MVC設計とリマインダー",
+  "title": "03_MVC設計とリマインダー",
+  "description": "Reminder、ReminderList、View、Controller の設計に関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "multiple_choice",
+      "question": "講義の課題2-1において、Reminderクラスのフィールドとして示されたものをすべて選べ。",
+      "choices": [
+        "name",
+        "priority",
+        "reminder",
+        "controller",
+        "view"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "Reminder はひとつのリマインダを表すクラスで、内容を表す name と優先順位を表す priority をもつ。",
+      "tags": [
+        "Reminder",
+        "クラス図"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "multiple_choice",
+      "question": "講義の課題2-1において、ReminderListクラスのメソッドとして示されたものをすべて選べ。",
+      "choices": [
+        "show",
+        "add",
+        "remove",
+        "clear",
+        "update",
+        "bind"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "ReminderList は複数のリマインダを集約する Model 側のクラスとして、show、add、remove、clear が示された。",
+      "tags": [
+        "ReminderList",
+        "クラス図"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "クラスReminderListは、クラスReminderを(1)しており、ReminderList側の多重度は(2)、Reminder側の多重度は(3)から(4)の範囲と説明された。",
+      "inputs": [
+        {
+          "answers": [
+            "集約"
+          ]
+        },
+        {
+          "answers": [
+            "1"
+          ]
+        },
+        {
+          "answers": [
+            "0"
+          ]
+        },
+        {
+          "answers": [
+            "10"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "課題2-1では、ReminderList が Reminder を集約し、Reminder は 0 から 10 の範囲で持たれると説明されている。",
+      "tags": [
+        "集約",
+        "多重度"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "Viewクラスに実装するメソッド update の役割として最も適切なものはどれか。",
+      "choices": [
+        "Viewの表示を更新する",
+        "リマインダを新しく生成する",
+        "ReminderListの配列要素数を変更する",
+        "Pythonのクラス定義を削除する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "課題3-1では、View に表示更新用の update を実装することが示されている。",
+      "tags": [
+        "View",
+        "update"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "multiple_choice",
+      "question": "課題3-1でControllerクラスのメソッドとして示されたものをすべて選べ。",
+      "choices": [
+        "add",
+        "remove",
+        "clear",
+        "update",
+        "__str__",
+        "show"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Controller には、利用者からの要求に応じる操作として add、remove、clear が示された。",
+      "tags": [
+        "Controller",
+        "クラス図"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "multiple_choice",
+      "question": "課題3-1で示されたクラス間の関係として正しいものをすべて選べ。",
+      "choices": [
+        "ViewとReminderListの間は相互に誘導可能な関連",
+        "ViewとControllerの間は相互に誘導可能な関連",
+        "ControllerとReminderListの間はControllerからReminderListへのみ誘導可能な関連",
+        "ControllerとReminderの間だけは必ず継承関係",
+        "ViewとControllerの多重度は両側とも0から10"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "課題3-1では、View、Controller、ReminderList の関連と誘導可能性が問われやすい。",
+      "tags": [
+        "関連",
+        "誘導可能性"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q007",
+      "type": "single_choice",
+      "question": "次の処理のうち、MVCの「③変更の通知」に対応するものとして講義で追加された処理はどれか。",
+      "choices": [
+        "ReminderListのaddの最後に view.update() を追加する",
+        "Viewのコンストラクタでボタンの文字をaddにする",
+        "Controllerのaddで新しいReminderを生成する",
+        "Reminderのpriorityに0を代入する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "課題3-3では、Model側である ReminderList の add、remove、clear に view.update() を追加することで変更通知を実装する。",
+      "tags": [
+        "MVC",
+        "変更の通知",
+        "実装対応"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "次のPythonコードにおいて、MVCに分ける場合にViewクラスに相当すると考えられるメソッドはどれか。\n\n```python\nclass ReminderList():\n  def __init__(self):\n    self.reminder = [None] * 10\n  def __str__(self):\n    rs = ''\n    for r in self.reminder:\n      if r: rs += r.name + '(' + str(r.priority) + ')' + '\\n'\n    return rs\n  def add(self, i, r): self.reminder[i] = r\n  def remove(self, i): self.reminder[i] = None\n  def clear(self): self.reminder = [None] * 10\n```",
+      "choices": [
+        "__init__",
+        "__str__",
+        "add",
+        "remove"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "2年前の過去問では、表示に関係する __str__ が View に相当する記述として問われた。",
+      "tags": [
+        "コード読解",
+        "View"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "multiple_choice",
+      "question": "次のPythonコードのうち、Controller側で扱う「値の変更」の一部として考えられる記述をすべて選べ。",
+      "choices": [
+        "r1 = Reminder(); r1.name, r1.priority = 'ミルクを買う', 3",
+        "r2 = Reminder(); r2.name, r2.priority = '机の上を片付ける', 1",
+        "def __str__(self):",
+        "return rs",
+        "self.reminder = [None] * 10"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "2年前の過去問では、新しい Reminder の生成と値の設定が、Controller側で扱う処理として抜粋対象になっていた。",
+      "tags": [
+        "コード読解",
+        "Controller"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q010",
+      "type": "multiple_choice",
+      "question": "リマインダーリストをMVCで設計した場合、Controllerクラスに実装する処理として適切なものをすべて選べ。",
+      "choices": [
+        "新しいリマインダーを生成する処理",
+        "利用者の操作に応じてModelを変更する処理",
+        "リマインダーが新しく追加された際に画面を再表示する処理",
+        "Modelが保持する値が変わったことをViewへ通知する処理",
+        "Viewの表示内容そのものを描画する処理"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1
+      ],
+      "explanation": "1年前の過去問では、Controllerに実装する処理として「新しいリマインダーを生成する処理」が問われた。通知や再表示はModel/View側に分けて考える。",
+      "tags": [
+        "Controller",
+        "リマインダー"
+      ],
+      "difficulty": 3
+    }
+  ]
+}
