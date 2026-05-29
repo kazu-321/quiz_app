@@ -14,6 +14,8 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+from manifest_utils import build_manifest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
@@ -112,23 +114,7 @@ def cleanup_empty_dirs(path: Path, stop_at: Path) -> None:
 
 
 def generate_manifest() -> dict:
-    books = []
-    for path in sorted(DATA_DIR.rglob("*.json")):
-        try:
-            data = read_json(path)
-        except Exception:
-            continue
-        if not data.get("id") or not data.get("title"):
-            continue
-        books.append(
-            {
-                "id": data["id"],
-                "title": data["title"],
-                "description": data.get("description", ""),
-                "file": f"data/{path.relative_to(DATA_DIR).as_posix()}",
-            }
-        )
-    manifest = {"schema_version": 1, "books": books}
+    manifest = build_manifest()
     write_json(MANIFEST_PATH, manifest)
     return manifest
 

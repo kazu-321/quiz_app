@@ -27,3 +27,6 @@ jobs:
 
       - name: Validate repository JSON
         run: python3 tools/validate_repo_json.py
+
+      - name: Check manifest is up to date
+        run: python3 tools/regenerate_manifest.py --check
