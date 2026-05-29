@@ -6,7 +6,7 @@
   "questions": [
     {
       "id": "q001",
-      "type": "text_input",
+      "type": "essay",
       "question": "ソフトウェアの巨大化・複雑化に伴って、開発費用の増大、保守工数の増大、需要に対する供給能力の低下などが問題化した状況を何というか。",
       "inputs": [
         {
@@ -25,7 +25,7 @@
         "基礎"
       ],
       "difficulty": 1
-    }
+    },
     {
       "id": "q002",
       "type": "text_input",
