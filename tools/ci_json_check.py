@@ -20,29 +20,30 @@ def parse_args() -> argparse.Namespace:
 
 
 def make_hint(message: str) -> str:
-    if "manifest.json is out of date" in message:
+    if "manifest.json の内容が最新ではありません" in message:
         return (
-            "manifest.json is generated from `data/**/*.json`.\n"
-            "Run `python3 tools/regenerate_manifest.py` to regenerate it, or `--check` to verify."
+            "manifest.json は `data/**/*.json` から生成されます。\n"
+            "再生成するには `python3 tools/regenerate_manifest.py` を実行してください。\n"
+            "確認だけなら `python3 tools/regenerate_manifest.py --check` を使えます。"
         )
     if message.startswith("manifest.json:"):
         return (
-            "This is a manifest mismatch or manifest schema problem.\n"
-            "If you edited `data/**/*.json`, run `python3 tools/regenerate_manifest.py`.\n"
-            "If you edited `manifest.json` directly, the generated result must still match exactly."
+            "これは manifest の不整合か、manifest 形式の問題です。\n"
+            "`data/**/*.json` を編集した場合は `python3 tools/regenerate_manifest.py` で再生成してください。\n"
+            "`manifest.json` を直接編集しても、生成結果と一致している必要があります。"
         )
-    if ": unsupported type:" in message:
-        return "Allowed question types: `single_choice`, `multiple_choice`, `ordered_choice`, `text_input`."
-    if ": schema_version must be 1" in message:
-        return "Allowed `schema_version` value: `1`."
-    if ": choice questions need at least 2 choices" in message:
-        return "Choice questions need at least 2 string choices."
-    if ": answer indices must be integers" in message:
-        return "Answers for choice questions must be 0-based integer indices."
-    if ": text_input questions need inputs" in message:
-        return "Text input questions need at least one `inputs` entry."
-    if ": answers must be a non-empty array" in message:
-        return "Each `inputs[*].answers` must be a non-empty string array."
+    if "未対応の問題タイプです" in message:
+        return "許容される問題タイプ: `single_choice`, `multiple_choice`, `ordered_choice`, `text_input`"
+    if "schema_version は 1 である必要があります" in message:
+        return "許容される `schema_version` の値: `1`"
+    if "選択問題には2件以上の選択肢が必要です" in message:
+        return "選択問題には、文字列の選択肢が2件以上必要です"
+    if "answer は整数の添字である必要があります" in message:
+        return "選択問題の answer は、0 始まりの整数インデックスで指定します"
+    if "text_input には inputs が必要です" in message:
+        return "text_input には少なくとも 1 件の `inputs` が必要です"
+    if "answers は空でない配列である必要があります" in message:
+        return "`inputs[*].answers` は空でない文字列配列である必要があります"
     return ""
 
 
@@ -74,7 +75,7 @@ def run_checks() -> None:
     generated = build_manifest()
     validate_manifest(generated, book_files)
     if manifest != generated:
-        raise SystemExit("manifest.json is out of date; run tools/regenerate_manifest.py")
+        raise SystemExit("manifest.json の内容が最新ではありません")
 
 
 def main() -> int:
@@ -82,11 +83,11 @@ def main() -> int:
     book_files = list(iter_book_files())
     try:
         run_checks()
-        print(f"Validated {len(book_files)} book files, book schema, and manifest.json")
+        print(f"{len(book_files)} 件の問題集ファイル、book 形式、manifest.json を検証しました")
         return 0
     except SystemExit as exc:
-        message = str(exc) or "JSON validation failed"
-        write_report(args.report, "JSON check failed", message)
+        message = str(exc) or "JSON の検証に失敗しました"
+        write_report(args.report, "JSON チェック失敗", message)
         print(message)
         return 1
 

@@ -13,7 +13,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Do not write files; fail if manifest.json differs from the generated result.",
+        help="ファイルは書き込まず、manifest.json が生成結果と違えば失敗します。",
     )
     return parser.parse_args()
 
@@ -25,12 +25,12 @@ def main() -> int:
     if args.check:
         current = load_json(MANIFEST_PATH)
         if current != manifest:
-            raise SystemExit("manifest.json is out of date; regenerate it with this script")
-        print("manifest.json is up to date")
+            raise SystemExit("manifest.json の内容が最新ではありません")
+        print("manifest.json は最新です")
         return 0
 
     write_json(MANIFEST_PATH, manifest)
-    print(f"Wrote {MANIFEST_PATH} from {len(manifest['books'])} book files")
+    print(f"{MANIFEST_PATH} を {len(manifest['books'])} 件の問題集から生成しました")
     return 0
 
 
