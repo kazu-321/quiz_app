@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pull-requests: write
+
 concurrency:
   group: json-check-${{ github.ref }}
   cancel-in-progress: true
@@ -26,7 +30,43 @@ jobs:
           python-version: "3.11"
 
       - name: Validate repository JSON
-        run: python3 tools/validate_repo_json.py
+        id: json_check
+        continue-on-error: true
+        run: python3 tools/ci_json_check.py --report .github/json-check-report.md
 
-      - name: Check manifest is up to date
-        run: python3 tools/regenerate_manifest.py --check
+      - name: Comment PR with validation error
+        if: github.event_name == 'pull_request' && steps.json_check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = '.github/json-check-report.md';
+            const marker = '<!-- json-check-report -->';
+            const body = fs.readFileSync(path, 'utf8');
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+            });
+            const existing = comments.find((comment) => comment.body && comment.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
+
+      - name: Fail job if validation failed
+        if: steps.json_check.outcome == 'failure'
+        run: exit 1
