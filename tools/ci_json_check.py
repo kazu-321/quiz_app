@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run quiz_app JSON checks and emit a PR-friendly report on failure."""
+"""Run quiz_app JSON checks and emit a PR-friendly report."""
 
 from __future__ import annotations
 
@@ -64,6 +64,22 @@ def write_report(report_path: str, title: str, message: str) -> None:
     path.write_text("\n".join(body) + "\n", encoding="utf-8")
 
 
+def write_success_report(report_path: str, count: int) -> None:
+    if not report_path:
+        return
+
+    path = Path(report_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    body = [
+        "<!-- json-check-report -->",
+        "### JSON チェック成功",
+        "",
+        f"- 問題集ファイル数: `{count}`",
+        "- 検証内容: JSON の構文, book 形式, manifest 一致",
+    ]
+    path.write_text("\n".join(body) + "\n", encoding="utf-8")
+
+
 def run_checks() -> None:
     manifest = load_json(MANIFEST_PATH)
     book_files = list(iter_book_files())
@@ -81,6 +97,7 @@ def main() -> int:
     book_files = list(iter_book_files())
     try:
         run_checks()
+        write_success_report(args.report, len(book_files))
         print(f"{len(book_files)} 件の問題集ファイル、book 形式、manifest.json を検証しました")
         return 0
     except SystemExit as exc:
