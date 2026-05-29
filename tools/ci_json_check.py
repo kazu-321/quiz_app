@@ -28,9 +28,7 @@ def make_hint(message: str) -> str:
         )
     if message.startswith("manifest.json:"):
         return (
-            "これは manifest の不整合か、manifest 形式の問題です。\n"
-            "`data/**/*.json` を編集した場合は `python3 tools/regenerate_manifest.py` で再生成してください。\n"
-            "`manifest.json` を直接編集しても、生成結果と一致している必要があります。"
+            "これは manifest の不整合か、manifest 形式の問題です。"
         )
     if "未対応の問題タイプです" in message:
         return "許容される問題タイプ: `single_choice`, `multiple_choice`, `ordered_choice`, `text_input`"
@@ -59,10 +57,10 @@ def write_report(report_path: str, title: str, message: str) -> None:
         "<!-- json-check-report -->",
         f"### {title}",
         "",
-        f"`{message}`",
+        f"- 問題: `{message}`",
     ]
     if hint:
-        body.extend(["", hint])
+        body.extend(["", f"- 補足: {hint}"])
     path.write_text("\n".join(body) + "\n", encoding="utf-8")
 
 
