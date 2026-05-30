@@ -81,6 +81,51 @@
     writeJson(STORAGE_KEYS.lastResult, results);
   }
 
+  function hydrateStatsFromLastResult() {
+    const stats = getStatsMap();
+    const results = getLastResultMap();
+    let changed = false;
+
+    console.log("[quiz_app] hydrateStatsFromLastResult:start", {
+      resultBooks: Object.keys(results || {}),
+      statBooks: Object.keys(stats || {}),
+    });
+
+    for (const [bookId, result] of Object.entries(results || {})) {
+      const answers = result?.answers;
+      if (!answers || typeof answers !== "object") continue;
+      stats[bookId] = stats[bookId] || {};
+
+      for (const [questionId, record] of Object.entries(answers)) {
+        if (!record || record.answered_at === undefined) continue;
+        if (stats[bookId][questionId]) continue;
+
+        console.log("[quiz_app] hydrateStatsFromLastResult:seed", {
+          bookId,
+          questionId,
+          record,
+        });
+        stats[bookId][questionId] = {
+          attempts: 1,
+          corrects: record.is_correct ? 1 : 0,
+          last_answer: record.answer,
+          last_correct: Boolean(record.is_correct),
+          last_answered_at: record.answered_at,
+        };
+        changed = true;
+      }
+    }
+
+    if (changed) {
+      saveStatsMap(stats);
+    }
+
+    console.log("[quiz_app] hydrateStatsFromLastResult:end", {
+      changed,
+      statBooks: Object.keys(stats || {}),
+    });
+  }
+
   function getPreferredTheme() {
     const stored = localStorage.getItem(STORAGE_KEYS.theme);
     if (stored === "dark" || stored === "light") {
@@ -123,6 +168,19 @@
       refreshThemeToggle(themeButton);
       return next;
     });
+  }
+
+  function hardReload() {
+    const url = new URL(window.location.href);
+    url.searchParams.set("__reload", Date.now().toString(36));
+    window.location.replace(url.toString());
+  }
+
+  function initHardReloadButton(button = null) {
+    if (!button) return;
+    button.setAttribute("aria-label", "強制更新する");
+    button.setAttribute("title", "Shift+F5 相当で再読み込み");
+    button.addEventListener("click", hardReload);
   }
 
   function normalizeText(value, question) {
@@ -259,6 +317,13 @@
     current.last_answered_at = new Date().toISOString();
     stats[bookId][questionId] = current;
     saveStatsMap(stats);
+    console.log("[quiz_app] updateStats", {
+      bookId,
+      questionId,
+      answer,
+      correct,
+      saved: current,
+    });
   }
 
   function correctRate(bookId, questionId) {
@@ -305,12 +370,15 @@
     getStatsMap,
     getLastResultMap,
     saveLastResultMap,
+    hydrateStatsFromLastResult,
     getPreferredTheme,
     applyTheme,
     setTheme,
     toggleTheme,
     refreshThemeToggle,
     initTheme,
+    hardReload,
+    initHardReloadButton,
     isCorrect,
     shuffle,
     formatAnswer,

@@ -11,12 +11,22 @@
   const resumeQuizButton = document.getElementById("resume-quiz");
   const resumeInfo = document.getElementById("resume-info");
   const themeToggle = document.getElementById("theme-toggle");
+  const hardReloadButton = document.getElementById("hard-reload");
 
   const params = new URLSearchParams(location.search);
   const bookId = params.get("book");
   const resumeRequested = params.get("resume") === "1";
 
   QuizApp.initTheme(themeToggle);
+  QuizApp.initHardReloadButton(hardReloadButton);
+  QuizApp.hydrateStatsFromLastResult();
+  console.log("[quiz_app] answer boot", {
+    bookId,
+    resumeRequested,
+    progress: QuizApp.getProgressMap()[bookId],
+    lastResult: QuizApp.getLastResultMap()[bookId],
+    stats: QuizApp.getStatsMap()[bookId],
+  });
 
   const DEFAULT_SETTINGS = {
     shuffle_questions: false,
@@ -98,6 +108,10 @@
     session.updated_at = new Date().toISOString();
     progress[book.id] = session;
     QuizApp.saveProgressMap(progress);
+    console.log("[quiz_app] saveSession", {
+      bookId: book.id,
+      session,
+    });
   }
 
   function removeSession() {
@@ -110,6 +124,11 @@
     const progress = QuizApp.getProgressMap();
     const existing = progress[book.id];
     const normalized = normalizeSession(existing);
+    console.log("[quiz_app] loadExistingSession", {
+      bookId: book.id,
+      existing,
+      normalized,
+    });
     return normalized && normalized.question_ids.length > 0 ? normalized : null;
   }
 
@@ -350,6 +369,7 @@
     QuizApp.hideMessage();
 
     const correct = QuizApp.isCorrect(question, answer);
+    QuizApp.updateStats(book.id, question.id, answer, correct);
     session.answers[question.id] = {
       answer,
       is_correct: correct,
@@ -396,6 +416,11 @@
     const results = QuizApp.getLastResultMap();
     results[book.id] = result;
     QuizApp.saveLastResultMap(results);
+    console.log("[quiz_app] finishSession", {
+      bookId: book.id,
+      result,
+      statsAfterSave: QuizApp.getStatsMap()[book.id],
+    });
     removeSession();
     renderSummary(result);
   }
