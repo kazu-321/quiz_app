@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "id": "離散数学/03_連結度と辺連結度",
+  "title": "03_連結度と辺連結度",
+  "description": "連結度 κ(G)、辺連結度 λ(G)、k-連結性、基本グラフの値に関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "グラフ G の連結度 κ(G) は、G-X が非連結となるような頂点集合 X の何として定義されるか。",
+      "inputs": [
+        {
+          "answers": [
+            "最小の大きさ",
+            "最小個数",
+            "最小の頂点数"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "κ(G)=min{|X|: X⊂V(G), G-X は非連結である} と定義する。完全グラフでは例外的に κ(K_n)=n-1 とする。",
+      "tags": [
+        "連結度",
+        "定義"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "グラフ G の辺連結度 λ(G) は、G-X が非連結となるような辺集合 X の何として定義されるか。",
+      "inputs": [
+        {
+          "answers": [
+            "最小の大きさ",
+            "最小個数",
+            "最小の辺数"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "λ(G)=min{|X|: X⊂E(G), G-X は非連結である} と定義する。辺を何本削除すれば初めて切れるかを表す。",
+      "tags": [
+        "辺連結度",
+        "定義"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "multiple_choice",
+      "question": "k-連結グラフに関する説明として正しいものをすべて選べ。",
+      "choices": [
+        "どんな k-1 個以下の頂点を削除しても、残りのグラフが連結である",
+        "κ(G) が k 以上である",
+        "k が大きいほど、頂点削除に対して切れにくい",
+        "任意の k 個の辺を削除すると必ず非連結になる",
+        "頂点数が k 未満のグラフにも必ず定義できる"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "k-連結は頂点削除に関する条件であり、辺削除の条件ではない。資料では κ(G)=max{k: G は k-連結である} という見方も扱われる。",
+      "tags": [
+        "k-連結",
+        "連結度"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "P_5 の連結度 κ(P_5) と辺連結度 λ(P_5) を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "1"
+          ]
+        },
+        {
+          "answers": [
+            "1"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "道グラフは内部の 1 頂点を削除しても、1 辺を削除しても非連結になる。",
+      "tags": [
+        "P_n",
+        "連結度",
+        "辺連結度"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "C_6 の連結度 κ(C_6) と辺連結度 λ(C_6) を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "2"
+          ]
+        },
+        {
+          "answers": [
+            "2"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "サイクルは 1 頂点または 1 辺の削除では連結のままだが、2 頂点または 2 辺を適切に削除すると非連結になる。",
+      "tags": [
+        "C_n",
+        "過去問形式"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "K_6 の連結度 κ(K_6) と辺連結度 λ(K_6) を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "5"
+          ]
+        },
+        {
+          "answers": [
+            "5"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "完全グラフ K_n では κ(K_n)=λ(K_n)=n-1 である。",
+      "tags": [
+        "完全グラフ",
+        "連結度"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "K_{3,4} の連結度 κ(K_{3,4}) と辺連結度 λ(K_{3,4}) を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "3"
+          ]
+        },
+        {
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "完全二部グラフ K_{m,n} では κ=λ=min(m,n)。K_{3,4} では 3 である。",
+      "tags": [
+        "完全二部グラフ",
+        "連結度",
+        "辺連結度"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "K_2×K_3 の連結度 κ(K_2×K_3) を答えよ。ただし × は直積を表す。",
+      "inputs": [
+        {
+          "answers": [
+            "3"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "K_2×K_3 は三角柱グラフであり、最小次数も連結度も 3 である。過去問では κ(K_2×K_3) が問われている。",
+      "tags": [
+        "直積",
+        "過去問形式",
+        "連結度"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "一般の連結グラフ G について、連結度 κ(G)、辺連結度 λ(G)、最小次数 δ(G) の関係として正しいものはどれか。",
+      "choices": [
+        "κ(G) ≤ λ(G) ≤ δ(G)",
+        "δ(G) ≤ λ(G) ≤ κ(G)",
+        "λ(G) ≤ κ(G) ≤ δ(G)",
+        "κ(G)=λ(G)=δ(G) が常に成り立つ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "頂点を消すより辺を消す方が弱いとは限らないが、標準的な不等式として κ(G)≤λ(G)≤δ(G) が成り立つ。",
+      "tags": [
+        "連結度",
+        "辺連結度",
+        "最小次数"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "single_choice",
+      "question": "G は 2-連結であるが 3-連結ではない。このとき κ(G) はいくつか。",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "κ(G) は G が k-連結である最大の k と見られる。2-連結だが 3-連結でないなら κ(G)=2。",
+      "tags": [
+        "k-連結",
+        "過去問形式"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q011",
+      "type": "multiple_choice",
+      "question": "グラフ G が 2-連結であることから必ずいえるものをすべて選べ。",
+      "choices": [
+        "どの 1 頂点を削除しても残りは連結である",
+        "κ(G) は 2 以上である",
+        "G は連結である",
+        "どの 2 頂点を削除しても残りは連結である",
+        "G は必ず完全グラフである"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "2-連結では 1 頂点以下の削除に耐える。2 頂点削除に必ず耐えるなら 3-連結の条件に近く、2-連結だけからは言えない。",
+      "tags": [
+        "2-連結",
+        "正誤"
+      ],
+      "difficulty": 2
+    }
+  ]
+}
