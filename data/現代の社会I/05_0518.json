@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "id": "現代の社会I/04_思考実験と批判的思考",
-  "title": "04_思考実験と批判的思考",
+  "id": "現代の社会I/05_0518",
+  "title": "0518_思考実験と批判的思考",
   "description": "",
   "questions": [
     {
@@ -216,6 +216,58 @@
         {
           "answers": [
             "客観的態度"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q014",
+      "type": "text_input",
+      "question": "能力・資質は努力次第で伸びるという考え方をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "成長マインドセット",
+            "グロースマインドセット",
+            "growth mindset"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q015",
+      "type": "text_input",
+      "question": "能力・資質は生まれつきだと考えるマインドセットをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "硬直マインドセット",
+            "フィックスマインドセット",
+            "fix mindset"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q016",
+      "type": "text_input",
+      "question": "体の部位ごとの発達の違いを示す成長曲線をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "スキャモンの成長曲線"
           ]
         }
       ],

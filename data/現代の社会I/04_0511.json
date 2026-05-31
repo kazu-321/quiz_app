@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "id": "現代の社会I/04_0511",
+  "title": "0511_発達段階と心的課題",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "子どもが養育者との情緒的なつながりを持つことを何というか。",
+      "inputs": [
+        {
+          "answers": [
+            "愛着",
+            "アタッチメント"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q002",
+      "type": "multiple_choice",
+      "question": "青年期における5つの自立をすべて選べ",
+      "choices": [
+        "生活的自立",
+        "経済的自立",
+        "性的自立",
+        "社会的自立",
+        "精神的自立",
+        "科学的自立",
+        "倫理的自立",
+        "物理的自立"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "子どもが養育者などの特定の人物との情緒的なつながりを持つことを重要視した理論をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "愛着理論",
+            "アタッチメント理論",
+            "Attachment theory"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "愛着理論を提唱したイギリスの児童精神医学者はだれか",
+      "inputs": [
+        {
+          "answers": [
+            "ボウルビィ",
+            "ジョン・ボウルビィ",
+            "ジョンボウルビィ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "青年期の発達課題として、自己同一性を確立し自分で生きていくことをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "アイデンティティの確立",
+            "自立"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q006",
+      "type": "multiple_choice",
+      "question": "発達段階と主な発達課題の説明として適切なものをすべて選べ",
+      "choices": [
+        "乳児期は歩行が可能になる時期である",
+        "幼児期前期は基本的生活習慣を身につける時期である",
+        "児童期は基礎学力の習得が中心である",
+        "青年期はアイデンティティの確立と自立が課題である",
+        "老年期は第二次性徴の出現が中心である"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "チョムスキーの変形生成文法理論に対応する立場をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "言語生得説"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "スキナーの学習理論に対応する立場をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "言語習得説"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "言語を獲得するために人間に生まれつき備わっていると考えられる装置を略して何というか",
+      "inputs": [
+        {
+          "answers": [
+            "LAD"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "子どもが大人の言語を模倣し、学習によって言語を習得するとする立場をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "言語習得説"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "条件刺激に対して新たな反射が学習される現象をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "条件反射"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q012",
+      "type": "text_input",
+      "question": "条件刺激と無条件刺激の対呈示によって反応が形成される学習をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "古典的条件づけ",
+            "古典的条件付け"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q013",
+      "type": "text_input",
+      "question": "スキナーがネズミなどを使って、レバーを押すとえさが出る仕組みで行った実験をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "スキナー箱実験",
+            "スキナーボックス",
+            "スキナー・ボックス"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q014",
+      "type": "text_input",
+      "question": "行動の結果として報酬や罰が与えられ、その後の行動の頻度が変化する学習をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "オペラント条件づけ",
+            "オペラント条件付け",
+            "道具的条件づけ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q015",
+      "type": "text_input",
+      "question": "猫を用いた問題箱実験で、試行錯誤による学習を示した心理学者はだれか",
+      "inputs": [
+        {
+          "answers": [
+            "ソーンダイク",
+            "E. L. ソーンダイク",
+            "エドワード・ソーンダイク",
+            "エドワードソーンダイク"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q016",
+      "type": "text_input",
+      "question": "ボボ人形実験で、他者の行動を観察して学習することを示した心理学者はだれか",
+      "inputs": [
+        {
+          "answers": [
+            "バンデューラ",
+            "アルバート・バンデューラ",
+            "アルバートバンデューラ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    }
+  ]
+}
