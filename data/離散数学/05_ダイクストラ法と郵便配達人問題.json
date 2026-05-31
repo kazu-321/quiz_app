@@ -1,0 +1,340 @@
+{
+  "schema_version": 1,
+  "id": "離散数学/05_ダイクストラ法と郵便配達人問題",
+  "title": "05_ダイクストラ法と郵便配達人問題",
+  "description": "ダイクストラ法の空欄補充、最短経路計算、郵便配達人問題の手順に関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "ダイクストラ法の初期化で、始点 s と隣接する点 x に付ける距離ラベル ℓ(x) と親 p(x) を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "w(sx)",
+            "w(xs)"
+          ]
+        },
+        {
+          "answers": [
+            "s"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料の空欄では、s と隣接する点 x に ℓ(x)=w(sx)、parent(x)=s を付ける。",
+      "tags": [
+        "ダイクストラ法",
+        "初期化",
+        "空欄補充"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "ダイクストラ法の初期化で、始点 s と隣接していない点 y に付ける距離ラベル ℓ(y) と親 p(y) を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "∞",
+            "無限大",
+            "infinity"
+          ]
+        },
+        {
+          "answers": [
+            "なし",
+            "未定義",
+            "null",
+            "None"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "まだ到達経路が分からない点には距離ラベル ∞ を置き、親はなしとして扱う。",
+      "tags": [
+        "ダイクストラ法",
+        "初期化",
+        "空欄補充"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "ダイクストラ法では初期化後、確定済み頂点集合 U を何としておくか。",
+      "inputs": [
+        {
+          "answers": [
+            "{s}",
+            "sのみ",
+            "始点s"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料では U={s} と置いてから、距離ラベルが最小の未確定頂点を 1 つずつ加える。",
+      "tags": [
+        "ダイクストラ法",
+        "初期化"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q004",
+      "type": "single_choice",
+      "question": "ダイクストラ法の反復で、V(G)-U から次に選ぶ点 v の条件として正しいものはどれか。",
+      "choices": [
+        "距離ラベル ℓ(v) が最小である点",
+        "次数が最大である点",
+        "始点 s から辺数が最も多い点",
+        "頂点名の辞書順で最初の点"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "未確定頂点の中から距離ラベルが最小の点を選び、その点の距離を確定する。",
+      "tags": [
+        "ダイクストラ法",
+        "手順"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "ダイクストラ法で、選んだ点 v に隣接する未確定点 y について、ℓ(y) を更新する候補値を v と y を用いて答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "ℓ(v)+w(vy)",
+            "l(v)+w(vy)",
+            "ℓ(v) + w(vy)",
+            "l(v) + w(vy)"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "v までの最短距離に辺 vy の重みを足した値が、y へ行く新しい候補距離になる。",
+      "tags": [
+        "ダイクストラ法",
+        "緩和"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "辺 s-a=2, s-b=5, a-b=1, a-t=6, b-t=2 の重み付きグラフで、s から t までの最短距離と経路を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "5"
+          ]
+        },
+        {
+          "answers": [
+            "s-a-b-t",
+            "s→a→b→t",
+            "s a b t"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "s-a-b-t の重みは 2+1+2=5。s-b-t は 7、s-a-t は 8 なので最短は s-a-b-t。",
+      "tags": [
+        "ダイクストラ法",
+        "最短経路",
+        "計算"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "辺 s-a=3, s-d=4, a-b=6, a-e=6, d-e=2, d-c=3, e-c=5, b-c=4, b-t=3, c-t=1 の重み付きグラフで、s から t までの最短距離を答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "8"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "s-d-c-t の重みが 4+3+1=8 で最小。過去問のダイクストラ法に近い、ラベル更新を追う問題である。",
+      "tags": [
+        "ダイクストラ法",
+        "過去問形式",
+        "計算"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q008",
+      "type": "ordered_choice",
+      "question": "郵便配達人問題を解く基本手順を正しい順に並べよ。",
+      "choices": [
+        "奇数次数の頂点をすべて取り出す",
+        "奇数次数の頂点間の最短経路長で完全グラフを作る",
+        "重み最小の完全マッチングを求める",
+        "対応する最短経路上の辺を多重辺として追加する",
+        "得られたオイラーグラフのオイラー回路を求める"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "資料のアルゴリズムでは、奇数次数の頂点を偶数化するため、最短経路距離を使った最小重み完全マッチングを求めて辺を重複させる。",
+      "tags": [
+        "郵便配達人問題",
+        "手順",
+        "ordered_choice"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "連結な重み付き多重グラフ G に 2n 個の奇数次数の頂点 u1,...,u_{2n} がある。郵便配達人問題で、まずすべての何を求めるか。",
+      "inputs": [
+        {
+          "answers": [
+            "2頂点間の最短経路",
+            "奇数次数の頂点間の最短経路",
+            "各2頂点間の最短経路"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "奇数次数の頂点同士を組にするため、各ペア間の最短経路長を重みとして完全グラフを作る。",
+      "tags": [
+        "郵便配達人問題",
+        "空欄補充"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "郵便配達人問題で、奇数次数の頂点を頂点集合とする完全グラフを作るとき、その辺の重みには何を用いるか。",
+      "inputs": [
+        {
+          "answers": [
+            "最短経路長",
+            "最短距離",
+            "元のグラフでの最短経路長"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "完全グラフ上の辺は、元のグラフで対応する 2 頂点を結ぶ最短経路の長さを表す。",
+      "tags": [
+        "郵便配達人問題",
+        "完全グラフ"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q011",
+      "type": "single_choice",
+      "question": "郵便配達人問題で求める完全マッチングの条件として正しいものはどれか。",
+      "choices": [
+        "重みが最小である完全マッチング",
+        "辺数が最大である完全マッチング",
+        "重みが最大である完全マッチング",
+        "任意の頂点を 1 つだけ残すマッチング"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "追加する経路の総重みを最小にするため、奇数次数の頂点をペアにする完全マッチングのうち重み最小のものを選ぶ。",
+      "tags": [
+        "郵便配達人問題",
+        "完全マッチング"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q012",
+      "type": "text_input",
+      "question": "奇数次数の頂点が a,b,c,d の 4 個で、最短経路長が ab=5, ac=7, ad=6, bc=4, bd=8, cd=3 である。最小重み完全マッチングの組と重みを順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "ab,cd",
+            "cd,ab",
+            "(a,b),(c,d)",
+            "(c,d),(a,b)"
+          ]
+        },
+        {
+          "answers": [
+            "8"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "4 頂点の完全マッチングは ab+cd=8、ac+bd=15、ad+bc=10。最小は ab と cd の組である。",
+      "tags": [
+        "郵便配達人問題",
+        "完全マッチング",
+        "計算"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q013",
+      "type": "multiple_choice",
+      "question": "郵便配達人問題の説明として正しいものをすべて選べ。",
+      "choices": [
+        "すべての辺を少なくとも 1 回通り、出発点に戻る最短の閉じた歩道を求める問題である",
+        "全頂点の次数が偶数なら、そのままオイラー回路を求めればよい",
+        "奇数次数の頂点がある場合は、辺を重複させて全頂点を偶数次数にする",
+        "ハミルトン閉路を求めれば必ず最適解になる",
+        "奇数次数の頂点を 1 個だけ残すことが目的である"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "郵便配達人問題は辺を巡回する問題なので、オイラー回路を作れるように奇数次数の頂点をペアにして辺を重複させる。",
+      "tags": [
+        "郵便配達人問題",
+        "正誤"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

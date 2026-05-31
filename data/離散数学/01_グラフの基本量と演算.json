@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "id": "離散数学/01_グラフの基本量と演算",
+  "title": "01_グラフの基本量と演算",
+  "description": "完全グラフ、道、サイクル、完全二部グラフ、和・結び・直積の基本量に関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "n 個の頂点からなる道グラフ P_n の辺数 |E(P_n)| を n を用いて答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "n-1",
+            "n - 1"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "P_n は n 個の頂点を一直線につなぐので、隣り合う頂点の間の辺は n-1 本である。",
+      "tags": [
+        "P_n",
+        "辺数",
+        "基本量"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "完全グラフ K_n の辺数 |E(K_n)| を n を用いて答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "n(n-1)/2",
+            "n(n - 1)/2",
+            "n*(n-1)/2",
+            "n * (n - 1) / 2"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "K_n では異なる 2 頂点の組すべてに辺があるため、辺数は組合せ C(n,2)=n(n-1)/2 である。",
+      "tags": [
+        "完全グラフ",
+        "辺数"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "完全二部グラフ K_{m,n} の頂点数と辺数を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "m+n",
+            "m + n"
+          ]
+        },
+        {
+          "answers": [
+            "mn",
+            "m n",
+            "m*n",
+            "m * n"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "2 つの部の頂点数を足すと m+n、異なる部の頂点の全組に辺があるので辺数は mn である。",
+      "tags": [
+        "完全二部グラフ",
+        "基本量"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "|E(P_5)|, |V(K_{2,4,7})|, |E(K_{3,4})| を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "4"
+          ]
+        },
+        {
+          "answers": [
+            "13"
+          ]
+        },
+        {
+          "answers": [
+            "12"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "P_5 の辺数は 5-1=4。完全 3 部グラフ K_{2,4,7} の頂点数は 2+4+7=13。K_{3,4} の辺数は 3×4=12。",
+      "tags": [
+        "過去問形式",
+        "基本量"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "互いに素なグラフ G, H の和 G∪H について、|V(G∪H)| と |E(G∪H)| を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "|V(G)|+|V(H)|",
+            "|V(G)| + |V(H)|"
+          ]
+        },
+        {
+          "answers": [
+            "|E(G)|+|E(H)|",
+            "|E(G)| + |E(H)|"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "和は頂点集合と辺集合をそのまま合わせる操作であり、G と H の間に新しい辺は加えない。",
+      "tags": [
+        "グラフの演算",
+        "和"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "互いに素なグラフ G, H の結び G+H について、|V(G+H)| と |E(G+H)| を順に答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "|V(G)|+|V(H)|",
+            "|V(G)| + |V(H)|"
+          ]
+        },
+        {
+          "answers": [
+            "|E(G)|+|E(H)|+|V(G)||V(H)|",
+            "|E(G)| + |E(H)| + |V(G)||V(H)|"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "結びでは和の辺に加えて、G の各頂点と H の各頂点をすべて結ぶので |V(G)||V(H)| 本の辺が増える。",
+      "tags": [
+        "グラフの演算",
+        "結び"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "グラフ G と H の直積（cartesian product）G×H の頂点数 |V(G×H)| を答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "|V(G)||V(H)|",
+            "|V(G)| |V(H)|",
+            "|V(G)|*|V(H)|"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "直積の頂点は (x,y) の形の組であり、x は V(G)、y は V(H) から選ぶため積になる。",
+      "tags": [
+        "グラフの演算",
+        "直積"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "直積 G×H において、2 頂点 (x1,y1) と (x2,y2) が隣接する条件として正しいものはどれか。",
+      "choices": [
+        "x1=x2 かつ y1y2∈E(H)、または y1=y2 かつ x1x2∈E(G)",
+        "x1x2∈E(G) かつ y1y2∈E(H) のときだけ隣接する",
+        "x1≠x2 かつ y1≠y2 なら必ず隣接する",
+        "G または H のどちらか一方に辺が 1 本でもあれば、すべての組が隣接する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "資料の直積は Cartesian product であり、一方の座標を固定し、もう一方のグラフで隣接している場合に辺を張る。",
+      "tags": [
+        "グラフの演算",
+        "直積",
+        "定義"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "|V(K_2×K_4)| と |E(K_2×K_4)| を順に答えよ。ただし × は直積を表す。",
+      "inputs": [
+        {
+          "answers": [
+            "8"
+          ]
+        },
+        {
+          "answers": [
+            "16"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "|V|=2×4=8。辺数は |E(K_2)||V(K_4)|+|V(K_2)||E(K_4)|=1×4+2×6=16。",
+      "tags": [
+        "直積",
+        "過去問形式"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "C_3+P_3 の辺数 |E(C_3+P_3)| を答えよ。ただし + はグラフの結びを表す。",
+      "inputs": [
+        {
+          "answers": [
+            "14"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "C_3 の辺数は 3、P_3 の辺数は 2、両者の間に 3×3=9 本の辺を加えるので 3+2+9=14。",
+      "tags": [
+        "結び",
+        "過去問形式"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q011",
+      "type": "single_choice",
+      "question": "辺の本数が 28 本である完全グラフ K_n の頂点数 n はいくつか。",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "14"
+      ],
+      "shuffle_choices": true,
+      "answer": 1,
+      "explanation": "n(n-1)/2=28 を解くと n(n-1)=56 なので n=8。",
+      "tags": [
+        "完全グラフ",
+        "過去問形式"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q012",
+      "type": "multiple_choice",
+      "question": "6 人の集まりを単純グラフで表すときに成り立つ説明として正しいものをすべて選べ。",
+      "choices": [
+        "各人の知人数は 0 から 5 の整数で表せる",
+        "全員の知人数がすべて異なることはできない",
+        "互いに知り合いの 3 人、または互いに知り合いでない 3 人が必ず存在する",
+        "6 人なら各人の知人数は必ず偶数になる",
+        "6 人なら必ず完全グラフ K_6 になる"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "資料のパズルでは、鳩の巣原理と R(3,3)=6 の考え方を使う。知人数は 0〜5 だが、0 人と 5 人が同時に存在できないため全員が異なることはない。",
+      "tags": [
+        "グラフとパズル",
+        "鳩の巣原理",
+        "ラムゼー"
+      ],
+      "difficulty": 3
+    }
+  ]
+}

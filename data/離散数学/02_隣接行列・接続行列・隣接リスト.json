@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "id": "離散数学/02_隣接行列・接続行列・隣接リスト",
+  "title": "02_隣接行列・接続行列・隣接リスト",
+  "description": "隣接行列、接続行列、隣接リスト表の定義と読み取りに関する予想問題",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "グラフ G の頂点集合を V(G)={v1,...,vp} とする。隣接行列 A=(a_ij) のサイズを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "p×p",
+            "p x p",
+            "p*p",
+            "p行p列"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "隣接行列は頂点と頂点の対応を表すので、頂点数 p に対して p×p 行列になる。",
+      "tags": [
+        "隣接行列",
+        "定義"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "隣接行列 A=(a_ij) の要素 a_ij は何の本数で定義されるか。",
+      "inputs": [
+        {
+          "answers": [
+            "viとvjを結ぶ辺の本数",
+            "v_iとv_jを結ぶ辺の本数",
+            "vi と vj を結ぶ辺の本数",
+            "v_i と v_j を結ぶ辺の本数"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "資料では、a_ij を v_i と v_j を結ぶ辺の本数として定義している。多重辺があれば 2 以上の値も入る。",
+      "tags": [
+        "隣接行列",
+        "多重辺"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "無向グラフの隣接行列について正しい説明はどれか。",
+      "choices": [
+        "隣接行列は主対角線に関して対称になる",
+        "隣接行列は必ず上三角行列になる",
+        "隣接行列の行数は辺数と等しい",
+        "隣接行列には 0 と 1 以外の値は絶対に現れない"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "無向グラフでは v_i から v_j への辺と v_j から v_i への辺を区別しないため、a_ij=a_ji となる。多重辺を許す広義グラフでは 2 以上も現れる。",
+      "tags": [
+        "隣接行列",
+        "無向グラフ"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "頂点 V={v1,v2,v3}、辺 E={v1v2, v1v2, v2v3} をもつ広義グラフの隣接行列を行ごとに答えよ。各行はカンマ区切りで入力せよ。",
+      "inputs": [
+        {
+          "answers": [
+            "0,2,0"
+          ]
+        },
+        {
+          "answers": [
+            "2,0,1"
+          ]
+        },
+        {
+          "answers": [
+            "0,1,0"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "v1 と v2 の間に多重辺が 2 本あるので a12=a21=2、v2 と v3 の間に 1 本あるので a23=a32=1 である。",
+      "tags": [
+        "隣接行列",
+        "多重辺",
+        "計算"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "グラフ G の頂点集合を V(G)={v1,...,vp}、辺集合を E(G)={e1,...,eq} とする。接続行列 M=(m_ij) のサイズを答えよ。",
+      "inputs": [
+        {
+          "answers": [
+            "p×q",
+            "p x q",
+            "p*q",
+            "p行q列"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "接続行列は頂点と辺の接続関係を表すため、頂点数 p 行、辺数 q 列の行列である。",
+      "tags": [
+        "接続行列",
+        "定義"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "接続行列 M=(m_ij) の要素 m_ij は何の回数で定義されるか。",
+      "inputs": [
+        {
+          "answers": [
+            "viがejに接続する回数",
+            "v_iがe_jに接続する回数",
+            "vi が ej に接続する回数",
+            "v_i が e_j に接続する回数"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "通常の辺なら端点 2 つに 1 が立つ。ループでは同じ頂点に 2 回接続しているため 2 として扱う。",
+      "tags": [
+        "接続行列",
+        "ループ"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q007",
+      "type": "multiple_choice",
+      "question": "接続行列に関する説明として正しいものをすべて選べ。",
+      "choices": [
+        "列は辺に対応する",
+        "行は頂点に対応する",
+        "ループを表す列では、対応する頂点の成分が 2 になる",
+        "単純グラフの各列には 1 がちょうど 2 個現れる",
+        "接続行列は必ず正方行列である"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "接続行列は p×q 行列であり、一般には正方行列ではない。単純グラフの辺は 2 端点をもつため、各列に 1 が 2 個現れる。",
+      "tags": [
+        "接続行列",
+        "正誤"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "頂点 V={v1,v2,v3}、辺 e1=v1v2、e2=v2v3、e3 は v2 のループである。接続行列を行ごとに答えよ。列の順は e1,e2,e3 とし、各行はカンマ区切りで入力せよ。",
+      "inputs": [
+        {
+          "answers": [
+            "1,0,0"
+          ]
+        },
+        {
+          "answers": [
+            "1,1,2"
+          ]
+        },
+        {
+          "answers": [
+            "0,1,0"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "e1 は v1 と v2、e2 は v2 と v3 に接続する。e3 は v2 のループなので v2 の成分が 2 になる。",
+      "tags": [
+        "接続行列",
+        "計算",
+        "ループ"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "隣接リスト表について正しい説明はどれか。",
+      "choices": [
+        "各頂点について、その頂点に隣接する頂点を一覧で表す",
+        "各辺について、その重みだけを一覧で表す",
+        "頂点数と辺数だけを 2 つの数で表す",
+        "隣接行列の対角成分だけを取り出した表である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "隣接リスト表は、グラフの点または辺をリストで表す方法で、各頂点の隣接先を列挙する。",
+      "tags": [
+        "隣接リスト",
+        "定義"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q010",
+      "type": "multiple_choice",
+      "question": "過去問のように隣接行列から広義グラフを描くときに注意すべき点として正しいものをすべて選べ。",
+      "choices": [
+        "対角成分が 1 なら、その頂点にループが 1 本ある",
+        "非対角成分が 2 なら、対応する 2 頂点の間に多重辺が 2 本ある",
+        "無向グラフでは行列の対称性を確認する",
+        "行列の全成分を 0 と 1 に直してから描く",
+        "対角成分は常に無視する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "広義グラフではループや多重辺を許す。隣接行列の値は辺の本数を表すので、勝手に 0/1 に丸めてはいけない。",
+      "tags": [
+        "隣接行列",
+        "広義グラフ",
+        "過去問形式"
+      ],
+      "difficulty": 2
+    }
+  ]
+}
