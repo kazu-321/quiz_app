@@ -2,6 +2,12 @@
   "schema_version": 1,
   "books": [
     {
+      "id": "AcademicEnglish/柴田",
+      "title": "柴田",
+      "description": "AcademicEnglishの前期中間テスト範囲。英訳暗記と語彙暗記、並び替えを収録。",
+      "file": "data/AcademicEnglish/柴田.json"
+    },
+    {
       "id": "ソフトウェア工学/01_概要と開発プロセス",
       "title": "01_概要と開発プロセス",
       "description": "ソフトウェア危機、ソフトウェア工学、開発方法論に関する予想問題",

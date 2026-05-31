@@ -1,0 +1,744 @@
+{
+  "schema_version": 1,
+  "id": "AcademicEnglish/柴田",
+  "title": "柴田",
+  "description": "AcademicEnglishの前期中間テスト範囲。英訳暗記と語彙暗記、並び替えを収録。",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "最近どう?",
+      "inputs": [
+        {
+          "answers": [
+            "How have you been lately?"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "順調だよ。",
+      "inputs": [
+        {
+          "answers": [
+            "So far, so good."
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "ここだけの話にしてくれる?",
+      "inputs": [
+        {
+          "answers": [
+            "Can you keep this between you and me?"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "最近暑くなってきた。",
+      "inputs": [
+        {
+          "answers": [
+            "It's getting hotter these days."
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "早くきめてよ!",
+      "inputs": [
+        {
+          "answers": [
+            "Hurry up and make up your mind!"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "気を付けて!",
+      "inputs": [
+        {
+          "answers": [
+            "Watch out!"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "なんでもいいよ。",
+      "inputs": [
+        {
+          "answers": [
+            "Anything will do."
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "誤解しないでほしい。",
+      "inputs": [
+        {
+          "answers": [
+            "Don't get me wrong."
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "言いたいこと分かる?",
+      "inputs": [
+        {
+          "answers": [
+            "You know what I mean?"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "後でね。",
+      "inputs": [
+        {
+          "answers": [
+            "Catch you later."
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "ボーリング",
+      "inputs": [
+        {
+          "answers": [
+            "bowling"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q012",
+      "type": "text_input",
+      "question": "ボクシング",
+      "inputs": [
+        {
+          "answers": [
+            "boxing"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q013",
+      "type": "text_input",
+      "question": "サイクリング",
+      "inputs": [
+        {
+          "answers": [
+            "cycling"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q014",
+      "type": "text_input",
+      "question": "フェンシング",
+      "inputs": [
+        {
+          "answers": [
+            "fencing"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q015",
+      "type": "text_input",
+      "question": "ラクロス",
+      "inputs": [
+        {
+          "answers": [
+            "lacrosse"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q016",
+      "type": "text_input",
+      "question": "ラグビー",
+      "inputs": [
+        {
+          "answers": [
+            "rugby"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q017",
+      "type": "text_input",
+      "question": "スキー",
+      "inputs": [
+        {
+          "answers": [
+            "skiing"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q018",
+      "type": "text_input",
+      "question": "サーフィン",
+      "inputs": [
+        {
+          "answers": [
+            "surfing"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q019",
+      "type": "text_input",
+      "question": "陸上",
+      "inputs": [
+        {
+          "answers": [
+            "track"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q020",
+      "type": "text_input",
+      "question": "レスリング",
+      "inputs": [
+        {
+          "answers": [
+            "wrestling"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q021",
+      "type": "text_input",
+      "question": "ハムスター",
+      "inputs": [
+        {
+          "answers": [
+            "hamster"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q022",
+      "type": "text_input",
+      "question": "イグアナ",
+      "inputs": [
+        {
+          "answers": [
+            "iguana"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q023",
+      "type": "text_input",
+      "question": "子猫",
+      "inputs": [
+        {
+          "answers": [
+            "kitten"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q024",
+      "type": "text_input",
+      "question": "トカゲ",
+      "inputs": [
+        {
+          "answers": [
+            "lizard"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q025",
+      "type": "text_input",
+      "question": "オウム",
+      "inputs": [
+        {
+          "answers": [
+            "parrot"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q026",
+      "type": "text_input",
+      "question": "子犬",
+      "inputs": [
+        {
+          "answers": [
+            "puppy"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q027",
+      "type": "text_input",
+      "question": "カタツムリ",
+      "inputs": [
+        {
+          "answers": [
+            "snail"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q028",
+      "type": "text_input",
+      "question": "蛇",
+      "inputs": [
+        {
+          "answers": [
+            "snake"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q029",
+      "type": "text_input",
+      "question": "タランチュラ",
+      "inputs": [
+        {
+          "answers": [
+            "tarantula"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q030",
+      "type": "text_input",
+      "question": "亀",
+      "inputs": [
+        {
+          "answers": [
+            "turtle"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q031",
+      "type": "ordered_choice",
+      "question": "週末はとても楽しかったよ。",
+      "choices": [
+        "I",
+        "had",
+        "a",
+        "great",
+        "time",
+        "over",
+        "the",
+        "weekend."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "q032",
+      "type": "ordered_choice",
+      "question": "できればいいんだけど、でも手伝えないんだ。",
+      "choices": [
+        "I",
+        "wish",
+        "I",
+        "could",
+        "help",
+        "you,",
+        "but",
+        "I",
+        "can't."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "q033",
+      "type": "ordered_choice",
+      "question": "最初、彼はこの味に慣れていなかったんだよ。",
+      "choices": [
+        "At",
+        "first,",
+        "he",
+        "wasn't",
+        "used",
+        "to",
+        "this",
+        "taste."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "q034",
+      "type": "ordered_choice",
+      "question": "日本の教育制度についてどう思う?",
+      "choices": [
+        "What",
+        "do",
+        "you",
+        "think",
+        "about",
+        "the",
+        "education",
+        "system",
+        "in",
+        "Japan?"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "q035",
+      "type": "ordered_choice",
+      "question": "私には今日、やることがたくさんあります。",
+      "choices": [
+        "I",
+        "have",
+        "a",
+        "lot",
+        "to",
+        "do",
+        "today."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "q036",
+      "type": "ordered_choice",
+      "question": "以前、神戸には大きな遊園地がありました。",
+      "choices": [
+        "There",
+        "used",
+        "to",
+        "be",
+        "a",
+        "big",
+        "amusement",
+        "park",
+        "in",
+        "Kobe."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "q037",
+      "type": "ordered_choice",
+      "question": "私たちはクラスでこれについて話し合ってきました。",
+      "choices": [
+        "We've",
+        "been",
+        "discussing",
+        "this",
+        "in",
+        "our",
+        "class."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "q038",
+      "type": "ordered_choice",
+      "question": "保護手袋を常に身につけてください。",
+      "choices": [
+        "Protective",
+        "gloves",
+        "must",
+        "be",
+        "worn",
+        "at",
+        "all",
+        "times."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "q039",
+      "type": "ordered_choice",
+      "question": "最近、ミカと会いましたか?",
+      "choices": [
+        "Have",
+        "you",
+        "seen",
+        "Mika",
+        "lately?"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "q040",
+      "type": "ordered_choice",
+      "question": "それは良さそうなアイデアだね。",
+      "choices": [
+        "It",
+        "seems",
+        "like",
+        "a",
+        "good",
+        "idea."
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ]
+}
