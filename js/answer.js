@@ -231,6 +231,18 @@
     `;
   }
 
+  function focusFirstTextInput() {
+    requestAnimationFrame(() => {
+      const input = document.querySelector('#answer-form input[data-input-index="0"]:not([disabled])');
+      if (!input) return;
+      input.focus({ preventScroll: true });
+      if (typeof input.setSelectionRange === "function") {
+        const valueLength = input.value.length;
+        input.setSelectionRange(valueLength, valueLength);
+      }
+    });
+  }
+
   function renderInteractiveControls(question) {
     if (question.type === "single_choice") return renderSingleChoice(question);
     if (question.type === "multiple_choice") return renderMultipleChoice(question);
@@ -276,6 +288,9 @@
         </div>
       </form>
     `;
+    if (question.type === "text_input") {
+      focusFirstTextInput();
+    }
   }
 
   function renderReviewPanel(question, record, revealedOnly = false) {
