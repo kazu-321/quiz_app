@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "id": "現代の社会I/03_心の理論と言葉の発達",
-  "title": "03_心の理論と言葉の発達",
+  "id": "現代の社会I/03_0427",
+  "title": "0427_心の理論と言葉の発達",
   "description": "",
   "questions": [
     {
@@ -39,11 +39,11 @@
     {
       "id": "q003",
       "type": "single_choice",
-      "question": "誤信念課題の具体例で有名なものを選べ",
+      "question": "誤信念課題の有名な具体例を選べ",
       "choices": [
         "サリーとアン課題",
-        "リサとアン課題",
-        "サリーとエマ課題"
+        "ワトソンとホームズ課題",
+        "ボールと箱課題"
       ],
       "shuffle_choices": true,
       "answer": 0
@@ -69,11 +69,11 @@
     {
       "id": "q005",
       "type": "text_input",
-      "question": "他者の心的状態を理解して、他者がどのように考えて行動するかを的確に予測する能力をなんというか",
+      "question": "人の声に興味を持ち、あやすと声を出して笑うようになる0~1歳頃の言葉の発達段階をなんというか",
       "inputs": [
         {
           "answers": [
-            "心の理論"
+            "クーイング"
           ]
         }
       ],
@@ -85,11 +85,12 @@
     {
       "id": "q006",
       "type": "text_input",
-      "question": "他者が現実とは異なる信念を持っていることを理解できるかどうかを確かめる課題をなんというか",
+      "question": "意味のない音節をくり返す0~1歳頃の言葉の発達段階をなんというか",
       "inputs": [
         {
           "answers": [
-            "誤信念課題"
+            "喃語",
+            "パブリング"
           ]
         }
       ],
@@ -100,15 +101,19 @@
     },
     {
       "id": "q007",
-      "type": "single_choice",
-      "question": "誤信念課題の有名な具体例を選べ",
-      "choices": [
-        "サリーとアン課題",
-        "ワトソンとホームズ課題",
-        "ボールと箱課題"
+      "type": "text_input",
+      "question": "1歳半頃に見られる、1語だけで意味を表す言葉の発達段階をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "一語文"
+          ]
+        }
       ],
-      "shuffle_choices": true,
-      "answer": 0
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
     },
     {
       "id": "q008",
