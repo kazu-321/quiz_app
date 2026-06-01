@@ -4,11 +4,14 @@
   const clearButton = document.getElementById("clear-storage");
   const detailPanel = document.getElementById("book-detail");
   const themeToggle = document.getElementById("theme-toggle");
+  const hardReloadButton = document.getElementById("hard-reload");
   let currentManifest = null;
   let currentDetailBookId = null;
   const bookCache = new Map();
 
   QuizApp.initTheme(themeToggle);
+  QuizApp.initHardReloadButton(hardReloadButton);
+  QuizApp.hydrateStatsFromLastResult();
 
   function renderMarkdown(text) {
     if (window.QuizMarkdown?.render) {
@@ -73,7 +76,7 @@
     const childBooks = node.books.map((book) => renderBookCard(book)).join("");
 
     return `
-      <details class="book-folder" open>
+      <details class="book-folder">
         <summary>
           <span class="folder-name">${QuizApp.escapeHtml(name)}</span>
           <span class="folder-count">${totalBooks} 件</span>
@@ -124,6 +127,16 @@
     const rateText = attempts ? `${Math.round((corrects / attempts) * 100)}% (${corrects}/${attempts})` : "未解答";
     const lastAnswer = item ? QuizApp.formatAnswer(question, item.last_answer) : "未回答";
     const lastCorrect = item ? (item.last_correct ? "正解" : "不正解") : "未解答";
+    console.log("[quiz_app] questionStats", {
+      bookId,
+      questionId: question.id,
+      item,
+      attempts,
+      corrects,
+      rateText,
+      lastAnswer,
+      lastCorrect,
+    });
     return { attempts, corrects, rateText, lastAnswer, lastCorrect };
   }
 
@@ -151,6 +164,13 @@
     const overallRate = summary.attempts
       ? `${Math.round((summary.corrects / summary.attempts) * 100)}% (${summary.corrects}/${summary.attempts})`
       : "未解答";
+
+    console.log("[quiz_app] renderDetail", {
+      bookId: book.id,
+      bookStats,
+      summary,
+      overallRate,
+    });
 
     detailPanel.innerHTML = `
       <div class="toolbar detail-toolbar">

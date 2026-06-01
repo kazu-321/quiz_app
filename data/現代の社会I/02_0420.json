@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "id": "現代の社会I/02_認知科学と心理学的研究の方法",
-  "title": "02_認知科学と心理学的研究の方法",
+  "id": "現代の社会I/02_0420",
+  "title": "0420_認知科学と心理学的研究の方法",
   "description": "",
   "questions": [
     {
@@ -191,6 +191,93 @@
       "trim": true,
       "normalize_spaces": true,
       "input_ordered": true
+    },
+    {
+      "id": "q013",
+      "type": "text_input",
+      "question": "MEGは脳内の何の変化を検出するか",
+      "inputs": [
+        {
+          "answers": [
+            "磁場変化",
+            "微小磁場変化"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q014",
+      "type": "text_input",
+      "question": "fMRIで利用する脳血流中のオキシヘモグロビンとデオキシヘモグロビンの変化に基づく効果をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "BOLD効果",
+            "BOLD"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q015",
+      "type": "text_input",
+      "question": "fNIRSは何による分光法か",
+      "inputs": [
+        {
+          "answers": [
+            "近赤外",
+            "近赤外分光"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q016",
+      "type": "text_input",
+      "question": "PETは何でラベル化したブドウ糖を体内に注射して計測するか",
+      "inputs": [
+        {
+          "answers": [
+            "放射性同位元素"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q017",
+      "type": "multiple_choice",
+      "question": "認知科学領域における脳計測技術として講義で扱われたものをすべて選べ",
+      "choices": [
+        "EEG",
+        "MEG",
+        "fMRI",
+        "fNIRS",
+        "PET"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
     }
   ]
 }

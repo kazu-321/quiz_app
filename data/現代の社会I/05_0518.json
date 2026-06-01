@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "id": "現代の社会I/05_0518",
+  "title": "0518_思考実験と批判的思考",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "ある特定の前提や条件を設定し、頭の中で推論を重ねながら結論を導き出すことをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "思考実験"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "正確な数値がすぐにわからないときに、入手しやすい情報を元に論理的に推論し概算値を求めることをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "フェルミ推定"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q003",
+      "type": "text_input",
+      "question": "「よりよく考えること、考える態度」をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "クリティカルシンキング",
+            "批判的思考"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "自身の思考や行動に関して考え、認知プロセスを意図的に振り返ってコントロールすることをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "メタ認知"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q005",
+      "type": "multiple_choice",
+      "question": "バイエルが挙げたクリティカルシンキングの項目として適切なものをすべて選べ",
+      "choices": [
+        "検証可能な事実と価値の主張を区別する",
+        "情報源の信頼性を決定する",
+        "バイアスを見つける",
+        "睡眠時間を増やす",
+        "運動強度を上げる"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "同じ教育方法であっても、対象者の適性により教育効果が異なることをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "適正処遇交互作用",
+            "適性処遇交互作用",
+            "aptitude-treatment interaction"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "適正処遇交互作用のように、対象者の特性の違いに着目する心理学をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "差異心理学"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "他者から期待されると期待に沿った成果を出す傾向にある現象をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "ピグマリオン効果"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q009",
+      "type": "text_input",
+      "question": "教師が期待しないことにより学習者の成績が低下する現象をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "ゴーレム効果"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "思考実験という語が最初に用いられたとされる物理学者の著書を書いたのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "エルンスト・マッハ",
+            "エルンストマッハ",
+            "マッハ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q011",
+      "type": "text_input",
+      "question": "フェルミ推定の名前の由来となったイタリア出身の物理学者はだれか",
+      "inputs": [
+        {
+          "answers": [
+            "フェルミ",
+            "エンリコ・フェルミ",
+            "エンリコフェルミ"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q012",
+      "type": "multiple_choice",
+      "question": "クリティカルシンキングに関する説明として適切なものをすべて選べ",
+      "choices": [
+        "情報源の信頼性を決定する",
+        "バイアスを見つける",
+        "曖昧な主張や議論を明らかにする",
+        "正しい答えを暗記することだけを重視する",
+        "論理的な一貫性のなさや誤謬を見つける"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "q013",
+      "type": "text_input",
+      "question": "クリティカルシンキングで重視される、主観的判断にとらわれない態度をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "客観的態度"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q014",
+      "type": "text_input",
+      "question": "能力・資質は努力次第で伸びるという考え方をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "成長マインドセット",
+            "グロースマインドセット",
+            "growth mindset"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q015",
+      "type": "text_input",
+      "question": "能力・資質は生まれつきだと考えるマインドセットをなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "硬直マインドセット",
+            "フィックスマインドセット",
+            "fix mindset"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q016",
+      "type": "text_input",
+      "question": "体の部位ごとの発達の違いを示す成長曲線をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "スキャモンの成長曲線"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "id": "現代の社会I/03_0427",
+  "title": "0427_心の理論と言葉の発達",
+  "description": "",
+  "questions": [
+    {
+      "id": "q001",
+      "type": "text_input",
+      "question": "他者の心的状態を理解して他者はどのように考えて行動するかを的確に予測する能力をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "心の理論"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q002",
+      "type": "text_input",
+      "question": "他者が現実とは異なる信念を持っていることを理解できるかどうか確かめる課題をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "誤信念課題"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q003",
+      "type": "single_choice",
+      "question": "誤信念課題の有名な具体例を選べ",
+      "choices": [
+        "サリーとアン課題",
+        "ワトソンとホームズ課題",
+        "ボールと箱課題"
+      ],
+      "shuffle_choices": true,
+      "answer": 0
+    },
+    {
+      "id": "q004",
+      "type": "text_input",
+      "question": "チンパンジーに誤信念課題はあるかを調べたのはだれか",
+      "inputs": [
+        {
+          "answers": [
+            "プレマック",
+            "プレマックとウッドラフ",
+            "Premack and Woodruff"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q005",
+      "type": "text_input",
+      "question": "人の声に興味を持ち、あやすと声を出して笑うようになる0~1歳頃の言葉の発達段階をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "クーイング"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q006",
+      "type": "text_input",
+      "question": "意味のない音節をくり返す0~1歳頃の言葉の発達段階をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "喃語",
+            "パブリング"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q007",
+      "type": "text_input",
+      "question": "1歳半頃に見られる、1語だけで意味を表す言葉の発達段階をなんというか",
+      "inputs": [
+        {
+          "answers": [
+            "一語文"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    },
+    {
+      "id": "q008",
+      "type": "text_input",
+      "question": "心の理論の概念を提案した論文の著者はだれか",
+      "inputs": [
+        {
+          "answers": [
+            "プレマックとウッドラフ",
+            "Premack and Woodruff"
+          ]
+        }
+      ],
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "input_ordered": true
+    }
+  ]
+}
