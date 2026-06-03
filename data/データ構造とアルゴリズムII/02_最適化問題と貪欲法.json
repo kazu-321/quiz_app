@@ -108,6 +108,67 @@
       "trim": true,
       "normalize_spaces": true,
       "explanation": "講義ではヒープが使われていた。"
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "力まかせ法の説明として適切なものを選べ。",
+      "choices": [
+        "可能性のある解をすべて調べる方法",
+        "その場で最良そうな選択だけを積み重ねる方法",
+        "木の平衡を保つための方法",
+        "グラフの最短経路だけに使う方法"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "力まかせ法は候補を総当たりで調べる方法。"
+    },
+    {
+      "id": "q009",
+      "type": "single_choice",
+      "question": "ダイクストラ法で非負の重みが必要な理由として適切なものを選べ。",
+      "choices": [
+        "一度確定した距離が後から小さくなる可能性を避けるため",
+        "計算にヒープを使えなくなるため",
+        "木構造でしか扱えなくなるため",
+        "最短経路ではなく最大経路を求めるため"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "負の重みがあると、確定済みの距離が後から更新されうる。"
+    },
+    {
+      "id": "q010",
+      "type": "text_input",
+      "question": "ダイクストラ法で、すでに分かっている最短距離を更新する計算を何というか。",
+      "inputs": [
+        {
+          "answers": [
+            "緩和",
+            "relaxation",
+            "relax"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "距離候補を min で更新する操作を緩和という。"
+    },
+    {
+      "id": "q011",
+      "type": "single_choice",
+      "question": "負の重みを含む最短経路問題で、講義で関連付けられていたアルゴリズムとして適切なものを選べ。",
+      "choices": [
+        "ベルマン・フォード法",
+        "クイックソート",
+        "AVL木",
+        "ストラッセン法"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "負の重みや負閉路の検出にはベルマン・フォード法が関連する。"
     }
   ]
 }

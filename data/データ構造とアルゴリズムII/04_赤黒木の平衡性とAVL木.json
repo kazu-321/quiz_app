@@ -111,6 +111,20 @@
       "shuffle_choices": true,
       "answer": 0,
       "explanation": "赤黒木もAVL木も探索は二分探索木の考え方に従う。"
+    },
+    {
+      "id": "q008",
+      "type": "single_choice",
+      "question": "赤黒木とAVL木の比較として正しいものを選べ。",
+      "choices": [
+        "AVL木は赤黒木より厳密に平衡を保ち、赤黒木は更新コストが比較的軽い",
+        "赤黒木はAVL木より必ず高さが低い",
+        "AVL木は色だけで管理される",
+        "赤黒木は削除時の修正が不要である"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "AVL木はより厳密な平衡、赤黒木は更新の扱いやすさが特徴。"
     }
   ]
 }
