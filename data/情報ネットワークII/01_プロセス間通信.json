@@ -7,7 +7,7 @@
     {
       "id": "q001",
       "type": "single_choice",
-      "question": "2つのプロセス(P1, P2)が並行して、共有データ\n(X)を読み、更新して、書く処理を行う。このとき\n次の問いに答えよ。\n(1)更新処理でXの値をP1は2増加、P2は1減少させ\nる。実行前のXの値が5のとき、P1, P2の処理が終了\n後Xの値として取りえない値は以下の内どれか。",
+      "question": "2つのプロセス(P1, P2)が並行して、共有データXを読み、更新して、書く処理を行う。更新処理でXの値をP1は2増加、P2は1減少させる。実行前のXの値が5のとき、P1, P2の処理が終了後Xの値として取りえない値はどれか。",
       "choices": [
         "4",
         "5",
@@ -20,7 +20,7 @@
     {
       "id": "q002",
       "type": "text_input",
-      "question": "2つのプロセス(P1, P2)が並行して、共有データ\n(X)を読み、更新して、書く処理を行う。このとき\n次の問いに答えよ。\n(2)本来P1, P2が独立に動作するときと同じ値が入\nるようにするためには、P1, P2の処理の前後に処理\nを加える必要がある。この処理の名前を述べよ。",
+      "question": "2つのプロセス(P1, P2)が並行して、共有データXを読み、更新して、書く処理を行う。本来P1, P2が独立に動作するときと同じ値が入るようにするため、P1, P2の処理の前後に加える処理の名前を述べよ。",
       "inputs": [
         {
           "answers": [
@@ -191,7 +191,7 @@
     {
       "id": "q012",
       "type": "text_input",
-      "question": "次のページのprogram A, Bを動作させるとき、結果が確定するのはどちらか。またその時の値はなにになるか\nA\n```\n#include <pthread.h>\n#include <stdio.h>\nint counter;\nstatic void *thread_func(void *_tn) {\n  int i;\n  for (i = 0; i < 100000; i++) counter++;\n  return NULL;\n}\nint main() {\n  int i, N = 5;\n  pthread_t t[N];\n  for (i = 0; i < N; i++) pthread_create(&t[i], NULL, thread_func, NULL);\n  for (i = 0; i < N; i++) pthread_join(t[i], NULL);\n  printf(\"%d¥n\", counter);\n  return 0;\n}\n```\n\nB\n```\n#include <pthread.h>\n#include <stdio.h>\nint counter;\nstatic void *thread_func(void *_tn) {\n  int i;\n  for (i = 0; i < 100000; i++)  counter++;\n  return NULL;\n}\nint main() {\n  int i, N = 5;\n  pthread_t t[N];\n  for (i = 0; i < N; i++) {\n    pthread_create(&t[i], NULL, thread_func, NULL);\n    pthread_join(t[i], NULL);\n  }\n  printf(\"%d¥n\", counter);\n  return 0;\n}\n```",
+      "question": "次のprogram A, Bを動作させるとき、結果が確定するのはどちらか。またその時の値はなにになるか。\nA\n```\n#include <pthread.h>\n#include <stdio.h>\nint counter;\nstatic void *thread_func(void *_tn) {\n  int i;\n  for (i = 0; i < 100000; i++) counter++;\n  return NULL;\n}\nint main() {\n  int i, N = 5;\n  pthread_t t[N];\n  for (i = 0; i < N; i++) pthread_create(&t[i], NULL, thread_func, NULL);\n  for (i = 0; i < N; i++) pthread_join(t[i], NULL);\n  printf(\"%d¥n\", counter);\n  return 0;\n}\n```\n\nB\n```\n#include <pthread.h>\n#include <stdio.h>\nint counter;\nstatic void *thread_func(void *_tn) {\n  int i;\n  for (i = 0; i < 100000; i++)  counter++;\n  return NULL;\n}\nint main() {\n  int i, N = 5;\n  pthread_t t[N];\n  for (i = 0; i < N; i++) {\n    pthread_create(&t[i], NULL, thread_func, NULL);\n    pthread_join(t[i], NULL);\n  }\n  printf(\"%d¥n\", counter);\n  return 0;\n}\n```",
       "inputs": [
         {
           "answers": [
@@ -458,6 +458,253 @@
       ],
       "shuffle_choices": true,
       "answer": 0
+    },
+    {
+      "id": "q032",
+      "type": "multiple_choice",
+      "question": "ファイル内の値を共有データとして排他制御するとき、ファイルロック方式の課題として適切なものをすべて選べ。",
+      "choices": [
+        "ロック用ファイルを消し忘れると、次回以降だれも処理できなくなることがある",
+        "条件が満たされるまでopenを繰り返すため、CPU資源を無駄に使うことがある",
+        "ファイルの生成・消去はレコードロックに比べて時間コストが大きい",
+        "標準入力のファイルディスクリプタ番号が必ず変化する",
+        "fork()の戻り値が親子で同じになる"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "講義では、ファイルロックの課題としてロック用ファイルの残存、openの繰り返しによるCPU資源の無駄、ファイル生成・消去の時間コストが挙げられている。",
+      "tags": [
+        "排他制御",
+        "ファイルロック"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q033",
+      "type": "multiple_choice",
+      "question": "共有データを複数プロセスが読み書きするシステムの応用例として、講義資料で挙げられているものをすべて選べ。",
+      "choices": [
+        "銀行",
+        "発券システム",
+        "POS",
+        "画像圧縮だけを行う単体プログラム",
+        "キーボードのキー配列"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "共有データを複数の処理主体が更新する例として、銀行、発券システム、POSなどが挙げられている。",
+      "tags": [
+        "マルチプロセス",
+        "共有データ"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q034",
+      "type": "multiple_choice",
+      "question": "Unix系OSのデバイスファイルの分類として正しいものをすべて選べ。",
+      "choices": [
+        "キャラクタデバイス",
+        "ブロックデバイス",
+        "擬似デバイス",
+        "セッションデバイス",
+        "ドメインデバイス"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "文字入出力を扱うキャラクタデバイス、ブロック形式で扱うブロックデバイス、実際の物理デバイスと対応しない擬似デバイスに分類される。",
+      "tags": [
+        "仮想ファイルシステム",
+        "デバイスファイル"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q035",
+      "type": "single_choice",
+      "question": "プロセスがOSにより立ち上げられたとき、そのプロセス配下のリソースにアクセスできる仮想ファイルシステム上のディレクトリとして正しいものはどれか。",
+      "choices": [
+        "/proc/<PID>/",
+        "/dev/<PID>/",
+        "/tmp/<PID>/",
+        "/home/<PID>/"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "プロセスごとのリソースは通常 /proc/<PID>/ 以下に見える。標準入出力は /proc/<PID>/fd/0, 1, 2 のように参照できる。",
+      "tags": [
+        "仮想ファイルシステム",
+        "proc"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q036",
+      "type": "single_choice",
+      "question": "C言語の pipe(int fd[2]) が返すファイルディスクリプタの説明として正しいものはどれか。",
+      "choices": [
+        "fd[0] が読み取り用、fd[1] が書き込み用",
+        "fd[0] が書き込み用、fd[1] が読み取り用",
+        "fd[0] と fd[1] はどちらも読み取り専用",
+        "fd[0] と fd[1] はどちらも書き込み専用"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "pipe()では1本のパイプのread側がfd[0]、write側がfd[1]として渡される。",
+      "tags": [
+        "Pipe",
+        "ファイルディスクリプタ"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q037",
+      "type": "single_choice",
+      "question": "cmd1 | cmd2 のようなパイプで、cmd2が読み出そうとした時点でcmd1がまだ何も出力していない場合、Unixは通常どう扱うか。",
+      "choices": [
+        "cmd2を待ち状態にし、データがpipeに入ると動作させる",
+        "cmd2を強制終了する",
+        "cmd1の標準エラー出力をcmd2へ接続する",
+        "pipeを通常ファイルとしてディスクに保存する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "pipeはI/Oデバイスとして扱われ、読み手が先に読もうとした場合はデータが入るまで待ち状態になる。",
+      "tags": [
+        "Pipe",
+        "ブロッキング"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q038",
+      "type": "single_choice",
+      "question": "1本のpipeを親プロセスから子プロセスへの一方向通信に使うとき、closeする側の組み合わせとして正しいものはどれか。",
+      "choices": [
+        "親はfd[0]をcloseし、子はfd[1]をcloseする",
+        "親はfd[1]をcloseし、子はfd[0]をcloseする",
+        "親子ともfd[0]をcloseする",
+        "親子ともfd[1]をcloseする"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "親から子へ送る場合、親は読み取り側fd[0]を閉じ、子は書き込み側fd[1]を閉じることで経路が開通する。",
+      "tags": [
+        "Pipe",
+        "fork"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q039",
+      "type": "single_choice",
+      "question": "popen() の説明として正しいものはどれか。",
+      "choices": [
+        "シェルコマンドの入出力をパイプでつなぎ、コマンドをファイルのように扱えるようにする",
+        "新しいスレッドを生成する",
+        "プロセスIDを取得する",
+        "mutexを初期化する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "popen() は任意のシェルコマンドを実行し、その入出力をFILE *として扱えるようにする関数である。",
+      "tags": [
+        "Pipe",
+        "popen"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q040",
+      "type": "ordered_choice",
+      "question": "共有変数counterをmutexで保護して更新する処理を、正しい順に並べよ。",
+      "choices": [
+        "pthread_mutex_lock(&mutex);",
+        "counter++;",
+        "pthread_mutex_unlock(&mutex);"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "クリティカルセクションに入る前にlockし、共有変数を更新した後にunlockする。",
+      "tags": [
+        "スレッド",
+        "mutex",
+        "排他制御"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q041",
+      "type": "single_choice",
+      "question": "pthread_mutex_init(&mutex, NULL); の役割として正しいものはどれか。",
+      "choices": [
+        "mutexを初期化する",
+        "mutexをロックする",
+        "mutexのロックを解除する",
+        "現在のスレッドIDを取得する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "pthread_mutex_initは排他制御に使うmutexを初期化する関数である。",
+      "tags": [
+        "スレッド",
+        "mutex"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q042",
+      "type": "single_choice",
+      "question": "pthread_mutex_unlock(&mutex); の役割として正しいものはどれか。",
+      "choices": [
+        "mutexのロックを解除する",
+        "mutexを初期化する",
+        "新しいスレッドを作成する",
+        "スレッドの終了を待つ"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "pthread_mutex_unlockはクリティカルセクションを抜けるときにmutexのロックを解除する。",
+      "tags": [
+        "スレッド",
+        "mutex"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q043",
+      "type": "single_choice",
+      "question": "mutex の語源として正しいものはどれか。",
+      "choices": [
+        "Mutual Exclusion",
+        "Multiple Execution",
+        "Memory Exchange",
+        "Module Extension"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "mutexはMutual Exclusion、つまり相互排他を意味する。",
+      "tags": [
+        "スレッド",
+        "mutex"
+      ],
+      "difficulty": 1
     }
   ]
 }

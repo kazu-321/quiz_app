@@ -69,7 +69,7 @@
     {
       "id": "q005",
       "type": "text_input",
-      "question": "インタ―ネットに流す伝文が(2)の方式になることを確実にするために用意された関数を一つ答えよ",
+      "question": "インターネットに流す伝文がBig Endian方式になることを確実にするため、ホストバイトオーダからネットワークバイトオーダへ変換する関数を一つ答えよ。",
       "inputs": [
         {
           "answers": [
@@ -164,7 +164,7 @@
         "監視対象FDの最大値-1",
         "監視対象FDの最大値",
         "読み込み用fd_set",
-        "複数の監視対象FDをまとめて管理する"
+        "select関数自体のブロック時間"
       ],
       "shuffle_choices": true,
       "answer": 4
@@ -184,7 +184,7 @@
     {
       "id": "q013",
       "type": "ordered_choice",
-      "question": "下記のselect関数の利用手順を、正しい順番に並べ替えよ。",
+      "question": "select関数の利用手順を、正しい順番に並べ替えよ。",
       "choices": [
         "ブロック時間の設定",
         "fd_setの宣言",
@@ -441,6 +441,423 @@
       ],
       "shuffle_choices": true,
       "answer": 0
+    },
+    {
+      "id": "q032",
+      "type": "ordered_choice",
+      "question": "バークレイ・ソケットライブラリのプリミティブを、次の説明順に並べよ。通信のエンドポイントを作成する、ローカルアドレスを取り付ける、受け入れ態勢を作る、接続を受けるまでブロックする、待っているピアに接続する、伝文を送信する、伝文を受信する、コネクションを切断する。",
+      "choices": [
+        "SOCKET",
+        "BIND",
+        "LISTEN",
+        "ACCEPT",
+        "CONNECT",
+        "SEND",
+        "RECEIVE",
+        "CLOSE"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "explanation": "過去問でも問われた対応で、TCPの基本プリミティブはSOCKET, BIND, LISTEN, ACCEPT, CONNECT, SEND, RECEIVE, CLOSEの対応で整理する。",
+      "tags": [
+        "バークレイソケット",
+        "過去問"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q033",
+      "type": "single_choice",
+      "question": "バークレイ・ソケットライブラリで「伝文を送信する」プリミティブはどれか。",
+      "choices": [
+        "SEND",
+        "RECEIVE",
+        "LISTEN",
+        "BIND"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "SENDは伝文の送信、RECEIVEは伝文の受信を表す。",
+      "tags": [
+        "バークレイソケット"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q034",
+      "type": "single_choice",
+      "question": "バークレイ・ソケットライブラリで「コネクションを切断する」プリミティブはどれか。",
+      "choices": [
+        "CLOSE",
+        "CONNECT",
+        "ACCEPT",
+        "SOCKET"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "CLOSEは確立済みのコネクションを切断するプリミティブである。",
+      "tags": [
+        "バークレイソケット"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q035",
+      "type": "single_choice",
+      "question": "DNSを呼び出し、FQDNをIPアドレスに変換するC言語関数のプロトタイプとして正しいものはどれか。",
+      "choices": [
+        "gethostbyname(const char *name)",
+        "gethostbyname(struct hostent *host)",
+        "gethostname(char *name, size_t len)",
+        "gethostname(struct hostent *host)"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "過去問では gethostbyname(const char *name) が正答として問われている。",
+      "tags": [
+        "DNS",
+        "gethostbyname",
+        "過去問"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q036",
+      "type": "ordered_choice",
+      "question": "TCPのコネクション確立に用いられる3ウェイハンドシェイクを正しい順に並べよ。",
+      "choices": [
+        "ホスト1がホスト2へ SYN seq=x を送信する",
+        "ホスト2が SYN seq=y と ACK seq=x+1 をホスト1へ送信する",
+        "ホスト1が ACK seq=y+1 をホスト2へ送信する"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "TCPではSYN、SYN+ACK、ACKの3段階で双方の状態をESTABLISHEDへそろえる。",
+      "tags": [
+        "TCP",
+        "3ウェイハンドシェイク"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q037",
+      "type": "multiple_choice",
+      "question": "TCPにはあるが、UDPには用意されていない機能として講義資料で説明されているものをすべて選べ。",
+      "choices": [
+        "フロー制御",
+        "輻輳制御",
+        "再送処理",
+        "データの順番管理",
+        "ブロードキャスト"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "UDPは簡素なコネクションレス型で、フロー制御、輻輳制御、再送処理、順序管理は必要に応じて利用者側で実装する。ブロードキャストはUDP側の特徴である。",
+      "tags": [
+        "UDP",
+        "TCPとの比較"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q038",
+      "type": "single_choice",
+      "question": "TCPにはないUDPのサービスとして講義資料で挙げられているものはどれか。",
+      "choices": [
+        "ブロードキャストまたはマルチキャスト",
+        "3ウェイハンドシェイク",
+        "FIN/ACKによるコネクション解放",
+        "スライディングウィンドウによるフロー制御"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "UDPには、同一ネットワーク内などへ同報するブロードキャストやマルチキャストの用途がある。",
+      "tags": [
+        "UDP"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q039",
+      "type": "single_choice",
+      "question": "Ethernetの場合、MTU(Maximum Transfer Unit)の値として講義資料に示されているものはどれか。",
+      "choices": [
+        "1500バイト",
+        "1460バイト",
+        "1518バイト",
+        "536バイト"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "Ethernet Frame最大長1518バイトからEthernet Header 14バイトとTrailer 4バイトを除くため、MTUは1500バイトとなる。",
+      "tags": [
+        "TCP",
+        "MTU",
+        "MSS"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q040",
+      "type": "single_choice",
+      "question": "EthernetでTCP HeaderとIP Headerがそれぞれ20バイトの場合、MSS(Maximum Segment Size)はいくつか。",
+      "choices": [
+        "1460バイト",
+        "1500バイト",
+        "1518バイト",
+        "556バイト"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "MSSはMTUからTCP HeaderとIP Headerの計40バイトを引いた値で、1500 - 40 = 1460バイトである。",
+      "tags": [
+        "TCP",
+        "MTU",
+        "MSS"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q041",
+      "type": "single_choice",
+      "question": "TCPヘッダ長フィールドの意味として正しいものはどれか。",
+      "choices": [
+        "32ビット単位の個数",
+        "8ビット単位の個数",
+        "TCPペイロードだけのバイト数",
+        "Ethernet Frame全体のバイト数"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "TCPヘッダ長は32ビット単位の個数として表される。",
+      "tags": [
+        "TCP",
+        "ヘッダ構造"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q042",
+      "type": "multiple_choice",
+      "question": "講義資料のWell-Knownポート一覧として正しい組み合わせをすべて選べ。",
+      "choices": [
+        "FTP data: 20",
+        "FTP control: 21",
+        "SSH: 22",
+        "Telnet: 23",
+        "SMTP: 25",
+        "DNS: 53",
+        "HTTP: 80",
+        "HTTP: 25"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "explanation": "HTTPは80、SMTPは25である。20/21/22/23/25/53/80は代表的なWell-Knownポートとして示されている。",
+      "tags": [
+        "ポート番号",
+        "Well-Knownポート"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q043",
+      "type": "multiple_choice",
+      "question": "ブロッキングI/Oで一般にブロックされるケースとして講義資料で挙げられているものをすべて選べ。",
+      "choices": [
+        "入力待ち",
+        "出力待ち",
+        "accept待ち",
+        "connect待ち",
+        "CPUクロック待ち"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "ブロッキングI/Oでは入力待ち、出力待ち、accept待ち、connect待ちが代表例として挙げられている。",
+      "tags": [
+        "I/Oモデル",
+        "ブロッキングI/O"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q044",
+      "type": "single_choice",
+      "question": "ノンブロッキングI/Oで、入力データがない状態でreadを発行した場合の説明として正しいものはどれか。",
+      "choices": [
+        "データが無いことを示すEWOULDBLOCKというエラーが返る",
+        "データが来るまで必ず永久に待つ",
+        "OSが自動的に空文字を送信する",
+        "ソケットが必ずcloseされる"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "ノンブロッキング設定では待ちが発生せず、入力がなければEWOULDBLOCKが返る。",
+      "tags": [
+        "I/Oモデル",
+        "ノンブロッキングI/O"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q045",
+      "type": "single_choice",
+      "question": "select() の timeout に NULL を渡した場合の動作として正しいものはどれか。",
+      "choices": [
+        "FDがreadyになるまで永久に待つ",
+        "常に即座に戻る",
+        "必ず1秒だけ待つ",
+        "監視対象FDをすべてcloseする"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "timeoutがNULLの場合、selectは対象FDがreadyになるまで待ち続ける。",
+      "tags": [
+        "select",
+        "timeout"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q046",
+      "type": "text_input",
+      "question": "timeval構造体で1.5秒の待ち時間を指定する場合、tv_sec と tv_usec に入れる値を順に答えよ。なお、1秒 = 1,000,000マイクロ秒である。",
+      "inputs": [
+        {
+          "answers": [
+            "1"
+          ]
+        },
+        {
+          "answers": [
+            "500000",
+            "500,000"
+          ]
+        }
+      ],
+      "input_ordered": true,
+      "case_sensitive": false,
+      "trim": true,
+      "normalize_spaces": true,
+      "explanation": "1.5秒は1秒と500000マイクロ秒に分けて、tv_sec=1, tv_usec=500000と設定する。",
+      "tags": [
+        "select",
+        "timeval",
+        "過去問"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q047",
+      "type": "ordered_choice",
+      "question": "selectを使うコードで、監視集合を準備して読み込み可能FDを判定する代表的なマクロ/関数を正しい順に並べよ。",
+      "choices": [
+        "FD_ZERO(&mask)",
+        "FD_SET(監視対象FD, &mask)",
+        "select(maxfd + 1, &mask, NULL, NULL, &tv)",
+        "FD_ISSET(監視対象FD, &mask)"
+      ],
+      "shuffle_choices": true,
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "fd_setを初期化し、監視対象を追加し、selectを呼び出し、戻った後にFD_ISSETで変化のあったFDを確認する。",
+      "tags": [
+        "select",
+        "fd_set",
+        "過去問"
+      ],
+      "difficulty": 3
+    },
+    {
+      "id": "q048",
+      "type": "single_choice",
+      "question": "標準入力fd=0と接続済みソケットaccfdをselectで監視し、accfdが最大のFDであるとき、第1引数maxfdp1として適切な値はどれか。",
+      "choices": [
+        "accfd + 1",
+        "accfd - 1",
+        "0",
+        "result"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "selectの第1引数は監視対象FDの最大値+1である。0とaccfdを監視し、accfdが最大ならaccfd+1を渡す。",
+      "tags": [
+        "select",
+        "過去問"
+      ],
+      "difficulty": 2
+    },
+    {
+      "id": "q049",
+      "type": "single_choice",
+      "question": "ブロッキング型TCPチャットプログラムで、ブロッキング状態に陥る直接の原因となる関数呼び出しはどれか。",
+      "choices": [
+        "read()",
+        "bzero()",
+        "strlen()",
+        "printf()"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "講義資料では、サーバ・クライアントともread()で対象データが読み取られるまでブロッキング状態に陥ると説明している。",
+      "tags": [
+        "ブロッキングI/O",
+        "TCPチャット"
+      ],
+      "difficulty": 1
+    },
+    {
+      "id": "q050",
+      "type": "single_choice",
+      "question": "inetdがサービスプログラムを起動するときの説明として正しいものはどれか。",
+      "choices": [
+        "接続済みのファイルディスクリプタで初期化された標準入出力を設定してプログラムを起動する",
+        "各サービスプログラムに必ずsocket(), bind(), listen()を書かせる",
+        "DNSサーバのキャッシュだけを消去する",
+        "UDPサービスをTCPへ変換する"
+      ],
+      "shuffle_choices": true,
+      "answer": 0,
+      "explanation": "inetdはサービスポートを管理し、接続があれば標準入出力を設定して対応プログラムを起動する。",
+      "tags": [
+        "inetd",
+        "select"
+      ],
+      "difficulty": 2
     }
   ]
 }
